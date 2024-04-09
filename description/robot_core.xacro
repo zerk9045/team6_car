@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  >
+
+   <xacro:include filename="robot_colors.xacro" />
+
+    <link name="base_link">
+    </link>
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0.2305 0 0.089"/>
+            <geometry>
+                <box size="0.461 0.311 0.178"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+    </link>
+
+</robot>
