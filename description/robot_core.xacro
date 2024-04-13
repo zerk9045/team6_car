@@ -1,118 +1,121 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"  >
-
+<!-- A simple model of the racecar for rviz -->
     <xacro:include filename="robot_colors.xacro" />
-    <xacro:include filename="inertial_macros.xacro" />
 
-    <!-- BASE LINK -->
-    <link name="base_link">
-    </link>
+  <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="racecar">
 
-    <!-- CHASSIS -->
-    <joint name="chassis_joint" type="fixed">
+      <xacro:property name="wheelbase" value="0.289" />
+      <xacro:property name="width" value="0.311" />
+      <xacro:property name="height" value="0.178" />
+      <xacro:property name="ground_offset" value="0.04" /> <!--Measure this-->
+      <xacro:property name="wheel_radius" value="0.0508" /> <!--Measure this-->
+      <xacro:property name="wheel_length" value="0.0381" /> <!--Measure this-->
+      <xacro:property name="laser_distance_from_base_link" value="0.275" /> <!--Measure this-->
+      <xacro:property name="laser_height" value="0.05" /> <!--Measure this-->
+      <xacro:property name="laser_radius" value="0.026" /> <!--Measure this-->
+
+      <link name="base_link">
+        <visual>
+          <origin xyz="${wheelbase/2} 0 ${ground_offset+height/2}"/>
+          <geometry>
+            <box size="${wheelbase} ${width} ${height}"/>
+          </geometry>
+          <material name="orange"/>
+        </visual>
+      </link>
+
+      <joint name="base_to_laser_model" type="fixed">
         <parent link="base_link"/>
-        <child link="chassis"/>
-        <origin xyz="-0.1 0 0"/>
-    </joint>
+        <child link="laser_model"/>
+        <origin xyz="${laser_distance_from_base_link} 0 ${ground_offset+height+(laser_height/2)}"/>
+      </joint>
 
-    <link name="chassis">
+      <link name="laser_model">
         <visual>
-            <origin xyz="0.2305 0 0.089"/>
-            <geometry>
-                <box size="0.461 0.311 0.178"/>
-            </geometry>
-            <material name="white"/>
+          <geometry>
+            <cylinder radius="${laser_radius}" length="${laser_height}"/>
+          </geometry>
+          <material name="black"/>
         </visual>
-        <collision>
-            <origin xyz="0.2305 0 0.089" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.461 0.311 0.178"/>
-            </geometry>
-        </collision>
-        <xacro:inertial_box mass="1.69" x="0.461" y="0.311" z="0.178">
-            <origin xyz="0.2305 0 0.089" rpy="0 0 0"/>
-        </xacro:inertial_box>
-    </link>
+      </link>
 
-    <!-- LEFT DRIVE WHEEL  -->
-    <joint name="left_wheel_joint" type="continuous">
+      <joint name="base_to_back_left_wheel" type="fixed">
         <parent link="base_link"/>
-        <child link="left_wheel"/>
-        <origin xyz="0 0.175 0" rpy="-${pi/2} 0 0"/>
-        <axis xyz="0 0 1"/>
-    </joint>
+        <child link="back_left_wheel"/>
+        <origin xyz="0 ${(wheel_length+width)/2} ${wheel_radius}"/>
+      </joint>
 
-    <link name="left_wheel">
+      <link name="back_left_wheel">
         <visual>
-            <geometry>
-                <cylinder length="0.04" radius="0.05" />
-            </geometry>
-            <material name="orange"/>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          </geometry>
+          <material name="black"/>
+          <origin rpy="${pi/2} 0 0"/>
         </visual>
-        <collision>
-            <geometry>
-                <cylinder length="0.04" radius="0.05" />
-            </geometry>
-        </collision>    
-        <!--NEED TO MEASURE PARAMETERS FOR WHEELS AND UPDATE-->
-        <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.05">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>
-    </link>
+      </link>
 
-    <!-- RIGHT DRIVE WHEEL -->
-
-    <joint name="right_wheel_joint" type="continuous">
+      <joint name="base_to_back_right_wheel" type="fixed">
         <parent link="base_link"/>
-        <child link="right_wheel"/>
-        <origin xyz="0 -0.175 0" rpy="${pi/2} 0 0"/>
-        <axis xyz="0 0 -1"/>
-    </joint>
+        <child link="back_right_wheel"/>
+        <origin xyz="0 ${-(wheel_length+width)/2} ${wheel_radius}"/>
+      </joint>
 
-    <link name="right_wheel">
+      <link name="back_right_wheel">
         <visual>
-            <geometry>
-                <cylinder length="0.04" radius="0.05" />
-            </geometry>
-            <material name="orange"/>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          </geometry>
+          <material name="black"/>
+          <origin rpy="${pi/2} 0 0"/>
         </visual>
-        <collision>
-            <geometry>
-                <cylinder length="0.04" radius="0.05" />
-            </geometry>
-        </collision>
-        <!--NEED TO MEASURE PARAMETERS FOR WHEELS AND UPDATE-->
-        <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.05">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>        
-    </link>
+      </link>
 
-    <!-- CASTER WHEEL -->
-    <!-- CREATE TWO CASTER WHEELS LATER-->
-    <joint name="caster_wheel_joint" type="fixed">
-        <parent link="chassis"/>
-        <child link="caster_wheel"/>
-        <origin xyz="0.24 0 0" rpy="0 0 0"/>
-    </joint>
-    
-    <!--UPDATE THIS TO CYLINDER ONCE PARAMETERS FOR WHEELS IS MEASURED-->
-    <link name="caster_wheel">
+      <joint name="base_to_front_left_hinge" type="fixed">
+        <parent link="base_link"/>
+        <child link="front_left_hinge"/>
+        <origin xyz="${wheelbase} ${(wheel_length+width)/2} ${wheel_radius}"/>
+      </joint>
+
+      <link name="front_left_hinge"/>
+
+      <joint name="front_left_hinge_to_wheel" type="continuous">
+        <parent link="front_left_hinge"/>
+        <child link="front_left_wheel"/>
+      </joint>
+
+      <link name="front_left_wheel">
         <visual>
-            <geometry>
-                <sphere radius="0.05" />
-            </geometry>
-            <material name="orange"/>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          </geometry>
+          <material name="black"/>
+          <origin rpy="${pi/2} 0 0"/>
         </visual>
-        <collision>
-            <geometry>
-                <sphere radius="0.05" />
-            </geometry>
-        </collision>
-        <!--UPDATE THIS TO CYLINDER ONCE PARAMETERS FOR WHEELS IS MEASURED-->
-        <xacro:inertial_sphere mass="0.1" radius="0.05">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_sphere>
-    </link>
+      </link>
 
+      <joint name="base_to_front_right_hinge" type="fixed">
+        <parent link="base_link"/>
+        <child link="front_right_hinge"/>
+        <origin xyz="${wheelbase} ${-(wheel_length+width)/2} ${wheel_radius}"/>
+      </joint>
+
+      <link name="front_right_hinge"/>
+
+      <joint name="front_right_hinge_to_wheel" type="continuous">
+        <parent link="front_right_hinge"/>
+        <child link="front_right_wheel"/>
+      </joint>
+
+      <link name="front_right_wheel">
+        <visual>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          </geometry>
+          <material name="black"/>
+          <origin rpy="${pi/2} 0 0"/>
+        </visual>
+      </link>
 
 </robot>
