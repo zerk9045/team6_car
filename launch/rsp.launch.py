@@ -7,6 +7,12 @@ from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
 
+import launch_ros
+
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
+
 import xacro
 
 
@@ -29,6 +35,12 @@ def generate_launch_description():
         parameters=[params]
     )
 
+    joint_state_publisher_node = launch_ros.actions.Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher'
+    )
+
 
     # Launch!
     return LaunchDescription([
@@ -37,5 +49,6 @@ def generate_launch_description():
             default_value='false',
             description='Use sim time if true'),
 
-        node_robot_state_publisher
+        node_robot_state_publisher,
+        joint_state_publisher_node
     ])
