@@ -34,7 +34,7 @@
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control"> 
             
             <ros> 
-                <remapping>asc/reference:=cmd_vel</remapping>       
+                <remapping>asc/reference:=cmd_vel_stamped</remapping>
                 <remapping>asc/odometry:=odom</remapping> 
                 <remapping>asc/tf_odometry:=tf</remapping> 
             </ros> 
