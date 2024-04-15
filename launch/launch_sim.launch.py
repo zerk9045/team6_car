@@ -36,11 +36,23 @@ def generate_launch_description():
                                    '-entity', 'my_bot'],
                         output='screen')
 
+    ackermann_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["asc"],
+    )
 
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["jsc"],
+    )
 
     # Launch them all!
     return LaunchDescription([
         rsp,
         gazebo,
         spawn_entity,
+        ackermann_drive_spawner,
+        joint_broad_spawner
     ])

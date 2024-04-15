@@ -4,7 +4,7 @@
 
     <xacro:property name="wheel_radius" value="${$(arg wheel_diameter)/2}"/>
     <xacro:property name="wheel_width" value="0.047"/>
-    <xacro:property name="wheel_friction" value="0.8"/>
+    <xacro:property name="wheel_friction" value="0.01"/>
     <xacro:property name="wheelbase_length" value="0.311"/>
     <xacro:property name="front_wheelbase_width" value="0.289"/>
     <xacro:property name="rear_wheelbase_width" value="0.289"/>
@@ -41,33 +41,8 @@
         </inertial>
     </xacro:macro>
 
-    <link name="base_footprint"/>
-
     <link name="base_link"/>
-    <!--
-    <link name="base_link">
-        <visual>
-        <origin xyz="0 0 0.1" rpy="0 0 0"/>
-        <geometry>
-            <cylinder length="0.2" radius="0.01"/>
-        </geometry>
-        <material name="silver">
-            <color rgba="0.75 0.75 0.75 1"/>
-        </material>
-        </visual>
-        <collision>
-        <origin xyz="0 0 0.1" rpy="0 0 0"/>
-        <geometry>
-            <cylinder length="0.2" radius="0.01"/>
-        </geometry>
-        </collision>
-        <inertial>
-        <mass value="0.01"/>
-        <inertia ixx="0.015" iyy="0.0375" izz="0.0375"
-                ixy="0" ixz="0" iyz="0"/>
-        </inertial>
-    </link>
-    -->
+
     <link name="chassis_link">
         <visual>
         <geometry>
@@ -341,11 +316,11 @@
     </link>
 
 
-    <joint name="base_link_joint" type="fixed">
+<!--    <joint name="base_link_joint" type="fixed">
         <parent link="base_footprint"/>
         <child link="base_link"/>
         <origin rpy="0 0 0" xyz="0 0 0"/>
-    </joint>
+    </joint>-->
 
     <joint name="laser_scanner_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.1397 0 0.2159"/>
@@ -447,19 +422,19 @@
 
     <gazebo reference="front_left_wheel">
         <mu1>${wheel_friction}</mu1>
-        <material>Gazebo/DarkGrey</material>
+        <material>Gazebo/Black</material>
     </gazebo>
     <gazebo reference="front_right_wheel">
         <mu1>${wheel_friction}</mu1>
-        <material>Gazebo/DarkGrey</material>
+        <material>Gazebo/Black</material>
     </gazebo>
     <gazebo reference="back_left_wheel">
         <mu1>${wheel_friction}</mu1>
-        <material>Gazebo/DarkGrey</material>
+        <material>Gazebo/Green</material>
     </gazebo>
     <gazebo reference="back_right_wheel">
         <mu1>${wheel_friction}</mu1>
-        <material>Gazebo/DarkGrey</material>
+        <material>Gazebo/Green</material>
     </gazebo>
 
     <gazebo reference="base_link">
@@ -469,4 +444,4 @@
         <plugin name="car_gazebo_plugin" filename="libcar_gazebo_plugin.so">
         </plugin>
     </gazebo>
-    </robot>
+</robot>
