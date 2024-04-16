@@ -5,7 +5,7 @@ from config.pin_config import Pin
 
 class Lidar:
     def __init__(self):
-        self.lidar_uart= machine.UART(0, machine.baudrate(230400), machine.rx(Pin.UART_RX_PIN))
+        self.lidar_uart = machine.UART(0, machine.baudrate(230400), machine.rx(Pin.UART_RX_PIN))
         self.motor_pwm = machine.PWM(machine.Pin(Pin.LIDAR_MOTOR_PIN))
         self.motor_pwm.freq(30000)  # Set PWM frequency to 30KHz (recommended)
 

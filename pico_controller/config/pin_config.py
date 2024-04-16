@@ -18,6 +18,9 @@ class PinConfig:
         self.UART_RX_PIN = machine.Pin(13)
         self.LIDAR_MOTOR_PIN = machine.PWM(machine.Pin(9))
 
+        # Pin Mapping for IR Sensor
+        self.IR_SENSOR_PIN = machine.Pin(8, machine.Pin.IN)
+
 # Create an instance of PinConfig for easy access
 Pin = PinConfig()
 

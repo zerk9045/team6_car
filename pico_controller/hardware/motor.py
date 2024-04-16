@@ -1,5 +1,4 @@
 import sys
-import machine
 sys.path.append('../config')
 from config.pin_config import Pin
 
