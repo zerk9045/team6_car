@@ -3,6 +3,7 @@ import machine
 sys.path.append('../config')
 from config.pin_config import Pin
 
+
 class Lidar:
     def __init__(self):
         self.lidar_uart = machine.UART(0, machine.baudrate(230400), machine.rx(Pin.UART_RX_PIN))
@@ -32,7 +33,7 @@ class Lidar:
         """
         self.control_motor_pwm(duty_cycle)  # Start motor with specified duty cycle
 
-    def read_data(self,bytes):
+    def read_data(self, bytes):
         return self.lidar_uart.read(bytes)
 
     @staticmethod

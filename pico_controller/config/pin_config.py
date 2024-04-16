@@ -1,5 +1,6 @@
 import machine
 
+
 class PinConfig:
     def __init__(self):
         # Other pin configurations
@@ -10,7 +11,7 @@ class PinConfig:
         self.INB_PIN = machine.Pin(11, machine.Pin.OUT)  # Motor driver control pin
 
         # Pin mappings for motors and servos
-        self.WHEEL_MOTOR_PIN= machine.PWM(machine.Pin(14))  # GPIO pin 14 for motor control (PWM)
+        self.WHEEL_MOTOR_PIN = machine.PWM(machine.Pin(14))  # GPIO pin 14 for motor control (PWM)
         self.SERVO_PIN = machine.PWM(machine.Pin(15))  # GPIO pin 15 for servo control (PWM)
 
         # Pin mappings for LiDAR
@@ -21,7 +22,6 @@ class PinConfig:
         # Pin Mapping for IR Sensor
         self.IR_SENSOR_PIN = machine.Pin(8, machine.Pin.IN)
 
+
 # Create an instance of PinConfig for easy access
 Pin = PinConfig()
-
-

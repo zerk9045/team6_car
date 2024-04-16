@@ -1,8 +1,13 @@
 import sys
+
 sys.path.append('../config')
 from config.pin_config import Pin
 
+
 class Motor:
+    def __init__(self):
+        Pin.WHEEL_MOTOR_PIN.freq(Pin.PWM_FREQ)
+
     @staticmethod
     def forward(speed):
         Pin.INA_PIN.value(1)  # Set INA to high

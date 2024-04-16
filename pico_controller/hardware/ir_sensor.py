@@ -1,7 +1,9 @@
 import machine
 import sys
+
 sys.path.append('../config')
 from config.pin_config import Pin
+
 
 class IRSensor:
     def __init__(self):
