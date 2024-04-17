@@ -1,6 +1,9 @@
 source;share/team6_car/hook/cmake_prefix_path.ps1
 source;share/team6_car/hook/cmake_prefix_path.dsv
 source;share/team6_car/hook/cmake_prefix_path.sh
+source;share/team6_car/hook/pythonpath.ps1
+source;share/team6_car/hook/pythonpath.dsv
+source;share/team6_car/hook/pythonpath.sh
 source;share/team6_car/local_setup.bash
 source;share/team6_car/local_setup.dsv
 source;share/team6_car/local_setup.ps1

@@ -14,6 +14,7 @@
 /home/adrien/dev_ws/src/install/team6_car/share/team6_car/launch/spawn_car.launch.py
 /home/adrien/dev_ws/src/install/team6_car/share/team6_car/worlds/empty.world
 /home/adrien/dev_ws/src/install/team6_car/share/team6_car/worlds/simple.world
+/home/adrien/dev_ws/src/install/team6_car/share/team6_car/tests/velocity_to_pwm.py
 /home/adrien/dev_ws/src/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car
 /home/adrien/dev_ws/src/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car
 /home/adrien/dev_ws/src/install/team6_car/share/team6_car/environment/ament_prefix_path.sh
