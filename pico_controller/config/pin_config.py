@@ -4,7 +4,7 @@ import machine
 class PinConfig:
     def __init__(self):
         # Other pin configurations
-        self.PWM_FREQUENCY = 100  # PWM frequency in Hz
+        self.PWM_FREQ = 100  # PWM frequency in Hz
 
         # Pin Mappings for VNH5019A-E controls
         self.INA_PIN = machine.Pin(10, machine.Pin.OUT)  # Motor driver control pin
