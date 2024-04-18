@@ -1,0 +1,30 @@
+[0.007s] Invoking command in '/home/adrien/dev_ws/src/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/adrien/dev_ws/src/build/team6_car -- -j8 -l8
+[0.035s] Invoked command in '/home/adrien/dev_ws/src/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/adrien/dev_ws/src/build/team6_car -- -j8 -l8
+[0.059s] Invoking command in '/home/adrien/dev_ws/src/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/adrien/dev_ws/src/build/team6_car
+[0.064s] -- Install configuration: ""
+[0.064s] -- Execute custom install script
+[0.064s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/config/empty.yaml
+[0.064s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/description/inertial_macros.xacro
+[0.064s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/description/robot.urdf.xacro
+[0.064s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/description/robot_colors.xacro
+[0.064s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/description/robot_core.xacro
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/description/robot_core_old.xacro
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/launch/launch_sim.launch.py
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/launch/rsp.launch.py
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/worlds/empty.world
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/environment/ament_prefix_path.sh
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/environment/ament_prefix_path.dsv
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/environment/path.sh
+[0.065s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/environment/path.dsv
+[0.066s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/local_setup.bash
+[0.066s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/local_setup.sh
+[0.066s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/local_setup.zsh
+[0.066s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/local_setup.dsv
+[0.066s] -- Symlinking: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/package.dsv
+[0.072s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/ament_index/resource_index/packages/team6_car
+[0.072s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/cmake/team6_carConfig.cmake
+[0.072s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/cmake/team6_carConfig-version.cmake
+[0.072s] -- Up-to-date symlink: /home/adrien/dev_ws/src/install/team6_car/share/team6_car/package.xml
+[0.074s] Invoked command in '/home/adrien/dev_ws/src/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/adrien/dev_ws/src/build/team6_car
