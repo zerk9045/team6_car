@@ -313,9 +313,6 @@ message(STATUS "Execute custom install script")
 # install(DIRECTORY "config" "description" "launch" "worlds" "tests" "DESTINATION" "share/team6_car")
 ament_cmake_symlink_install_directory("/home/adrien/dev_ws/src/team6_car" DIRECTORY "config" "description" "launch" "worlds" "tests" "DESTINATION" "share/team6_car")
 
-# install("TARGETS" "talker" "DESTINATION" "lib/team6_car")
-include("/home/adrien/dev_ws/src/build/team6_car/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
-
 # install(FILES "/home/adrien/dev_ws/src/build/team6_car/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/team6_car" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/adrien/dev_ws/src/team6_car" FILES "/home/adrien/dev_ws/src/build/team6_car/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/team6_car" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 
