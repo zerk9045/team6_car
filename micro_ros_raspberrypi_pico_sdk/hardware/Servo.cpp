@@ -7,10 +7,9 @@
 #define MIN_PULSE_WIDTH 1
 #define PWM_PERIOD_MS 20
 
-Servo::Servo()
-        : pwmPin(SERVO_PWM), minAngle(0), maxAngle(180) {
+Servo::Servo(){
     // Initialize servo hardware or perform any necessary setup here
-    gpio_set_function(pwmPin, GPIO_FUNC_PWM);
+    gpio_set_function(SERVO_PWM, GPIO_FUNC_PWM);
 }
 
 Servo::~Servo() {
