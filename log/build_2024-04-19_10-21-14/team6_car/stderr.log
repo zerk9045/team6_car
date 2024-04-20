@@ -1,0 +1,1 @@
+[0mCMake Error: The current CMakeCache.txt directory /home/adrien/dev_ws/src/team6_car/build/team6_car/CMakeCache.txt is different than the directory /home/adrien/dev_ws/src/build/team6_car where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
