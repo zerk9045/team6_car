@@ -6,7 +6,7 @@
 class Servo {
 public:
     // Constructor
-    Servo(int pin, int minAngle = 0, int maxAngle = 180);
+    Servo();
     // Destructor
     ~Servo();
 

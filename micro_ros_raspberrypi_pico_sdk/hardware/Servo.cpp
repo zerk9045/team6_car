@@ -20,7 +20,10 @@ Servo::~Servo() {
 
 void Servo::setAngle(int angle) {
     // Ensure angle is within the specified range
-    angle = std::clamp(angle, minAngle, maxAngle);
+    if (!(angle > 0 && anlg < 180)){
+        return;
+    }
+
 
     currAngle = angle;
     // Calculate pulse width based on angle
