@@ -17,7 +17,7 @@ asc:
     open_loop: false
     velocity_rolling_window_size: 10
     position_feedback: false
-    use_stamped_vel: true
+    use_stamped_vel: true  #set this true for simulation
 
     base_frame_id: base_link
 

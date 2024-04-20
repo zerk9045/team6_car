@@ -24,20 +24,12 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-add_executable(velocity_publisher src/velocity_to_pwm.cpp)
-ament_target_dependencies(velocity_publisher rclcpp std_msgs geometry_msgs)
-
-add_executable(talker src/publisher_member_function.cpp)
-ament_target_dependencies(talker rclcpp std_msgs)
+add_executable(velocity_subscriber src/velocity_to_pwm.cpp)
+ament_target_dependencies(velocity_subscriber rclcpp std_msgs geometry_msgs)
 
 install(TARGETS
-  velocity_publisher
+  velocity_subscriber
   DESTINATION lib/${PROJECT_NAME})
-
-install(TARGETS
-  talker
-  DESTINATION lib/${PROJECT_NAME})
-
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
