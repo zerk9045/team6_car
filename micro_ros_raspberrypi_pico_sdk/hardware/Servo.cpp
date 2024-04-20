@@ -19,7 +19,7 @@ Servo::~Servo() {
 
 void Servo::setAngle(int angle) {
     // Ensure angle is within the specified range
-    if (!(angle > 0 && anlg < 180)){
+    if (!(angle > 0 && angle < 180)){
         return;
     }
 
@@ -32,7 +32,7 @@ void Servo::setAngle(int angle) {
     float dutyCycle = (pulseWidth / PWM_PERIOD_MS) * 100.0f;
 
     // Set PWM duty cycle for servo control pin
-    pwm_set_gpio_level(pwmPin, dutyCycle);
+    pwm_set_gpio_level(SERVO_PWM, dutyCycle);
 }
 
 int Servo::getAngle() {
