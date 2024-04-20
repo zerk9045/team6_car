@@ -13,8 +13,6 @@ Servo::Servo(){
 }
 
 Servo::~Servo() {
-    // Disable PWM output for the servo pin
-    pwm_set_enabled(pwmPin, false);
 }
 
 void Servo::setAngle(int angle) {
