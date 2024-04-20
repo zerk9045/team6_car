@@ -7,8 +7,8 @@ Motor::Motor()
         : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN) {
     // Initialize motor hardware or perform any necessary setup here
     gpio_set_function(pwmPin, GPIO_FUNC_PWM);
-    gpio_set_function(inAPin, GPIO_FUNC_OUTPUT);
-    gpio_set_function(inBPin, GPIO_FUNC_OUTPUT);
+    gpio_set_function(inAPin, GPIO_OUT);
+    gpio_set_function(inBPin, GPIO_OUT);
 }
 
 Motor::~Motor() {
