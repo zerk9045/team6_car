@@ -1,6 +1,7 @@
 #include "Motor.h"
 #include "pico/stdlib.h"
 #include "../config/pin_config.h" // Include the pin configuration header
+#include "hardware/pwm.h"
 
 Motor::Motor()
         : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN) {

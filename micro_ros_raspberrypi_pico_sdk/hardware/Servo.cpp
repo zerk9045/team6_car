@@ -1,6 +1,7 @@
 #include "Servo.h"
 #include "pico/stdlib.h"
 #include "../config/pin_config.h" // Include the pin configuration header
+#include "hardware/pwm.h"
 
 #define MAX_PULSE_WIDTH 2
 #define MIN_PULSE_WIDTH 1
