@@ -16,7 +16,9 @@ Motor::~Motor() {
 
 void Motor::setSpeed(int speed) {
     // Ensure speed is within the valid range
-    speed = std::clamp(speed, -100, 100);
+    if (!(speed > -100 && speed < 100)){
+        return
+    }
 
     // Set motor direction based on speed sign
     if (speed >= 0) {
