@@ -2,7 +2,6 @@
 #define TEAM6_CAR_MOTOR_H
 
 #include "pico/stdlib.h"
-#include "../config/pin_config.h" // Include the pin configuration header
 
 class Motor {
 public:
