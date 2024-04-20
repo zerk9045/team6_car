@@ -32,11 +32,8 @@ private:
   void cmd_vel_stamped_callback(
     const geometry_msgs::msg::TwistStamped::SharedPtr msg)
   {
-    // Linear Velocity Changed
-    //if (velocity_cmd->twist.angular.z){
-    //RCLCPP_INFO(this->get_logger(), "I heard");
-    //}
 
+    // Echo the linear velocity components in the terminal where the node was started
     RCLCPP_INFO(this->get_logger(), "I heard: '%f, %f, %f'", msg->twist.linear.x, msg->twist.linear.y, msg->twist.linear.z);
 
   }
