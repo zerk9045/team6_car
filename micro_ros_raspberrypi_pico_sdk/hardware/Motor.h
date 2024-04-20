@@ -6,7 +6,7 @@
 class Motor {
 public:
     // Constructor
-    Motor(int pwmPin, int inAPin, int inBPin);
+    Motor();
 
     // Destructor
     ~Motor();
