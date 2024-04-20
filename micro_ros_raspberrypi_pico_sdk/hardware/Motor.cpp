@@ -17,7 +17,7 @@ Motor::~Motor() {
 void Motor::setSpeed(int speed) {
     // Ensure speed is within the valid range
     if (!(speed > -100 && speed < 100)){
-        return
+        return;
     }
 
     // Set motor direction based on speed sign
