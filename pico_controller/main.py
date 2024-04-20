@@ -6,12 +6,12 @@ sys.path.append('./hardware')
 from servo import Servo
 from motor import Motor
 from lidar import Lidar
-from ir_sensor import IRSensor
+#from ir_sensor import IRSensor
 
 lidar = Lidar()
 servo = Servo()
 motor = Motor()
-ir_sensor = IRSensor()
+#ir_sensor = IRSensor()
 
 
 def test_motor(speed):
@@ -55,16 +55,16 @@ def test_lidar():
         print("Measurement Data: ", measurements)
 
 
-def test_ir_sensor():
-    while True:
-        print("IR Sensor Interrupts:")
-        print(ir_sensor.sensor_interrupts)
-        utime.sleep(2)  # Print every 2 seconds
+#def test_ir_sensor():
+    #while True:
+        #print("IR Sensor Interrupts:")
+        #print(ir_sensor.sensor_interrupts)
+        #utime.sleep(2)  # Print every 2 seconds
 
 
 # Uncomment the test functions you want to run
 if __name__ == "__main__":
-    # test_motor(0.4)
-    # test_servo(0.4)
+    test_motor(0.4)
+    test_servo(0.4)
     # test_lidar()
-    test_ir_sensor()
+    # test_ir_sensor()
