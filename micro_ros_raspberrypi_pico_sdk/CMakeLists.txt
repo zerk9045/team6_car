@@ -13,7 +13,6 @@ add_executable(pico_micro_ros_example
         pico_micro_ros_example.c
         pico_uart_transport.c
         main.cpp
-        communication/pico_uart_transport.c
         hardware/Motor.cpp
         hardware/Servo.cpp
 )
