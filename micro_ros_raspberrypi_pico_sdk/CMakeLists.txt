@@ -15,7 +15,6 @@ add_executable(pico_micro_ros_example
         hardware/Motor.c
         hardware/Servo.c
         pico_controller.c
-        config/config_file.c
         hardware/hardware_file.c
         communication/communication_file.c
 )
