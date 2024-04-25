@@ -14,7 +14,7 @@ add_executable(pico_micro_ros_example
         communication/pico_uart_transport.c
         hardware/Motor.cpp
         hardware/Servo.cpp
-        pico_controller.c
+        pico_controller.cpp
 )
 target_link_libraries(pico_micro_ros_example
     pico_stdlib
