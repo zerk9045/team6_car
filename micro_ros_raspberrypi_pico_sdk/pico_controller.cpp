@@ -42,40 +42,40 @@ int main()
   rclc_support_t support;
 
   // create init_options
-  RCCHECK(rclc_support_init(&support, 0, NULL, &allocator));
+  rclc_support_init(&support, 0, NULL, &allocator);
 
   // create rcl_node
   rcl_node_t node;
-  RCCHECK(rclc_node_init_default(&node, "pico_node", "", &support));
+  rclc_node_init_default(&node, "pico_node", "", &support);
 
   // create a publisher
-  RCCHECK(rclc_publisher_init_default(
+  rclc_publisher_init_default(
     &publisher,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "control_topic"));
+    "control_topic");
 
   // create a timer,
   rcl_timer_t timer;
   const unsigned int timer_timeout = 1000;
-  RCCHECK(rclc_timer_init_default(
+  rclc_timer_init_default(
     &timer,
     &support,
     RCL_MS_TO_NS(timer_timeout),
-    timer_callback));
+    timer_callback);
 
   // create a subscriber
-  RCCHECK(rclc_subscription_init_default(
+  rclc_subscription_init_default(
     &subscriber,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "string_publisher"));
+    "string_publisher");
 
   // create executor
   rclc_executor_t executor;
-  RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
-  RCCHECK(rclc_executor_add_timer(&executor, &timer));
-  RCCHECK(rclc_executor_add_subscription(&executor, &subscriber, &msg, &subscription_callback, ON_NEW_DATA));
+  rclc_executor_init(&executor, &support.context, 2, &allocator);
+  rclc_executor_add_timer(&executor, &timer);
+  rclc_executor_add_subscription(&executor, &subscriber, &msg, &subscription_callback, ON_NEW_DATA);
 
   while(1){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
