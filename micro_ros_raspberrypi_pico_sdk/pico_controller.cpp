@@ -82,7 +82,7 @@ int main()
   }
 
   // free resources
-  RCCHECK(rcl_publisher_fini(&publisher, &node));
-  RCCHECK(rcl_subscription_fini(&subscriber, &node));
-  RCCHECK(rcl_node_fini(&node));
+  rcl_publisher_fini(&publisher, &node);
+  rcl_subscription_fini(&subscriber, &node);
+  rcl_node_fini(&node);
 }
