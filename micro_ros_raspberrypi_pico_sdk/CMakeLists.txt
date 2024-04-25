@@ -28,7 +28,7 @@ target_link_libraries(pico_micro_ros_example
 
 target_include_directories(pico_micro_ros_example PUBLIC
         ${CMAKE_SOURCE_DIR}/libmicroros/include
-        ${CMAKE_SOURCE_DIR}/libmicroros/libmicro_ros.a
+        ${CMAKE_SOURCE_DIR}/libmicroros/libmicroros.a
         config
         communication
         hardware
