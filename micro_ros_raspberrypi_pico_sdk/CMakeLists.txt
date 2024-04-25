@@ -12,8 +12,8 @@ link_directories(libmicroros,config,communication,hardware)
 add_executable(pico_micro_ros_example
         pico_micro_ros_example.c
         communication/pico_uart_transport.c
-        hardware/Motor.c
-        hardware/Servo.c
+        hardware/Motor.cpp
+        hardware/Servo.cpp
         pico_controller.c
 )
 target_link_libraries(pico_micro_ros_example
