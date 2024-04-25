@@ -22,11 +22,8 @@ target_link_libraries(pico_micro_ros_example
     hardware_pwm
 )
 
-target_include_directories(pico_micro_ros_example PUBLIC
-        libmicroros/include
-        config
-        communication
-        hardware
+target_include_directories(pico_micro_ros_example PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}
 )
 
 SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")
