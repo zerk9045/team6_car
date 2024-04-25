@@ -2,8 +2,8 @@
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 #include <std_msgs/msg/string.h>
-#include <hardware/Servo.h>
-#include <hardware/Motor.h>
+#include <Servo.h>
+#include <Motor.h>
 
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
