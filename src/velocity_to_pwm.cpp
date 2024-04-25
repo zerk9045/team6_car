@@ -34,7 +34,10 @@ private:
   {
 
     // Echo the linear velocity components in the terminal where the node was started
-    RCLCPP_INFO(this->get_logger(), "I heard: '%f, %f, %f'", msg->twist.linear.x, msg->twist.linear.y, msg->twist.linear.z);
+    RCLCPP_INFO(this->get_logger(), "Linear Velocity: '%f'", msg->twist.linear.x);
+
+    // Echo the angular velocity components in the terminal where the node was started
+    RCLCPP_INFO(this->get_logger(), "Angular Velocity: '%f'", msg->twist.angular.z); 
 
   }
 
