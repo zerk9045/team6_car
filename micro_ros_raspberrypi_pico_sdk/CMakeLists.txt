@@ -11,10 +11,14 @@ pico_sdk_init()
 link_directories(libmicroros,config,communication,hardware)
 add_executable(pico_micro_ros_example
         pico_micro_ros_example.c
-        pico_uart_transport.c
+        communication/pico_uart_transport.c
         main.cpp
-        hardware/Motor.cpp
-        hardware/Servo.cpp
+        hardware/Motor.c
+        hardware/Servo.c
+        pico_controller.c
+        config/config_file.c
+        hardware/hardware_file.c
+        communication/communication_file.c
 )
 target_link_libraries(pico_micro_ros_example
     pico_stdlib
