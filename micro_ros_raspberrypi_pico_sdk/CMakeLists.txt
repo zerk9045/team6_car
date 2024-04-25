@@ -8,7 +8,12 @@ set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
-link_directories(libmicroros,config,communication,hardware)
+link_directories(
+        ${CMAKE_SOURCE_DIR}/libmicroros
+        ${CMAKE_SOURCE_DIR}/config
+        ${CMAKE_SOURCE_DIR}/communication
+        ${CMAKE_SOURCE_DIR}/hardware
+)
 add_executable(pico_micro_ros_example
         communication/pico_uart_transport.c
         hardware/Motor.cpp
