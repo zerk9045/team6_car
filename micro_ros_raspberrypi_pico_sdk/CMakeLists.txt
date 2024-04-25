@@ -15,10 +15,10 @@ link_directories(
         ${CMAKE_SOURCE_DIR}/hardware
 )
 add_executable(pico_micro_ros_example
-        communication/pico_uart_transport.c
-        hardware/Motor.cpp
-        hardware/Servo.cpp
-        pico_controller.cpp
+        ${CMAKE_SOURCE_DIR}/communication/pico_uart_transport.c
+        ${CMAKE_SOURCE_DIR}/hardware/Motor.cpp
+        ${CMAKE_SOURCE_DIR}/hardware/Servo.cpp
+        ${CMAKE_SOURCE_DIR}/pico_controller.cpp
 )
 target_link_libraries(pico_micro_ros_example
     pico_stdlib
@@ -28,10 +28,9 @@ target_link_libraries(pico_micro_ros_example
 
 target_include_directories(pico_micro_ros_example PUBLIC
         ${CMAKE_SOURCE_DIR}/libmicroros/include
-        ${CMAKE_SOURCE_DIR}/libmicroros/libmicroros.a
-        config
-        communication
-        hardware
+        ${CMAKE_SOURCE_DIR}/config
+        ${CMAKE_SOURCE_DIR}/communication
+        ${CMAKE_SOURCE_DIR}/hardware
 )
 
 SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")
