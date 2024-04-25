@@ -15,8 +15,6 @@ add_executable(pico_micro_ros_example
         hardware/Motor.c
         hardware/Servo.c
         pico_controller.c
-        hardware/hardware_file.c
-        communication/communication_file.c
 )
 target_link_libraries(pico_micro_ros_example
     pico_stdlib
