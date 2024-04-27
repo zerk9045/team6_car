@@ -26,6 +26,7 @@ class IRSensor {
 
         // Variable to store the speed;
         int speed;
+
 };
 
 
