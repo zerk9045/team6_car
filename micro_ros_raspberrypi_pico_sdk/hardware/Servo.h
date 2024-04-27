@@ -11,7 +11,7 @@ public:
     ~Servo();
 
     // Function to set the angle of the servo
-    void setAngle(int angle);
+    void setAngle(int anglePWM);
 
     int getAngle();
 

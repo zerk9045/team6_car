@@ -3,9 +3,9 @@
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
 
-#define MAX_PULSE_WIDTH 2
-#define MIN_PULSE_WIDTH 1
-#define PWM_PERIOD_MS 20
+#define STRAIGHT_ANGLE_PWM = 1500000;
+#define MAX_ANGLE_PWM = 1625000;
+#define MIN_ANGLE_PWM = 1375000;
 
 Servo::Servo(){
     // Initialize servo hardware or perform any necessary setup here
@@ -15,24 +15,20 @@ Servo::Servo(){
 Servo::~Servo() {
 }
 
-void Servo::setAngle(int angle) {
-    // Ensure angle is within the specified range
-    if (!(angle > 0 && angle < 180)){
-        return;
+void Servo::setAngle(int anglePWM) {
+    // Ensure pwm is within the specified range
+    if (anglePWM > MAX_ANGLE_PWM) {
+        anglePWM = MAX_ANGLE_PWM;
+    } else if (anglePWM < MIN_ANGLE_PWM) {
+        anglePWM = MIN_ANGLE_PWM;
     }
 
-
-    currAngle = angle;
-    // Calculate pulse width based on angle
-    float pulseWidth = ((angle / 180.0f) * (MAX_PULSE_WIDTH - MIN_PULSE_WIDTH)) + MIN_PULSE_WIDTH;
-
-    // Convert pulse width to duty cycle
-    float dutyCycle = (pulseWidth / PWM_PERIOD_MS) * 100.0f;
-
     // Set PWM duty cycle for servo control pin
-    pwm_set_gpio_level(SERVO_PWM, dutyCycle);
+    pwm_set_gpio_level(SERVO_PWM, anglePWM);
+
+    currAnglePWM = anglePWM;
 }
 
 int Servo::getAngle() {
-    return currAngle;
+    return currAnglePWM;
 }

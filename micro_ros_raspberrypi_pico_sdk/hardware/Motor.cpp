@@ -2,9 +2,9 @@
 #include "pico/stdlib.h"
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
-#define BRAKEPWM = 1500000;
-#define MAXPWM = 1625000;
-#define MINPWM = 1375000;
+#define BRAKE_PWM = 1500000;
+#define MAX_PWM = 1625000;
+#define MIN_PWM = 1375000;
 
 Motor::Motor()
         : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN) {
@@ -20,16 +20,16 @@ Motor::~Motor() {
 
 void Motor::setSpeed(int speedPWM) {
     // Ensure PWM is within the valid range
-    if (speedPWM > MAXPWM) {
-        speedPWM = MAXPWM;
-    } else if (speedPWM < MINPWM) {
-        speedPWM = MINPWM;
+    if (speedPWM > MAX_PWM) {
+        speedPWM = MAX_PWM;
+    } else if (speedPWM < MIN_PWM) {
+        speedPWM = MIN_PWM;
     }
 
     // Set motor direction based on pwm signal
-    if (speedPWM == BRAKEPWM) {
+    if (speedPWM == BRAKE_PWM) {
         updateDirection(false, false); // INA high, INB high (brake)
-    } else if (speedPWM > BRAKEPWM) {
+    } else if (speedPWM > BRAKE_PWM) {
         updateDirection(true, false); // INA high, INB low (forward)
     } else {
         updateDirection(false, true); // INA low, INB high (reverse)
