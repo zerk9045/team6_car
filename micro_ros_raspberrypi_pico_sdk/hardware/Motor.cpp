@@ -1,13 +1,15 @@
 #include "Motor.h"
 #include "pico/stdlib.h"
-#include "../config/pin_config.h" // Include the pin configuration header
+#include "../config/pin_config.h"
 #include "hardware/pwm.h"
+#include "IRSensor.h"
+
 #define BRAKE_PWM = 1500000;
 #define MAX_PWM = 1625000;
 #define MIN_PWM = 1375000;
 
 Motor::Motor()
-        : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN) {
+        : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN), irSensor(new IRSensor()) {
     // Initialize motor hardware or perform any necessary setup here
     gpio_set_function(pwmPin, GPIO_FUNC_PWM);
     gpio_set_dir(inAPin, GPIO_OUT);
@@ -37,6 +39,11 @@ void Motor::setSpeed(int speedPWM) {
 
     // Set PWM duty cycle for motor speed control pin
     pwm_set_gpio_level(pwmPin, speedPWM);
+}
+
+int Motor::getSpeed() {
+    // Use the IRSensor to calculate the rotations per second
+    return irSensor->getSpeed();
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {

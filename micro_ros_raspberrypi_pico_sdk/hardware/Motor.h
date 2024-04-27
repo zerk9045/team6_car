@@ -11,8 +11,10 @@ public:
     // Destructor
     ~Motor();
 
-    // Function to set motor speed (-100 to 100)
+    // Function to set motor speed
     void setSpeed(int speedPWM);
+    // Function to read motor speed
+    int getSpeed();
 
 private:
     int pwmPin; // PWM pin for motor speed control
