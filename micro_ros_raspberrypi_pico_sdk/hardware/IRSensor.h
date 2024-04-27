@@ -14,9 +14,10 @@ class IRSensor {
         // Method to get the speed
         int getSpeed();
 
-    private:
         // Method to handle interrupts
-        void do_interrupt();
+        static void do_interrupt(uint gpio, uint32_t events, uintptr_t data);
+    private:
+
 
         // Method to handle timer actions
         void timer_action();

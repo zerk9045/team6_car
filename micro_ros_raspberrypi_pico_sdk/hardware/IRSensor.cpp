@@ -10,8 +10,7 @@ IRSensor::IRSensor() {
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
 
     // Set up the interrupt on falling edge
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, &IRSensor::do_interrupt);
-
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, &IRSensor::do_interrupt, this);
     // Initialize the timer
     timer_init();
     timer_set_callback(&timer, &IRSensor::timer_action);
@@ -26,9 +25,9 @@ int IRSensor::getSpeed() {
     return speed;
 }
 
-void IRSensor::do_interrupt() {
-    // Increment the interrupt count
-    sensor_interrupts++;
+static void do_interrupt(uint gpio, uint32_t events, uintptr_t data) {
+    IRSensor *instance = reinterpret_cast<IRSensor *>(data);
+    instance->sensor_interrupts++;
 }
 
 void IRSensor::timer_action() {
