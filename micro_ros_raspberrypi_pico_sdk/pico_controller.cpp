@@ -4,6 +4,7 @@
 #include <std_msgs/msg/string.h>
 #include <Servo.h>
 #include <Motor.h>
+#include <string>
 
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
