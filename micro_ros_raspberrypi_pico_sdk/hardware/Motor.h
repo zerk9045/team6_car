@@ -24,7 +24,7 @@ private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control
     int inBPin; // INB pin for motor direction control
-    IRSensor* irSensor; // IRSensor object for speed calculation
+    //IRSensor* irSensor; // IRSensor object for speed calculation
     // Private helper function to set motor direction
     void updateDirection(bool inAValue, bool inBValue);
 };
