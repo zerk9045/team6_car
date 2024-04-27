@@ -14,7 +14,7 @@ link_directories(
         hardware
 )
 add_executable(pico_micro_ros_example
-        pico_uart_transport.cpp
+        pico_uart_transport.c
         pico_controller.cpp
         hardware/Servo.cpp
         hardware/Motor.cpp
