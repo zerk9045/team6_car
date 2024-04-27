@@ -8,7 +8,8 @@
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
 std_msgs__msg__String msg;
-
+Motor motor;
+Servo servo;
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
   RCLC_UNUSED(last_call_time);
@@ -44,11 +45,9 @@ void subscription_callback(const void * msgin)
     // Determine if the control command is for the motor or the servo based on string message
     if (msg->data.data[0] == 'S') {
       // Control the motor
-      Motor motor;
       motor.setSpeed(pwm); // Set the speed of the motor
     } else {
     // Control the servo
-     Servo servo;
      servo.setAngle(pwm); // Set the angle of the servo
   }
 }
