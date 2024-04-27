@@ -2,6 +2,9 @@
 #include "pico/stdlib.h"
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
+#define BRAKEPWM = 1500000;
+#define MAXPWM = 1625000;
+#define MINPWM = 1375000;
 
 Motor::Motor()
         : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN) {
@@ -15,34 +18,25 @@ Motor::~Motor() {
     // Cleanup resources if necessary
 }
 
-void Motor::setSpeed(int speed) {
-    // Ensure speed is within the valid range
-    if (!(speed > -100 && speed < 100)){
-        return;
+void Motor::setSpeed(int speedPWM) {
+    // Ensure PWM is within the valid range
+    if (speedPWM > MAXPWM) {
+        speedPWM = MAXPWM;
+    } else if (speedPWM < MINPWM) {
+        speedPWM = MINPWM;
     }
 
-    // Set motor direction based on speed sign
-    if (speed >= 0) {
-        setDirection(true); // Forward direction
-    } else {
-        setDirection(false); // Reverse direction
-        speed = -speed; // Convert negative speed to positive for PWM duty cycle
-    }
-
-    // Convert speed to PWM duty cycle (0 to 100%)
-    float dutyCycle = (speed / 100.0f) * 100.0f;
-
-    // Set PWM duty cycle for motor speed control pin
-    pwm_set_gpio_level(pwmPin, dutyCycle);
-}
-
-void Motor::setDirection(bool forward) {
-    // Set motor direction based on the forward flag
-    if (forward) {
+    // Set motor direction based on pwm signal
+    if (speedPWM == BRAKEPWM) {
+        updateDirection(false, false); // INA high, INB high (brake)
+    } else if (speedPWM > BRAKEPWM) {
         updateDirection(true, false); // INA high, INB low (forward)
     } else {
         updateDirection(false, true); // INA low, INB high (reverse)
     }
+
+    // Set PWM duty cycle for motor speed control pin
+    pwm_set_gpio_level(pwmPin, speedPWM);
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {

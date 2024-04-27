@@ -12,10 +12,7 @@ public:
     ~Motor();
 
     // Function to set motor speed (-100 to 100)
-    void setSpeed(int speed);
-
-    // Function to set motor direction (true for forward, false for reverse)
-    void setDirection(bool forward);
+    void setSpeed(int speedPWM);
 
 private:
     int pwmPin; // PWM pin for motor speed control
