@@ -10,6 +10,8 @@ pico_sdk_init()
 
 link_directories(
         libmicroros
+        config
+        hardware
 )
 add_executable(pico_micro_ros_example
         pico_uart_transport.cpp
