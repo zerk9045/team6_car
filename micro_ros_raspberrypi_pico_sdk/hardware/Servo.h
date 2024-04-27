@@ -22,7 +22,7 @@ private:
     int pin;        // Pin connected to the servo
     int minAngle;   // Minimum angle the servo can move to
     int maxAngle;   // Maximum angle the servo can move to
-    int currAngle = 0;
+    int currAnglePWM = 0;
 };
 
 
