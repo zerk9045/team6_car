@@ -13,44 +13,40 @@ Motor motor;
 Servo servo;
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
-  RCLC_UNUSED(last_call_time);
-  if (timer != NULL) {
-    // Publish your control command
-    std_msgs__msg__String__init(&msg);
-    msg.data.data = "Servo = " + std::to_string(servo.getAngle()) + "\nMotor = " + std::to_string(motor.getSpeed());
-    msg.data.size = strlen(msg.data.data);
-    msg.data.capacity = msg.data.size + 1;
-    rcl_publish(&publisher, &msg, NULL);
-    printf("Published: '%s'\n", msg.data.data);
-  }
+    RCLC_UNUSED(last_call_time);
+    if (timer != NULL) {
+        std_msgs__msg__String__init(&msg);
+        std::string data = "Servo = " + std::to_string(servo.getAngle()) + "\nMotor = " + std::to_string(motor.getSpeed());
+        msg.data.data = data.c_str(); // Convert std::string to char*
+        msg.data.size = strlen(msg.data.data);
+        msg.data.capacity = msg.data.size + 1;
+        rcl_publish(&publisher, &msg, NULL);
+        printf("Published: '%s'\n", msg.data.data);
+    }
 }
 
 void subscription_callback(const void * msgin)
 {
-  const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
-  if (msg == NULL) {
-    printf("Callback: msg NULL\n");
-  } else {
-    printf("I heard: '%s'\n", msg->data.data);
-    // Control motor and servo based on the received message
-
-    // Parse the message to extract the control command
-    std::string data(msg->data.data);
-    std::size_t pos = data.find("=");
-
-    if (pos != std::string::npos) {
-      std::string pwmStr = data.substr(pos + 1); // Get the part after "="
-      int pwm = std::stoi(pwmStr); // Convert to int
-    }
-
-    // Determine if the control command is for the motor or the servo based on string message
-    if (msg->data.data[0] == 'S') {
-      // Control the motor
-      motor.setSpeed(pwm); // Set the speed of the motor
+    const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
+    if (msg == NULL) {
+        printf("Callback: msg NULL\n");
     } else {
-    // Control the servo
-     servo.setAngle(pwm); // Set the angle of the servo
-  }
+        printf("I heard: '%s'\n", msg->data.data);
+        std::string data(msg->data.data);
+        std::size_t pos = data.find("=");
+
+        int pwm = 0; // Declare pwm here
+        if (pos != std::string::npos) {
+            std::string pwmStr = data.substr(pos + 1); // Get the part after "="
+            pwm = std::stoi(pwmStr); // Convert to int
+        }
+
+        if (msg->data.data[0] == 'S') {
+            motor.setSpeed(pwm); // Set the speed of the motor
+        } else {
+            servo.setAngle(pwm); // Set the angle of the servo
+        }
+    } // Add closing brace here
 }
 
 int main()
