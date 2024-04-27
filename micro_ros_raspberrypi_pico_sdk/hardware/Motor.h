@@ -3,6 +3,9 @@
 
 #include "pico/stdlib.h"
 #include "IRSensor.h"
+#define BRAKE_PWM 1500000;
+#define MAX_PWM 1625000;
+#define MIN_PWM 1375000;
 
 class Motor {
 public:

@@ -4,9 +4,7 @@
 #include "hardware/pwm.h"
 #include "IRSensor.h"
 
-#define BRAKE_PWM 1500000;
-#define MAX_PWM 1625000;
-#define MIN_PWM 1375000;
+
 
 Motor::Motor()
         : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN), irSensor(new IRSensor()) {
