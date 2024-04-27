@@ -17,11 +17,12 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
         std::string data = "Servo = " + std::to_string(servo.getAngle()) + "\nMotor = " + std::to_string(motor.getSpeed());
-        msg.data.data = data.c_str(); // Convert std::string to char*
+        msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
         rcl_publish(&publisher, &msg, NULL);
         printf("Published: '%s'\n", msg.data.data);
+        free(msg.data.data); // Free the allocated memory
     }
 }
 
