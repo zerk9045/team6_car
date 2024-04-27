@@ -7,30 +7,27 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
-
+add_subdirectory(./config)
+add_subdirectory(./hardware)
+add_subdirectory(./communication)
 link_directories(
-        ${CMAKE_SOURCE_DIR}/libmicroros
-        ${CMAKE_SOURCE_DIR}/config
-        ${CMAKE_SOURCE_DIR}/communication
-        ${CMAKE_SOURCE_DIR}/hardware
+        libmicroros
 )
 add_executable(pico_micro_ros_example
-        ${CMAKE_SOURCE_DIR}/communication/pico_uart_transport.c
-        ${CMAKE_SOURCE_DIR}/hardware/Motor.cpp
-        ${CMAKE_SOURCE_DIR}/hardware/Servo.cpp
-        ${CMAKE_SOURCE_DIR}/pico_controller.cpp
+        communication/pico_uart_transport.c
+        pico_controller.cpp
 )
 target_link_libraries(pico_micro_ros_example
-    pico_stdlib
-    micro_ros
-    hardware_pwm
+        pico_stdlib
+        micro_ros
+        hardware_pwm
+        config_library
+        hardware_library
+        communication_library
 )
 
 target_include_directories(pico_micro_ros_example PUBLIC
-        ${CMAKE_SOURCE_DIR}/libmicroros/include
-        ${CMAKE_SOURCE_DIR}/config
-        ${CMAKE_SOURCE_DIR}/communication
-        ${CMAKE_SOURCE_DIR}/hardware
+        libmicroros/include
 )
 
 SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")
