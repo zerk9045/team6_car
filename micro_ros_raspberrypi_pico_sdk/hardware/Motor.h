@@ -2,6 +2,7 @@
 #define TEAM6_CAR_MOTOR_H
 
 #include "pico/stdlib.h"
+#include "IRSensor.h"
 
 class Motor {
 public:
