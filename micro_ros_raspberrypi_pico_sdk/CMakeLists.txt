@@ -19,7 +19,7 @@ add_executable(pico_micro_ros_example
 )
 target_link_libraries(pico_micro_ros_example
         pico_stdlib
-        micro_ros
+        microros
         hardware_pwm
 )
 
