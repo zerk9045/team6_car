@@ -16,7 +16,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
   if (timer != NULL) {
     // Publish your control command
     std_msgs__msg__String__init(&msg);
-    msg.data.data = "Your control command";
+    msg.data.data = "Servo = " + std::to_string(servo.getAngle());
     msg.data.size = strlen(msg.data.data);
     msg.data.capacity = msg.data.size + 1;
     rcl_publish(&publisher, &msg, NULL);

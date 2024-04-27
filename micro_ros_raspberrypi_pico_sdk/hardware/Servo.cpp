@@ -30,5 +30,10 @@ void Servo::setAngle(int anglePWM) {
 }
 
 int Servo::getAngle() {
-    return currAnglePWM;
+    // convert the pwm signal to an angle
+    int rangePWM = MAX_ANGLE_PWM - MIN_ANGLE_PWM;
+    float scale = 2.0 / rangePWM; // Adjust the scale to map to the range -1 to 1
+    int normalizedAngle = ((currAnglePWM - MIN_ANGLE_PWM) * scale) - 1; // Subtract 1 to shift the range to -1 to 1
+
+    return normalizedAngle;
 }
