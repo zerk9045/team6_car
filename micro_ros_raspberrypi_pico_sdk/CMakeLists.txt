@@ -7,9 +7,7 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
-add_subdirectory(./config)
-add_subdirectory(./hardware)
-add_subdirectory(./communication)
+
 link_directories(
         libmicroros
 )
