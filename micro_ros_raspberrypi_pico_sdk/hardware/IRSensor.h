@@ -21,7 +21,9 @@ class IRSensor {
 
         // Method to handle timer actions
         void timer_action();
-
+        void timer_init();  // Add this line
+        void timer_set_callback();  // Add this line
+        void timer_start();  // Add this line
         // Variable to store the number of interrupts
         int sensor_interrupts;
 
