@@ -41,10 +41,10 @@ def generate_launch_description():
                                    '-entity', 'my_bot'],
                         output='screen')
 
-    ackermann_drive_spawner = Node(
+    bicycle_drive_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["asc"],
+        arguments=["bsc"],
     )
 
     joint_broad_spawner = Node(
@@ -59,6 +59,6 @@ def generate_launch_description():
         joystick,
         gazebo,
         spawn_entity,
-        ackermann_drive_spawner,
+        bicycle_drive_spawner,
         joint_broad_spawner
     ])
