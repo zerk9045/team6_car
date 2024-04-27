@@ -2,7 +2,7 @@
 #include "pico/stdlib.h"
 #include "../config/pin_config.h"
 #include "hardware/pwm.h"
-#include "IRSensor.h"
+//#include "IRSensor.h"
 
 
 
@@ -39,10 +39,10 @@ void Motor::setSpeed(int speedPWM) {
     pwm_set_gpio_level(pwmPin, speedPWM);
 }
 
-int Motor::getSpeed() {
-    // Use the IRSensor to calculate the rotations per second
-    return irSensor->getSpeed();
-}
+//int Motor::getSpeed() {
+//    // Use the IRSensor to calculate the rotations per second
+//    return irSensor->getSpeed();
+//}
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
     gpio_put(inAPin, inAValue ? 1 : 0);
