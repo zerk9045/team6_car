@@ -2,9 +2,9 @@
 #define TEAM6_CAR_SERVO_H
 
 #include "pico/stdlib.h"
-#define STRAIGHT_ANGLE_PWM 1500000;
-#define MAX_ANGLE_PWM 1625000;
-#define MIN_ANGLE_PWM 1375000;
+#define STRAIGHT_ANGLE_PWM 1500000
+#define MAX_ANGLE_PWM 1625000
+#define MIN_ANGLE_PWM 1375000
 
 class Servo {
 public:

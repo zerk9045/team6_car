@@ -3,7 +3,9 @@
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
 
-
+#define STRAIGHT_ANGLE_PWM 1500000
+#define MAX_ANGLE_PWM 1625000
+#define MIN_ANGLE_PWM 1375000
 
 Servo::Servo(){
     // Initialize servo hardware or perform any necessary setup here
