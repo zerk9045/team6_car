@@ -30,9 +30,26 @@ void subscription_callback(const void * msgin)
     printf("Callback: msg NULL\n");
   } else {
     printf("I heard: '%s'\n", msg->data.data);
-    //Control motor and servo based on the received message
-    //Example: Motor motor; motor.setSpeed(50);
+    // Control motor and servo based on the received message
 
+    // Parse the message to extract the control command
+    std::string data(msg->data.data);
+    std::size_t pos = data.find("=");
+
+    if (pos != std::string::npos) {
+      std::string pwmStr = data.substr(pos + 1); // Get the part after "="
+      int pwm = std::stoi(pwmStr); // Convert to int
+    }
+
+    // Determine if the control command is for the motor or the servo based on string message
+    if (msg->data.data[0] == 'S') {
+      // Control the motor
+      Motor motor;
+      motor.setSpeed(pwm); // Set the speed of the motor
+    } else {
+    // Control the servo
+     Servo servo;
+     servo.setAngle(pwm); // Set the angle of the servo
   }
 }
 
