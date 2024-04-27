@@ -4,3 +4,6 @@ add_library(config_library STATIC pin_config.cpp)
 
 # Specify the include directories
 target_include_directories(config_library PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(config_library PUBLIC
+        pico_stdlib
+)
