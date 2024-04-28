@@ -90,19 +90,6 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   Fibonacci_SendGoal_Response
 )();
 
-// already included above
-// #include "rosidl_runtime_c/message_type_support_struct.h"
-
-// Forward declare the get type support functions for this type.
-ROSIDL_GENERATOR_C_PUBLIC_example_interfaces
-const rosidl_message_type_support_t *
-ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
-  rosidl_typesupport_c,
-  example_interfaces,
-  action,
-  Fibonacci_SendGoal_Event
-)();
-
 #include "rosidl_runtime_c/service_type_support_struct.h"
 
 // Forward declare the get type support functions for this type.
@@ -114,32 +101,6 @@ ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_SYMBOL_NAME(
   action,
   Fibonacci_SendGoal
 )();
-
-// Forward declare the function to create a service event message for this type.
-ROSIDL_GENERATOR_C_PUBLIC_example_interfaces
-void *
-ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_CREATE_EVENT_MESSAGE_SYMBOL_NAME(
-  rosidl_typesupport_c,
-  example_interfaces,
-  action,
-  Fibonacci_SendGoal
-)(
-  const rosidl_service_introspection_info_t * info,
-  rcutils_allocator_t * allocator,
-  const void * request_message,
-  const void * response_message);
-
-// Forward declare the function to destroy a service event message for this type.
-ROSIDL_GENERATOR_C_PUBLIC_example_interfaces
-bool
-ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_DESTROY_EVENT_MESSAGE_SYMBOL_NAME(
-  rosidl_typesupport_c,
-  example_interfaces,
-  action,
-  Fibonacci_SendGoal
-)(
-  void * event_msg,
-  rcutils_allocator_t * allocator);
 
 // already included above
 // #include "rosidl_runtime_c/message_type_support_struct.h"
@@ -168,19 +129,6 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
 )();
 
 // already included above
-// #include "rosidl_runtime_c/message_type_support_struct.h"
-
-// Forward declare the get type support functions for this type.
-ROSIDL_GENERATOR_C_PUBLIC_example_interfaces
-const rosidl_message_type_support_t *
-ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
-  rosidl_typesupport_c,
-  example_interfaces,
-  action,
-  Fibonacci_GetResult_Event
-)();
-
-// already included above
 // #include "rosidl_runtime_c/service_type_support_struct.h"
 
 // Forward declare the get type support functions for this type.
@@ -192,32 +140,6 @@ ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_SYMBOL_NAME(
   action,
   Fibonacci_GetResult
 )();
-
-// Forward declare the function to create a service event message for this type.
-ROSIDL_GENERATOR_C_PUBLIC_example_interfaces
-void *
-ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_CREATE_EVENT_MESSAGE_SYMBOL_NAME(
-  rosidl_typesupport_c,
-  example_interfaces,
-  action,
-  Fibonacci_GetResult
-)(
-  const rosidl_service_introspection_info_t * info,
-  rcutils_allocator_t * allocator,
-  const void * request_message,
-  const void * response_message);
-
-// Forward declare the function to destroy a service event message for this type.
-ROSIDL_GENERATOR_C_PUBLIC_example_interfaces
-bool
-ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_DESTROY_EVENT_MESSAGE_SYMBOL_NAME(
-  rosidl_typesupport_c,
-  example_interfaces,
-  action,
-  Fibonacci_GetResult
-)(
-  void * event_msg,
-  rcutils_allocator_t * allocator);
 
 // already included above
 // #include "rosidl_runtime_c/message_type_support_struct.h"

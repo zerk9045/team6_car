@@ -3,6 +3,9 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.8" />
   </component>
+  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$/micro_ros_raspberrypi_pico_sdk">
+    <contentRoot DIR="$PROJECT_DIR$" />
+  </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>

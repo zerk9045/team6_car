@@ -14,6 +14,7 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
+
 // Constants defined in the message
 
 /// Struct defined in msg/Char in the package example_interfaces.

@@ -14,6 +14,7 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
+
 // Constants defined in the message
 
 /// Constant 'STATISTICS_DATA_TYPE_UNINITIALIZED'.

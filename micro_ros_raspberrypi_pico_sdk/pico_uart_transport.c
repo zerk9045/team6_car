@@ -2,13 +2,11 @@
 #include "pico/stdlib.h"
 
 #include <uxr/client/profile/transport/custom/custom_transport.h>
-#include <time.h>
 
 void usleep(uint64_t us)
 {
     sleep_us(us);
 }
-
 
 int clock_gettime(clockid_t unused, struct timespec *tp)
 {
@@ -18,10 +16,16 @@ int clock_gettime(clockid_t unused, struct timespec *tp)
     return 0;
 }
 
-
 bool pico_serial_transport_open(struct uxrCustomTransport * transport)
 {
-    //stdio_init_all();
+    // Ensure that stdio_init_all is only called once on the runtime
+    static bool require_init = true;
+    if(require_init)
+    {
+        stdio_init_all();
+        require_init = false;
+    }
+
     return true;
 }
 
