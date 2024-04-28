@@ -9,6 +9,7 @@
 
 #include "pico_uart_transports.h"
 #include <rcl/error_handling.h>
+
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
 std_msgs__msg__String msg;
@@ -64,6 +65,18 @@ int main()
             pico_serial_transport_read
     );
     rcl_allocator_t allocator = rcl_get_default_allocator();
+    // Wait for agent successful ping for 2 minutes.
+    const int timeout_ms = 1000;
+    const uint8_t attempts = 120;
+
+    rcl_ret_t ret = rmw_uros_ping_agent(timeout_ms, attempts);
+
+    if (ret != RCL_RET_OK)
+    {
+        // Unreachable agent, exiting program.
+        return ret;
+    }
+
   rclc_support_t support;
 
   // create init_options
