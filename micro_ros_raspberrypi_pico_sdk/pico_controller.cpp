@@ -6,6 +6,8 @@
 #include <Motor.h>
 #include <string>
 
+#include "pico_uart_transports.h"
+
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
 std_msgs__msg__String msg;
