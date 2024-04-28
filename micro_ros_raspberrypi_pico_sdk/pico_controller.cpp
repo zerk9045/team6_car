@@ -5,9 +5,10 @@
 #include <Servo.h>
 #include <Motor.h>
 #include <string>
+#include <rmw_microros/rmw_microros.h>
 
 #include "pico_uart_transports.h"
-
+#include <rcl/error_handling.h>
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
 std_msgs__msg__String msg;
