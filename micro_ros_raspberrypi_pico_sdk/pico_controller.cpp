@@ -52,7 +52,15 @@ void subscription_callback(const void * msgin)
 
 int main()
 {
-  rcl_allocator_t allocator = rcl_get_default_allocator();
+    rmw_uros_set_custom_transport(
+            true,
+            NULL,
+            pico_serial_transport_open,
+            pico_serial_transport_close,
+            pico_serial_transport_write,
+            pico_serial_transport_read
+    );
+    rcl_allocator_t allocator = rcl_get_default_allocator();
   rclc_support_t support;
 
   // create init_options
