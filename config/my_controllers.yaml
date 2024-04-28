@@ -20,7 +20,7 @@ bsc:
     rear_wheels_names: ['virtual_rear_wheel_joint']
     front_wheels_names: ['virtual_front_wheel_joint']
     open_loop: false
-    velocity_rolling_window_size: 10
+    velocity_rolling_window_size: 1
     base_frame_id: base_link
     odom_frame_id: odom
     enable_odom_tf: true
