@@ -36,7 +36,7 @@ void Servo::setAngle(int anglePWM) {
     }
 
     // Set PWM duty cycle for servo control pin
-    set_pwm_pin(SERVO_PWM, 100, anglePWM/0.01);
+    set_pwm_pin(SERVO_PWM, 100, anglePWM/100);
 
     currAnglePWM = anglePWM;
 }
