@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
 #ifndef MICRO_ROS_PICOSDK
 #define MICRO_ROS_PICOSDK
 
@@ -12,3 +15,6 @@ size_t pico_serial_transport_write(struct uxrCustomTransport* transport, const u
 size_t pico_serial_transport_read(struct uxrCustomTransport* transport, uint8_t* buf, size_t len, int timeout, uint8_t* err);
 
 #endif //MICRO_ROS_PICOSDK
+#ifdef __cplusplus
+}
+#endif
