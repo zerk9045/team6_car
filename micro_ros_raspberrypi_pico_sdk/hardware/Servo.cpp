@@ -35,12 +35,8 @@ void Servo::setAngle(int anglePWM) {
         anglePWM = MIN_ANGLE_PWM;
     }
 
-    // Calculate duty cycle
-    float dutyCycle = (float)(anglePWM - MIN_ANGLE_PWM) / (MAX_ANGLE_PWM - MIN_ANGLE_PWM);
-    uint16_t pwmValue = (uint16_t)(dutyCycle * 65535); // 65535 is the maximum PWM value (2^16 - 1)
-
     // Set PWM duty cycle for servo control pin
-    set_pwm_pin(SERVO_PWM, 100, pwmValue);
+    set_pwm_pin(SERVO_PWM, 100, anglePWM/0.01);
 
     currAnglePWM = anglePWM;
 }
