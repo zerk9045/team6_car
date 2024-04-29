@@ -3,7 +3,6 @@
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
-
 #define STRAIGHT_ANGLE_PWM 1500000
 #define MAX_ANGLE_PWM 1625000
 #define MIN_ANGLE_PWM 1375000
@@ -35,8 +34,9 @@ void Servo::setAngle(int anglePWM) {
         anglePWM = MIN_ANGLE_PWM;
     }
 
-    // Set PWM duty cycle for servo control pin
-    set_pwm_pin(SERVO_PWM, 100, anglePWM/100);
+    // Set PWM duty cycle for servo control pin//1500000
+
+    set_pwm_pin(SERVO_PWM, 100, anglePWM/1000000000);
 
     currAnglePWM = anglePWM;
 }
