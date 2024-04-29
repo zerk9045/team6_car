@@ -46,11 +46,12 @@ void subscription_callback(const void * msgin)
             pwm = std::stoi(pwmStr); // Convert to int
         }
 
-        if (msg->data.data[0] == 'S') {
-            motor.setSpeed(pwm); // Set the speed of the motor
-        } else {
-            servo.setAngle(pwm); // Set the angle of the servo
-        }
+        servo.setAngle(pwm);
+//        if (msg->data.data[0] == 'S') {
+//            motor.setSpeed(pwm); // Set the speed of the motor
+//        } else {
+//            servo.setAngle(pwm); // Set the angle of the servo
+//        }
     } // Add closing brace here
 }
 
@@ -114,7 +115,8 @@ int main()
   rclc_executor_init(&executor, &support.context, 2, &allocator);
   rclc_executor_add_timer(&executor, &timer);
   rclc_executor_add_subscription(&executor, &subscriber, &msg, &subscription_callback, ON_NEW_DATA);
-
+  servo.setAngle(1500000);
+  servo.setAngle(1600000);
   while(1){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }
