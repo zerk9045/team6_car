@@ -18,12 +18,12 @@ public:
 
     int getAngle();
 
+    void set_pwm_pin(uint pin, uint freq, uint duty_c);
 private:
     int pin;        // Pin connected to the servo
     int minAngle;   // Minimum angle the servo can move to
     int maxAngle;   // Maximum angle the servo can move to
     int currAnglePWM = 0;
-    void set_pwm_pin(uint pin, uint freq, uint duty_c);
 };
 
 
