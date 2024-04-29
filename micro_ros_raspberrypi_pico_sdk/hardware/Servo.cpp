@@ -30,7 +30,7 @@ Servo::Servo(){
     pwm_config_set_clkdiv(&config, (float)div);
 
     // Set wrap so the period is 20 ms
-    pwm_config_set_wrap(&config, 10);
+    pwm_config_set_wrap(&config, 10000);
 
     // Load the configuration
     pwm_init(slice_num, &config, false);
