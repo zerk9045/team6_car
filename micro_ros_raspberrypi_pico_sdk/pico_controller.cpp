@@ -116,7 +116,7 @@ int main()
 
   // create executor
   rclc_executor_t executor;
-  rclc_executor_init(&executor, &support.context, 3, &allocator);
+  rclc_executor_init(&executor, &support.context, 2, &allocator);
   rclc_executor_add_timer(&executor, &timer);
   rclc_executor_add_subscription(&executor, &subscriber, &msg, &subscription_callback, ON_NEW_DATA);
 

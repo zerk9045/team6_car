@@ -4,8 +4,9 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 //#include "IRSensor.h"
-
-
+#define BRAKE_PWM 1500000
+#define MAX_PWM 1625000
+#define MIN_PWM 1375000
 
 Motor::Motor(){//, irSensor(new IRSensor()) {
     // Initialize motor hardware or perform any necessary setup here
