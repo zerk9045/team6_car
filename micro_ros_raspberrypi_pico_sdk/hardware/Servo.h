@@ -13,12 +13,12 @@ public:
     // Destructor
     ~Servo();
 
+    void set_pwm_pin(uint pin, uint freq, uint duty_c);
     // Function to set the angle of the servo
     void setAngle(int anglePWM);
 
     int getAngle();
 
-    void set_pwm_pin(int pin, uint freq, uint duty_c);
 private:
     int pin;        // Pin connected to the servo
     int minAngle;   // Minimum angle the servo can move to

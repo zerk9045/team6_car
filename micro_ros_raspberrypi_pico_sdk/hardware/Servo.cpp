@@ -43,7 +43,7 @@ Servo::Servo(){
 Servo::~Servo() {
 }
 
-void set_pwm_pin(int pin, uint freq, uint duty_c) { // duty_c between 0..10000
+void Servo::set_pwm_pin(uint pin, uint freq, uint duty_c) {
     gpio_set_function(pin, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(pin);
     pwm_config config = pwm_get_default_config();
