@@ -55,7 +55,7 @@ void Servo::setAngle(int anglePWM) {
     int signalHighTime = anglePWM;
 
     // Calculate duty cycle
-    uint16_t dutyCycle = (float)signalHighTime / totalPeriod * 100;
+    uint16_t dutyCycle = (uint16_t)((float)signalHighTime / totalPeriod * 65535);
     // Set PWM duty cycle for servo control pin
     pwm_set_gpio_level(SERVO_PWM, dutyCycle);
 
