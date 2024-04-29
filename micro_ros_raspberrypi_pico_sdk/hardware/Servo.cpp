@@ -18,7 +18,7 @@ Servo::Servo(){
 
     // Get clock speed and compute divider for 50 hz
     uint32_t clk = clock_get_hz(clk_sys);
-    uint32_t div = clk / (20000 * 100);
+    uint32_t div = clk / (20000 * 50);
 
     // Check div is in range
     if ( div < 1 ){
@@ -32,7 +32,7 @@ Servo::Servo(){
     pwm_config_set_clkdiv(&config, (float)div);
 
     // Set wrap so the period is 20 ms
-    pwm_config_set_wrap(&config, 10000);
+    pwm_config_set_wrap(&config, 20000);
 
     // Load the configuration
     pwm_init(slice_num, &config, false);
@@ -50,17 +50,17 @@ void Servo::setAngle(int anglePWM) {
     } else if (anglePWM < MIN_ANGLE_PWM) {
         anglePWM = MIN_ANGLE_PWM;
     }
-    int totalPeriod = 10000;
-    // Time the signal is high (in microseconds)
-    int signalHighTime = anglePWM;
 
     // Calculate duty cycle
-    uint16_t dutyCycle = (uint16_t)((float)signalHighTime / totalPeriod * 65535);
+    float dutyCycle = (float)(anglePWM - MIN_ANGLE_PWM) / (MAX_ANGLE_PWM - MIN_ANGLE_PWM);
+    uint16_t pwmValue = (uint16_t)(dutyCycle * 65535); // 65535 is the maximum PWM value (2^16 - 1)
+
     // Set PWM duty cycle for servo control pin
-    pwm_set_gpio_level(SERVO_PWM, dutyCycle);
+    pwm_set_gpio_level(SERVO_PWM, pwmValue);
 
     currAnglePWM = anglePWM;
 }
+
 
 int Servo::getAngle() {
     // convert the pwm signal to an angle
