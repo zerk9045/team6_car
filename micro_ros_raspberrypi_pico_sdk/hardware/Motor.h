@@ -14,7 +14,7 @@ public:
 
     // Destructor
     ~Motor();
-
+    void set_pwm_pin(uint pin, uint freq, float duty_c);
     // Function to set motor speed
     void setSpeed(int speedPWM);
     // Function to read motor speed

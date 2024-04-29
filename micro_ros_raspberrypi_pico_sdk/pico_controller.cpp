@@ -42,8 +42,8 @@ void subscription_callback(const void * msgin)
         pwm = std::stoi(pwmStr); // Convert to int
     }
 
-    servo.setAngle(pwm);
-
+    //servo.setAngle(pwm);
+    motor.setSpeed(pwm);
 //    if (msg == NULL) {
 //        printf("Callback: msg NULL\n");
 //    } else {
@@ -112,15 +112,14 @@ int main()
     &subscriber,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "pi_servo_publishing_topic");
+    "pi_motor_publishing_topic");
 
   // create executor
   rclc_executor_t executor;
-  rclc_executor_init(&executor, &support.context, 2, &allocator);
+  rclc_executor_init(&executor, &support.context, 3, &allocator);
   rclc_executor_add_timer(&executor, &timer);
   rclc_executor_add_subscription(&executor, &subscriber, &msg, &subscription_callback, ON_NEW_DATA);
-  servo.setAngle(1500000);
-  servo.setAngle(1600000);
+
   while(1){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }

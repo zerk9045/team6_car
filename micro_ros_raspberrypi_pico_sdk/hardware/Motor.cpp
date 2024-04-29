@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "../config/pin_config.h"
 #include "hardware/pwm.h"
+#include "hardware/clocks.h"
 //#include "IRSensor.h"
 
 
@@ -9,7 +10,7 @@
 Motor::Motor()
         : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN){//, irSensor(new IRSensor()) {
     // Initialize motor hardware or perform any necessary setup here
-    gpio_set_function(pwmPin, GPIO_FUNC_PWM);
+    set_pwm_pin(pwmPin, 100, MAX_PWM/1000);
     gpio_set_dir(inAPin, GPIO_OUT);
     gpio_set_dir(inBPin, GPIO_OUT);
 }
@@ -17,6 +18,17 @@ Motor::Motor()
 Motor::~Motor() {
     // Cleanup resources if necessary
 }
+void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
+    gpio_set_function(pin, GPIO_FUNC_PWM);
+    uint slice_num = pwm_gpio_to_slice_num(pin);
+    pwm_config config = pwm_get_default_config();
+    float div = (float)clock_get_hz(clk_sys) / (freq * 10000);
+    pwm_config_set_clkdiv(&config, div);
+    pwm_config_set_wrap(&config, 10000);
+    pwm_init(slice_num, &config, true); // start the pwm running according to the config
+    pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
+}
+
 
 void Motor::setSpeed(int speedPWM) {
     // Ensure PWM is within the valid range
@@ -35,8 +47,7 @@ void Motor::setSpeed(int speedPWM) {
         updateDirection(false, true); // INA low, INB high (reverse)
     }
 
-    // Set PWM duty cycle for motor speed control pin
-    pwm_set_gpio_level(pwmPin, speedPWM);
+    set_pwm_pin(pwmPin, 100, speedPWM/1000);
 }
 
 //int Motor::getSpeed() {
