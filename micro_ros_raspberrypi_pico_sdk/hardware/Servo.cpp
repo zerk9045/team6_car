@@ -38,7 +38,7 @@ void Servo::setAngle(int anglePWM) {
     // Set PWM duty cycle for servo control pin//1500000
     // Convert anglePWM to duty cycle percentage (assuming MAX_ANGLE_PWM is the maximum PWM value)
     float duty_cycle = (float)anglePWM / MAX_ANGLE_PWM;
-    if ( THRESHOLD <= abs(currAnglePWM-anglePWM)) {
+    if ( THRESHOLD >= abs(currAnglePWM-anglePWM)) {
         currAnglePWM = anglePWM;
         return;
     }
