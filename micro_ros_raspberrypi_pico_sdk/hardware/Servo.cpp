@@ -10,6 +10,7 @@
 Servo::Servo(){
     // Initialize servo hardware or perform any necessary setup here
     gpio_set_function(SERVO_PWM, GPIO_FUNC_PWM);
+    pwm_set_gpio_level(SERVO_PWM,0);
 }
 
 Servo::~Servo() {
