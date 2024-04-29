@@ -10,18 +10,18 @@
 
 Servo::Servo(){
     // Initialize servo hardware or perform any necessary setup here
-    gpio_init(SERVO_PWM);
-    gpio_set_function(SERVO_PWM, GPIO_FUNC_PWM);
-    pwm_set_gpio_level(SERVO_PWM,0);
-    uint slice_num = pwm_gpio_to_slice_num(SERVO_PWM);
-
-
-    pwm_set_wrap(slice_num, 3);
-
-    // Load the configuration
-    pwm_init(slice_num, &config, false);
-
-    pwm_set_enabled(slice_num, true);
+//    gpio_init(SERVO_PWM);
+//    gpio_set_function(SERVO_PWM, GPIO_FUNC_PWM);
+//    pwm_set_gpio_level(SERVO_PWM,0);
+//    uint slice_num = pwm_gpio_to_slice_num(SERVO_PWM);
+//
+//
+//    pwm_set_wrap(slice_num, 3);
+//
+//    // Load the configuration
+//    pwm_init(slice_num, &config, false);
+//
+//    pwm_set_enabled(slice_num, true);
 }
 
 Servo::~Servo() {
