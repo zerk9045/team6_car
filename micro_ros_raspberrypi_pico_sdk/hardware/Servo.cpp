@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
+#include "hardware/clocks.h"
 
 #define STRAIGHT_ANGLE_PWM 1500000
 #define MAX_ANGLE_PWM 1625000
