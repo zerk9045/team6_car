@@ -52,7 +52,7 @@ void set_pwm_pin(int pin, uint freq, uint duty_c) { // duty_c between 0..10000
     pwm_config_set_wrap(&config, 10000);
     pwm_init(slice_num, &config, true); // start the pwm running according to the config
     pwm_set_gpio_level(pin, duty_c); //connect the pin to the pwm engine and set the on/off level.
-};
+}
 
 void Servo::setAngle(int anglePWM) {
     // Ensure pwm is within the specified range
