@@ -25,6 +25,7 @@ private:
     //IRSensor* irSensor; // IRSensor object for speed calculation
     // Private helper function to set motor direction
     void updateDirection(bool inAValue, bool inBValue);
+    int currentPwm;
 };
 
 #endif //TEAM6_CAR_MOTOR_H

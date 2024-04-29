@@ -50,7 +50,11 @@ void Motor::setSpeed(int speedPWM) {
         updateDirection(false, true); // INA low, INB high (reverse)
     }
 
+    if (currentPwm == speedPWM) {
+        return;
+    }
     set_pwm_pin(MOTOR_PWM, 100, speedPWM/1000);
+    currentPwm = speedPWM;
 }
 
 //int Motor::getSpeed() {
