@@ -15,7 +15,7 @@ Servo::Servo(){
 Servo::~Servo() {
 }
 
-void Servo::set_pwm_pin(uint pin, uint freq, uint duty_c) {
+void Servo::set_pwm_pin(uint pin, uint freq, float duty_c) {
     gpio_set_function(pin, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(pin);
     pwm_config config = pwm_get_default_config();
@@ -23,7 +23,7 @@ void Servo::set_pwm_pin(uint pin, uint freq, uint duty_c) {
     pwm_config_set_clkdiv(&config, div);
     pwm_config_set_wrap(&config, 10000);
     pwm_init(slice_num, &config, true); // start the pwm running according to the config
-    pwm_set_gpio_level(pin, duty_c); //connect the pin to the pwm engine and set the on/off level.
+    pwm_set_gpio_level(pin, (uint)(duty_c * 100)); //connect the pin to the pwm engine and set the on/off level.
 }
 
 void Servo::setAngle(int anglePWM) {
@@ -35,8 +35,9 @@ void Servo::setAngle(int anglePWM) {
     }
 
     // Set PWM duty cycle for servo control pin//1500000
-
-    set_pwm_pin(SERVO_PWM, 100, (anglePWM*0.01));
+    // Convert anglePWM to duty cycle percentage (assuming MAX_ANGLE_PWM is the maximum PWM value)
+    float duty_cycle = (float)anglePWM / MAX_ANGLE_PWM;
+    set_pwm_pin(SERVO_PWM, 100, duty_cycle);
 
     currAnglePWM = anglePWM;
 }
