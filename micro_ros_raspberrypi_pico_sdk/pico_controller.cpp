@@ -112,7 +112,7 @@ int main()
     &subscriber,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "string_publisher");
+    "pi_servo_publishing_topic");
 
   // create executor
   rclc_executor_t executor;
