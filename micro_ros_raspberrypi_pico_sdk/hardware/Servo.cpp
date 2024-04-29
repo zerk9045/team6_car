@@ -3,13 +3,13 @@
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
-#define STRAIGHT_ANGLE_PWM 1500000
-#define MAX_ANGLE_PWM 2000000
-#define MIN_ANGLE_PWM 1000000
+#define STRAIGHT_SERVO_ANGLE_PWM 1500000
+#define MAX_SERVO_ANGLE_PWM 2000000
+#define MIN_SERVO_ANGLE_PWM 1000000
 
 Servo::Servo(){
     gpio_init(SERVO_PWM);
-    set_pwm_pin(SERVO_PWM, 100, STRAIGHT_ANGLE_PWM/1000);
+    set_pwm_pin(SERVO_PWM, 100, STRAIGHT_SERVO_ANGLE_PWM/1000);
 }
 
 Servo::~Servo() {
@@ -28,10 +28,10 @@ void Servo::set_pwm_pin(uint pin, uint freq, float duty_c) {
 
 void Servo::setAngle(int anglePWM) {
     // Ensure pwm is within the specified range
-    if (anglePWM > MAX_ANGLE_PWM) {
-        anglePWM = MAX_ANGLE_PWM;
-    } else if (anglePWM < MIN_ANGLE_PWM) {
-        anglePWM = MIN_ANGLE_PWM;
+    if (anglePWM > MAX_SERVO_ANGLE_PWM) {
+        anglePWM = MAX_SERVO_ANGLE_PWM;
+    } else if (anglePWM < MIN_SERVO_ANGLE_PWM) {
+        anglePWM = MIN_SERVO_ANGLE_PWM;
     }
 
     // Set PWM duty cycle for servo control pin//1500000
