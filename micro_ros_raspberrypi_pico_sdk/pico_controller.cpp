@@ -55,7 +55,7 @@ void subscription_callback(const void * msgin)
 //        } else {
 //            servo.setAngle(pwm); // Set the angle of the servo
 //        }
-    } // Add closing brace here
+    //} // Add closing brace here
 }
 
 int main()
