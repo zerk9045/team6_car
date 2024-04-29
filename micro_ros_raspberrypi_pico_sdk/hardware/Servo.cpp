@@ -50,9 +50,14 @@ void Servo::setAngle(int anglePWM) {
     } else if (anglePWM < MIN_ANGLE_PWM) {
         anglePWM = MIN_ANGLE_PWM;
     }
+    int totalPeriod = 10000;
+    // Time the signal is high (in microseconds)
+    int signalHighTime = anglePWM;
 
+    // Calculate duty cycle
+    float dutyCycle = (float)signalHighTime / totalPeriod * 100;
     // Set PWM duty cycle for servo control pin
-    pwm_set_gpio_level(SERVO_PWM, anglePWM);
+    pwm_set_gpio_level(SERVO_PWM, dutyCycle);
 
     currAnglePWM = anglePWM;
 }
