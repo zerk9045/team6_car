@@ -7,7 +7,7 @@
 #define STRAIGHT_SERVO_ANGLE_PWM 1500000
 #define MAX_SERVO_ANGLE_PWM 2000000
 #define MIN_SERVO_ANGLE_PWM 1000000
-#define THRESHOLD 1000
+#define THRESHOLD 10000
 Servo::Servo(){
     gpio_init(SERVO_PWM);
     set_pwm_pin(SERVO_PWM, 100, STRAIGHT_SERVO_ANGLE_PWM/1000);
@@ -38,12 +38,16 @@ void Servo::setAngle(int anglePWM) {
     // Set PWM duty cycle for servo control pin//1500000
     // Convert anglePWM to duty cycle percentage (assuming MAX_ANGLE_PWM is the maximum PWM value)
     float duty_cycle = (float)anglePWM / MAX_ANGLE_PWM;
-    if ( THRESHOLD >= abs(currAnglePWM-anglePWM)) {
+    if (abs(currAnglePWM-anglePWM) >= THRESHOLD ) {
+        set_pwm_pin(SERVO_PWM, 100, anglePWM/1000);
         currAnglePWM = anglePWM;
         return;
     }
-    set_pwm_pin(SERVO_PWM, 100, anglePWM/1000);
-    currAnglePWM = anglePWM;
+    else{
+        currAnglePWM = anglePWM;
+        return;
+    }
+
 }
 
 
