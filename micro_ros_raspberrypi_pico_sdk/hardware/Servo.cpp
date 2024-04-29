@@ -10,6 +10,7 @@
 
 Servo::Servo(){
     // Initialize servo hardware or perform any necessary setup here
+    gpio_init(SERVO_PWM);
     gpio_set_function(SERVO_PWM, GPIO_FUNC_PWM);
     pwm_set_gpio_level(SERVO_PWM,0);
     uint slice_num = pwm_gpio_to_slice_num(SERVO_PWM);
@@ -29,7 +30,7 @@ Servo::Servo(){
     pwm_config_set_clkdiv(&config, (float)div);
 
     // Set wrap so the period is 20 ms
-    pwm_config_set_wrap(&config, 20000);
+    pwm_config_set_wrap(&config, 10);
 
     // Load the configuration
     pwm_init(slice_num, &config, false);
