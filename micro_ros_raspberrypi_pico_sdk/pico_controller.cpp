@@ -33,20 +33,21 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 void subscription_callback(const void * msgin)
 {
     const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
-    std::string data(msg->data.data);
-    std::size_t pos = data.find("=");
 
-    int pwm = 0; // Declare pwm here
-    if (pos != std::string::npos) {
-        std::string pwmStr = data.substr(pos + 1); // Get the part after "="
-        pwm = std::stoi(pwmStr); // Convert to int
-    }
-
-    servo.setAngle(pwm);
     if (msg == NULL) {
         printf("Callback: msg NULL\n");
     } else {
         printf("I heard: '%s'\n", msg->data.data);
+        std::string data(msg->data.data);
+        std::size_t pos = data.find("=");
+
+        int pwm = 0; // Declare pwm here
+        if (pos != std::string::npos) {
+            std::string pwmStr = data.substr(pos + 1); // Get the part after "="
+            pwm = std::stoi(pwmStr); // Convert to int
+        }
+
+        servo.setAngle(pwm);
 
 //        if (msg->data.data[0] == 'S') {
 //            motor.setSpeed(pwm); // Set the speed of the motor
