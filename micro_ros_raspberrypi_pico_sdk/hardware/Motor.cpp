@@ -11,6 +11,8 @@
 Motor::Motor(){//, irSensor(new IRSensor()) {
     // Initialize motor hardware or perform any necessary setup here
     gpio_init(MOTOR_PWM);
+    gpio_init(INA_PIN);
+    gpio_init(INB_PIN);
     set_pwm_pin(MOTOR_PWM, 100, MAX_PWM/1000);
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
