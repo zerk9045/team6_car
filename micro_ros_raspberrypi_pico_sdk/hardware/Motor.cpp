@@ -7,12 +7,12 @@
 
 
 
-Motor::Motor()
-        : pwmPin(MOTOR_PWM), inAPin(INA_PIN), inBPin(INB_PIN){//, irSensor(new IRSensor()) {
+Motor::Motor(){//, irSensor(new IRSensor()) {
     // Initialize motor hardware or perform any necessary setup here
-    set_pwm_pin(pwmPin, 100, MAX_PWM/1000);
-    gpio_set_dir(inAPin, GPIO_OUT);
-    gpio_set_dir(inBPin, GPIO_OUT);
+    gpio_init(MOTOR_PWM);
+    set_pwm_pin(MOTOR_PWM, 100, MAX_PWM/1000);
+    gpio_set_dir(INA_PIN, GPIO_OUT);
+    gpio_set_dir(INB_PIN, GPIO_OUT);
 }
 
 Motor::~Motor() {
@@ -47,7 +47,7 @@ void Motor::setSpeed(int speedPWM) {
         updateDirection(false, true); // INA low, INB high (reverse)
     }
 
-    set_pwm_pin(pwmPin, 100, speedPWM/1000);
+    set_pwm_pin(MOTOR_PWM, 100, speedPWM/1000);
 }
 
 //int Motor::getSpeed() {
@@ -56,6 +56,6 @@ void Motor::setSpeed(int speedPWM) {
 //}
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
-    gpio_put(inAPin, inAValue ? 1 : 0);
-    gpio_put(inBPin, inBValue ? 1 : 0);
+    gpio_put(INA_PIN, inAValue ? 1 : 0);
+    gpio_put(INB_PIN, inBValue ? 1 : 0);
 }
