@@ -40,7 +40,6 @@ void Servo::setAngle(int anglePWM) {
     float duty_cycle = (float)anglePWM / MAX_ANGLE_PWM;
     if (abs(currAnglePWM-anglePWM) >= THRESHOLD ) {
         set_pwm_pin(SERVO_PWM, 100, anglePWM/1000);
-        currAnglePWM = anglePWM;
         return;
     }
     else{
