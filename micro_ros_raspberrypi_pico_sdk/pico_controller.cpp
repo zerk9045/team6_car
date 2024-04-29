@@ -122,7 +122,6 @@ int main()
   motor.setSpeed(1600000);
 
   while(1){
-      motor.setSpeed(1500000);
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }
 
