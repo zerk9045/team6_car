@@ -63,10 +63,14 @@ void subscription_callback_motor(const void * msgin)
     if (direction == "forward") {
         // Set motor to move forward
         motor.updateDirection(true, false);
-    }else {
+    }else if (direction == "reverse"){
         // Set motor to move in reverse
         motor.updateDirection(false, true);
+    }else if (direction == "stop"){
+        // Set motor to brake
+        motor.updateDirection(false, false);
     }
+
 
     // Set the motor speed
     motor.setSpeed(pwm);
