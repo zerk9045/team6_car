@@ -4,8 +4,10 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 //#include "IRSensor.h"
+
+// Need to change this logic since max_pwm is the same for forward and reverse
 #define BRAKE_PWM 1500000
-#define MAX_PWM 1625000
+#define MAX_PWM 3000000
 #define MIN_PWM 1375000
 
 Motor::Motor(){//, irSensor(new IRSensor()) {
@@ -16,11 +18,13 @@ Motor::Motor(){//, irSensor(new IRSensor()) {
     set_pwm_pin(MOTOR_PWM, 100, MAX_PWM/1000);
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
+
 }
 
 Motor::~Motor() {
     // Cleanup resources if necessary
 }
+
 void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     gpio_set_function(pin, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(pin);
@@ -53,7 +57,8 @@ void Motor::setSpeed(int speedPWM) {
     if (currentPwm == speedPWM) {
         return;
     }
-    set_pwm_pin(MOTOR_PWM, 100, speedPWM/1000);
+    //set_pwm_pin(MOTOR_PWM, 100, speedPWM/1000);
+    pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
     currentPwm = speedPWM;
 }
 

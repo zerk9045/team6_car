@@ -35,6 +35,8 @@ void subscription_callback(const void * msgin)
 
     //Expecting a msg format as such:
     //"S: pwmValue\n A: pwmValue"
+    // We may need to add a forward or reverse command to the msg for the motor
+    // since the max pwm is the same for both directions
     const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
     std::string data(msg->data.data);
     std::istringstream ss(data);
