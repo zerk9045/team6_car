@@ -32,30 +32,33 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 
 void subscription_callback(const void * msgin)
 {
+
+    //Expecting a msg format as such:
+    //"S: pwmValue\n A: pwmValue"
     const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
-//    std::string data(msg->data.data);
-//    std::size_t pos = data.find("=");
-    int pwm = std::stoi(msg->data.data);
-//    int pwm = 0; // Declare pwm here
-//    if (pos != std::string::npos) {
-//        std::string pwmStr = data.substr(pos + 1); // Get the part after "="
-//        pwm = std::stoi(pwmStr); // Convert to int
-//    }
+    std::string data(msg->data.data);
+    std::istringstream ss(data);
+    std::string line;
 
-    //servo.setAngle(pwm);
-    motor.setSpeed(pwm);
-//    if (msg == NULL) {
-//        printf("Callback: msg NULL\n");
-//    } else {
-//        printf("I heard: '%s'\n", msg->data.data);
+    // Get the first line and set the speed of the motor
+    if (std::getline(ss, line)) {
+        std::size_t pos = line.find(":");
+        if (pos != std::string::npos) {
+            std::string pwmStr = line.substr(pos + 1); // Get the part after ":"
+            int pwm = std::stoi(pwmStr); // Convert to int
+            motor.setSpeed(pwm);
+        }
+    }
 
-
-//        if (msg->data.data[0] == 'S') {
-//            motor.setSpeed(pwm); // Set the speed of the motor
-//        } else {
-//            servo.setAngle(pwm); // Set the angle of the servo
-//        }
-    //} // Add closing brace here
+    // Get the second line and set the angle of the servo
+    if (std::getline(ss, line)) {
+        std::size_t pos = line.find(":");
+        if (pos != std::string::npos) {
+            std::string pwmStr = line.substr(pos + 1); // Get the part after ":"
+            int pwm = std::stoi(pwmStr); // Convert to int
+            servo.setAngle(pwm);
+        }
+    }
 }
 
 int main()
