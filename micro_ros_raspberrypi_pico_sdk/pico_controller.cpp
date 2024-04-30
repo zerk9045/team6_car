@@ -11,8 +11,11 @@
 #include <rcl/error_handling.h>
 
 rcl_publisher_t publisher;
-rcl_subscription_t subscriber;
+rcl_subscription_t motor_subscriber;
+rcl_subscription_t servo_subscriber;
+std_msgs__msg__String motor_msg;
 std_msgs__msg__String msg;
+std_msgs__msg__String servo_msg;
 Motor motor;
 Servo servo;
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
@@ -29,38 +32,22 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         free(msg.data.data); // Free the allocated memory
     }
 }
+void subscription_callback_servo(const void * msgin) {
+    const std_msgs__msg__String * servo_msg = (const std_msgs__msg__String *)msgin;
+    int pwm = std::stoi(servo_msg->data.data);
+    servo.setAngle(pwm);
 
-void subscription_callback(const void * msgin)
+}
+void subscription_callback_motor(const void * msgin)
 {
 
     //Expecting a msg format as such:
     //"S: pwmValue\n A: pwmValue"
     // We may need to add a forward or reverse command to the msg for the motor
     // since the max pwm is the same for both directions
-    const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
-    std::string data(msg->data.data);
-    std::istringstream ss(data);
-    std::string line;
-
-    // Get the first line and set the speed of the motor
-    if (std::getline(ss, line)) {
-        std::size_t pos = line.find(":");
-        if (pos != std::string::npos) {
-            std::string pwmStr = line.substr(pos + 1); // Get the part after ":"
-            int pwm = std::stoi(pwmStr); // Convert to int
-            motor.setSpeed(pwm);
-        }
-    }
-
-    // Get the second line and set the angle of the servo
-    if (std::getline(ss, line)) {
-        std::size_t pos = line.find(":");
-        if (pos != std::string::npos) {
-            std::string pwmStr = line.substr(pos + 1); // Get the part after ":"
-            int pwm = std::stoi(pwmStr); // Convert to int
-            servo.setAngle(pwm);
-        }
-    }
+    const std_msgs__msg__String * motor_msg = (const std_msgs__msg__String *)msgin;
+    int pwm = std::stoi(motor_msg->data.data);
+    motor.setSpeed(pwm);
 }
 
 int main()
@@ -112,18 +99,25 @@ int main()
     RCL_MS_TO_NS(timer_timeout),
     timer_callback);
 
-  // create a subscriber
+  // create a subscriber for the motor
   rclc_subscription_init_default(
-    &subscriber,
+    &motor_subscriber,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
     "pi_motor_publishing_topic");
+  //Create a subscriber for the servo
+  rclc_subscription_init_default(
+    &servo_subscriber,
+    &node,
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+    "pi_servo_publishing_topic");
 
   // create executor
   rclc_executor_t executor;
-  rclc_executor_init(&executor, &support.context, 2, &allocator);
+  rclc_executor_init(&executor, &support.context, 3, &allocator);
   rclc_executor_add_timer(&executor, &timer);
-  rclc_executor_add_subscription(&executor, &subscriber, &msg, &subscription_callback, ON_NEW_DATA);
+  rclc_executor_add_subscription(&executor, &motor_subscriber, &motor_msg, &subscription_callback_motor, ON_NEW_DATA);
+  rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
   //motor.setSpeed(1600000);
 
   while(1){
