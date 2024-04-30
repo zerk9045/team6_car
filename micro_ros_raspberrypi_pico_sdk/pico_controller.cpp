@@ -126,6 +126,7 @@ int main()
 
   // free resources
   rcl_publisher_fini(&publisher, &node);
-  rcl_subscription_fini(&subscriber, &node);
+  rcl_subscription_fini(&motor_subscriber, &node);
+  rcl_subscription_fini(&servo_subscriber, &node);
   rcl_node_fini(&node);
 }
