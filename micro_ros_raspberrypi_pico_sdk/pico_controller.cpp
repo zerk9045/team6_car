@@ -6,6 +6,9 @@
 #include <Motor.h>
 #include <string>
 #include <rmw_microros/rmw_microros.h>
+#include <sstream>
+#include <vector>
+#include <iterator>
 
 #include "pico_uart_transports.h"
 #include <rcl/error_handling.h>
