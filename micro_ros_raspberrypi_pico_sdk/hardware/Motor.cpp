@@ -45,14 +45,14 @@ void Motor::setSpeed(int speedPWM) {
         speedPWM = MIN_PWM;
     }
 
-    // Set motor direction based on pwm signal
-    if (speedPWM == BRAKE_PWM) {
-        updateDirection(false, false); // INA high, INB high (brake)
-    } else if (speedPWM > BRAKE_PWM) {
-        updateDirection(true, false); // INA high, INB low (forward)
-    } else {
-        updateDirection(false, true); // INA low, INB high (reverse)
-    }
+//    // Set motor direction based on pwm signal
+//    if (speedPWM == BRAKE_PWM) {
+//        updateDirection(false, false); // INA high, INB high (brake)
+//    } else if (speedPWM > BRAKE_PWM) {
+//        updateDirection(true, false); // INA high, INB low (forward)
+//    } else {
+//        updateDirection(false, true); // INA low, INB high (reverse)
+//    }
 
     if (currentPwm == speedPWM) {
         return;

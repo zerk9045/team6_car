@@ -42,12 +42,32 @@ void subscription_callback_motor(const void * msgin)
 {
 
     //Expecting a msg format as such:
-    //"S: pwmValue\n A: pwmValue"
+    //"pwmValue forward/reverse"
     // We may need to add a forward or reverse command to the msg for the motor
     // since the max pwm is the same for both directions
     const std_msgs__msg__String * motor_msg = (const std_msgs__msg__String *)msgin;
-    int pwm = std::stoi(motor_msg->data.data);
+    std::string msg_data(motor_msg->data.data);
+
+    // Split the string around the space character
+    std::istringstream iss(msg_data);
+    std::vector<std::string> split(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
+
+    // Parse the pwmValue and direction
+    int pwm = std::stoi(split[0]);
+    std::string direction = split[1];
+
+    // Set the motor direction
+    if (direction == "forward") {
+        // Set motor to move forward
+        motor.updateDirection(true, false);
+    }else {
+        // Set motor to move in reverse
+        motor.updateDirection(false, true);
+    }
+
+    // Set the motor speed
     motor.setSpeed(pwm);
+
 }
 
 int main()

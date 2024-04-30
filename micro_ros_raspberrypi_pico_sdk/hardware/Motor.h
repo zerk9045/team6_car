@@ -17,6 +17,7 @@ public:
     void setSpeed(int speedPWM);
     // Function to read motor speed
     //int getSpeed();
+    static void updateDirection(bool inAValue, bool inBValue);
 
 private:
     int pwmPin; // PWM pin for motor speed control
@@ -24,7 +25,6 @@ private:
     int inBPin; // INB pin for motor direction control
     //IRSensor* irSensor; // IRSensor object for speed calculation
     // Private helper function to set motor direction
-    static void updateDirection(bool inAValue, bool inBValue);
     int currentPwm;
 };
 
