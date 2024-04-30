@@ -50,7 +50,7 @@ void subscription_callback_motor(const void * msgin)
 
     // Split the string around the space character
     std::istringstream iss(msg_data);
-    std::vector<std::string> split(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
+    std::vector<std::string> split((std::istream_iterator<std::string>{iss}), std::istream_iterator<std::string>());
 
     // Parse the pwmValue and direction
     int pwm = std::stoi(split[0]);
