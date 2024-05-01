@@ -17,7 +17,6 @@ rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
 rcl_subscription_t servo_subscriber;
 std_msgs__msg__String motor_msg;
-std_msgs__msg__String msg;
 std_msgs__msg__String servo_msg;
 Motor motor;
 Servo servo;
@@ -36,15 +35,15 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     }
 }
 void subscription_callback_servo(const void * msgin) {
-    const std_msgs__msg__String * servo_msg = (const std_msgs__msg__String *)msgin;
-    int pwm = std::stoi(servo_msg->data.data);
+    const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
+    int pwm = std::stoi(msg->data.data);
     servo.setAngle(pwm);
 
 }
 
 void subscription_callback_motor(const void *msgin) {
-    const std_msgs__msg__String *motor_msg = (const std_msgs__msg__String *)msgin;
-    std::string msg_data = motor_msg->data.data;
+    const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
+    std::string msg_data = msg->data.data;
 
     // Find the position of the space character
     size_t space_pos = msg_data.find(' ');
