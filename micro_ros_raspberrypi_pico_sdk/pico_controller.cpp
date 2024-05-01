@@ -132,8 +132,8 @@ int main()
   rclc_executor_t executor;
   rclc_executor_init(&executor, &support.context, 3, &allocator);
   rclc_executor_add_timer(&executor, &timer);
-  rclc_executor_add_subscription(&executor, &motor_subscriber, &motor_msg, &subscription_callback_motor, ON_NEW_DATA);
-  rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
+  rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
+  rclc_executor_add_subscription(&executor, &servo_subscriber, &msg, &subscription_callback_servo, ON_NEW_DATA);
 //  motor.setSpeed(1500000);
 //  servo.setAngle(1600000);
   while(1){
