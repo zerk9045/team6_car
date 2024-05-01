@@ -17,6 +17,7 @@ rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
 rcl_subscription_t servo_subscriber;
 std_msgs__msg__String motor_msg;
+std_msgs__msg__String msg;
 std_msgs__msg__String servo_msg;
 Motor motor;
 Servo servo;
