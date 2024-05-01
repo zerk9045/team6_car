@@ -43,7 +43,7 @@ void subscription_callback_servo(const void * msgin) {
 }
 
 void subscription_callback_motor(const void *msgin) {
-    const std_msgs__msg__String *motor_msg = static_cast<const std_msgs__msg__String *>(msgin);
+    const std_msgs__msg__String *motor_msg = (const std_msgs__msg__String *)msgin;
     std::string msg_data = motor_msg->data.data;
 
     // Find the position of the space character
