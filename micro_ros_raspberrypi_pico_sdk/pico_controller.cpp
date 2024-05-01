@@ -41,40 +41,29 @@ void subscription_callback_servo(const void * msgin) {
     servo.setAngle(pwm);
 
 }
-void subscription_callback_motor(const void * msgin)
-{
 
-    //Expecting a msg format as such:
-    //"pwmValue forward/reverse"
-    // We may need to add a forward or reverse command to the msg for the motor
-    // since the max pwm is the same for both directions
-    const std_msgs__msg__String * motor_msg = (const std_msgs__msg__String *)msgin;
-    std::string msg_data(motor_msg->data.data);
+void subscription_callback_motor(const void *msgin) {
+    const std_msgs__msg__String *motor_msg = static_cast<const std_msgs__msg__String *>(msgin);
+    std::string msg_data = motor_msg->data.data;
 
-    // Split the string around the space character
-    std::istringstream iss(msg_data);
-    std::vector<std::string> split((std::istream_iterator<std::string>{iss}), std::istream_iterator<std::string>());
-
-    // Parse the pwmValue and direction
-    int pwm = std::stoi(split[0]);
-    std::string direction = split[1];
-
-    // Set the motor direction
-    if (direction == "forward") {
-        // Set motor to move forward
-        motor.updateDirection(true, false);
-    }else if (direction == "reverse"){
-        // Set motor to move in reverse
-        motor.updateDirection(false, true);
-    }else if (direction == "stop"){
-        // Set motor to brake
-        motor.updateDirection(false, false);
+    // Find the position of the space character
+    size_t space_pos = msg_data.find(' ');
+    if (space_pos == std::string::npos) {
+        // Invalid message format, handle error or return
+        return;
     }
 
+    // Extract pwmValue and direction
+    int pwm = std::stoi(msg_data.substr(0, space_pos));
+    std::string direction = msg_data.substr(space_pos + 1);
+
+    // Set motor direction based on the extracted direction string
+    bool forward = (direction == "forward");
+    bool reverse = (direction == "reverse");
+    motor.updateDirection(forward, reverse);
 
     // Set the motor speed
     motor.setSpeed(pwm);
-
 }
 
 int main()
