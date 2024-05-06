@@ -9,7 +9,7 @@
   <xacro:property name="base_height" value="0.060" />
   <xacro:property name="wheelbase" value="0.289" />
   <xacro:property name="wheel_mass" value="0.34055" /> <!-- arbitrary value for wheel mass -->
-  <xacro:property name="wheel_len" value="0.045" />
+  <xacro:property name="wheel_len" value="0.055" />
   <xacro:property name="wheel_radius" value="0.05" />
   <!-- <xacro:property name="wheeltrack" value="" -->
 
@@ -40,7 +40,7 @@
       <geometry>
         <box size="${base_length} ${base_width} ${base_height}"/>
       </geometry>
-      <material name="orange"/>
+      <material name="green"/>
     </visual>
 
     <xacro:inertial_box mass="${base_mass}" x="${wheelbase}" y="${base_width}" z="${base_height}">
