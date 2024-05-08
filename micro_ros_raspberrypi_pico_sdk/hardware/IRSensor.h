@@ -29,7 +29,7 @@ class IRSensor {
         // Variable to store the speed;
         int speed;
 
-        static uint_32 last_reset;
+        static uint_32_t last_reset;
 };
 
 
