@@ -39,6 +39,7 @@ int IRSensor::getSpeed() {
     if (absolute_time_diff_us(get_absolute_time(), last_reset) >= 1000000) {
         resetSensorInterrupts();
     }
+
     return speed;
 }
 
