@@ -120,20 +120,20 @@ int main()
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
     "motor_feedback_topic");
-  rclc_publisher_init_default(
-    &servo_publisher,
-    &node,
-    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "servo_feedback_topic");
+//  rclc_publisher_init_default(
+//    &servo_publisher,
+//    &node,
+//    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+//    "servo_feedback_topic");
 
   // create a timer,
   rcl_timer_t timer;
   const unsigned int timer_timeout = 1000;
-  rclc_timer_init_default(
-    &timer,
-    &support,
-    RCL_MS_TO_NS(timer_timeout),
-    timer_callback_servo);
+//  rclc_timer_init_default(
+//    &timer,
+//    &support,
+//    RCL_MS_TO_NS(timer_timeout),
+//    timer_callback_servo);
   rclc_timer_init_default(
     &timer,
     &support,
@@ -155,7 +155,7 @@ int main()
 
   // create executor
   rclc_executor_t executor;
-  rclc_executor_init(&executor, &support.context, 4, &allocator);
+  rclc_executor_init(&executor, &support.context, 3, &allocator);
   rclc_executor_add_timer(&executor, &timer);
   rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
   rclc_executor_add_subscription(&executor, &servo_subscriber, &msg, &subscription_callback_servo, ON_NEW_DATA);
@@ -167,7 +167,7 @@ int main()
 
   // free resources
   rcl_publisher_fini(&motor_publisher, &node);
-    rcl_publisher_fini(&servo_publisher, &node);
+  //rcl_publisher_fini(&servo_publisher, &node);
   rcl_subscription_fini(&motor_subscriber, &node);
   rcl_subscription_fini(&servo_subscriber, &node);
   rcl_node_fini(&node);
