@@ -54,7 +54,11 @@ void Motor::setSpeed(int speedPWM) {
 
 int Motor::getSpeed() {
     // Use the IRSensor to calculate the rotations per second
-    return irSensor->getSpeed();
+    int number_counts_per_rev = irSensor->getSpeed();
+    int radius = 0.05;
+    int distance_traveled = 2 * 3.14159 * radius * (number_counts_per_rev);
+
+    return distance_traveled;
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
