@@ -4,7 +4,5 @@
     <xacro:include filename="materials.xacro" />
     <xacro:include filename="lidar.xacro" />    
     <xacro:include filename="robot_core.xacro" />
-    <!-- <xacro:include filename="robot_core_ack1.xacro" />     -->
     <xacro:include filename="ros2_bicycle.xacro" />
-    <!-- <xacro:include filename="ros2_ack.xacro" />     -->
 </robot>

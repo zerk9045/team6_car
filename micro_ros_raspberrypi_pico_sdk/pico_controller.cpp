@@ -26,7 +26,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
-        std::string data = "Servo = " + std::to_string(servo.getAngle()); + "\nMotor = " + std::to_string(motor.getSpeed());
+        std::string data = "Servo = " + std::to_string(servo.getAngle()); + " Motor = " + std::to_string(motor.getSpeed());
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
@@ -36,15 +36,15 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     }
 }
 void subscription_callback_servo(const void * msgin) {
-    const std_msgs__msg__String * servo_msg = (const std_msgs__msg__String *)msgin;
-    int pwm = std::stoi(servo_msg->data.data);
+    const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
+    int pwm = std::stoi(msg->data.data);
     servo.setAngle(pwm);
 
 }
 
 void subscription_callback_motor(const void *msgin) {
-    const std_msgs__msg__String *motor_msg = (const std_msgs__msg__String *)msgin;
-    std::string msg_data = motor_msg->data.data;
+    const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
+    std::string msg_data = msg->data.data;
 
     // Find the position of the space character
     size_t space_pos = msg_data.find(' ');
@@ -132,10 +132,10 @@ int main()
   rclc_executor_t executor;
   rclc_executor_init(&executor, &support.context, 3, &allocator);
   rclc_executor_add_timer(&executor, &timer);
-  rclc_executor_add_subscription(&executor, &motor_subscriber, &motor_msg, &subscription_callback_motor, ON_NEW_DATA);
-  rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
-  //motor.setSpeed(1600000);
-
+  rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
+  rclc_executor_add_subscription(&executor, &servo_subscriber, &msg, &subscription_callback_servo, ON_NEW_DATA);
+//  motor.setSpeed(1500000);
+//  servo.setAngle(1600000);
   while(1){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }

@@ -77,5 +77,11 @@ def generate_launch_description():
         joystick,
         delayed_controller_manager,
         delayed_bicycle_drive_spawner,
-        delayed_joint_broad_spawner
+        delayed_joint_broad_spawner,
+        Node(
+            package='tf2_ros',
+            namespace = 'scan_to_map',
+            executable='static_transform_publisher',
+            arguments= ["0", "0", "0", "0", "0", "0", "map", "scan"]
+        )
     ])
