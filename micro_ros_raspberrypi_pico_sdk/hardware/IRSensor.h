@@ -25,7 +25,7 @@ class IRSensor {
         // Method to handle timer actions
 
         // Variable to store the number of interrupts
-        int sensor_interrupts;
+        int sensor_interrupts = 0;
 
         // Variable to store the speed;
         int speed;
