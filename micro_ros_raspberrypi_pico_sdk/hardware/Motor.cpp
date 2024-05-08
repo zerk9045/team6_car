@@ -53,7 +53,7 @@ void Motor::setSpeed(int speedPWM) {
 }
 
 double Motor::getSpeed() {
-    return (2 * 3.14159 * 0.05 * irSensor->getSpeed());
+    return (2 * 3.14159 * 0.05 * (irSensor->getSpeed()/279));
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
