@@ -27,15 +27,13 @@ void IRSensor::resetSensorInterrupts() {
 
 int IRSensor::getSpeed() {
     speed = sensor_interrupts;
-    if (time_us_32() - last_reset >= 1000000) {
-        resetSensorInterrupts();
-    }
-
     return speed;
 }
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     sensor_interrupts++;
-
+    if (time_us_32() - last_reset >= 1000000) {
+        resetSensorInterrupts();
+    }
 }
 
