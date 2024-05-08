@@ -63,10 +63,10 @@ void subscription_callback_motor(const void *msgin) {
 
     // Find the position of the space character
     size_t space_pos = msg_data.find(' ');
-    if (space_pos == std::string::npos) {
-        // Invalid message format, handle error or return
-        return;
-    }
+//    if (space_pos == std::string::npos) {
+//        // Invalid message format, handle error or return
+//        return;
+//    }
 
     // Extract pwmValue and direction
     int pwm = std::stoi(msg_data.substr(0, space_pos));
