@@ -9,8 +9,6 @@
 IRSensor irSensor;
 
 IRSensor::IRSensor() {
-    
-
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
     gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, &IRSensor::interrupt_callback);

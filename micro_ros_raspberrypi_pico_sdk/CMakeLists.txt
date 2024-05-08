@@ -18,7 +18,7 @@ add_executable(pico_micro_ros_example
         pico_controller.cpp
         hardware/Servo.cpp
         hardware/Motor.cpp
-        #hardware/IRSensor.cpp
+        hardware/IRSensor.cpp
 )
 target_link_libraries(pico_micro_ros_example
         pico_stdlib

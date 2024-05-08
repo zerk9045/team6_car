@@ -2,10 +2,11 @@
 #define TEAM6_CAR_MOTOR_H
 
 #include "pico/stdlib.h"
-//#include "IRSensor.h"
+#include "IRSensor.h"
 
 
 class Motor {
+    IRSensor* irSensor;
 public:
     // Constructor
     Motor();

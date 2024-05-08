@@ -3,14 +3,14 @@
 #include "../config/pin_config.h"
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
-//#include "IRSensor.h"
 
 // Need to change this logic since max_pwm is the same for forward and reverse
 #define BRAKE_PWM 1500000
 #define MAX_PWM 3000000
 #define MIN_PWM 1375000
 
-Motor::Motor(){//, irSensor(new IRSensor()) {
+Motor::Motor(){//, ) {
+    irSensor = new IRSensor();
     // Initialize motor hardware or perform any necessary setup here
     gpio_init(MOTOR_PWM);
     gpio_init(INA_PIN);
@@ -23,6 +23,7 @@ Motor::Motor(){//, irSensor(new IRSensor()) {
 
 Motor::~Motor() {
     // Cleanup resources if necessary
+    delete irSensor;
 }
 
 void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
@@ -44,27 +45,16 @@ void Motor::setSpeed(int speedPWM) {
     } else if (speedPWM < MIN_PWM) {
         speedPWM = MIN_PWM;
     }
-
-//    // Set motor direction based on pwm signal
-//    if (speedPWM == BRAKE_PWM) {
-//        updateDirection(false, false); // INA high, INB high (brake)
-//    } else if (speedPWM > BRAKE_PWM) {
-//        updateDirection(true, false); // INA high, INB low (forward)
-//    } else {
-//        updateDirection(false, true); // INA low, INB high (reverse)
-//    }
-
     if (currentPwm == speedPWM) {
         return;
     }
-    //set_pwm_pin(MOTOR_PWM, 100, speedPWM/1000);
     pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
     currentPwm = speedPWM;
 }
 
 int Motor::getSpeed() {
     // Use the IRSensor to calculate the rotations per second
-    return currentPwm;//irSensor->getSpeed();
+    return irSensor->getSpeed();
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
