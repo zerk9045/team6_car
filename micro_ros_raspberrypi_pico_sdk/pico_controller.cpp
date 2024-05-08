@@ -13,7 +13,8 @@
 #include "pico_uart_transports.h"
 #include <rcl/error_handling.h>
 
-rcl_publisher_t publisher;
+rcl_publisher_t servo_publisher;
+rcl_publisher_t motor_publisher;
 rcl_subscription_t motor_subscriber;
 rcl_subscription_t servo_subscriber;
 std_msgs__msg__String motor_msg;
@@ -21,16 +22,30 @@ std_msgs__msg__String msg;
 std_msgs__msg__String servo_msg;
 Motor motor;
 Servo servo;
-void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
+void timer_callback_servo(rcl_timer_t * timer, int64_t last_call_time)
 {
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
-        std::string data = "Servo = " + std::to_string(servo.getAngle()) + " Motor = " + std::to_string(motor.getSpeed());
+        std::string data = std::to_string(servo.getAngle());
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
-        rcl_publish(&publisher, &msg, NULL);
+        rcl_publish(&servo_publisher, &msg, NULL);
+        printf("Published: '%s'\n", msg.data.data);
+        free(msg.data.data); // Free the allocated memory
+    }
+}
+void timer_callback_motor(rcl_timer_t * timer, int64_t last_call_time)
+{
+    RCLC_UNUSED(last_call_time);
+    if (timer != NULL) {
+        std_msgs__msg__String__init(&msg);
+        std::string data =  std::to_string(motor.getSpeed());
+        msg.data.data = strdup(data.c_str()); // Create a copy of the string
+        msg.data.size = strlen(msg.data.data);
+        msg.data.capacity = msg.data.size + 1;
+        rcl_publish(&motor_publisher, &msg, NULL);
         printf("Published: '%s'\n", msg.data.data);
         free(msg.data.data); // Free the allocated memory
     }
@@ -48,10 +63,10 @@ void subscription_callback_motor(const void *msgin) {
 
     // Find the position of the space character
     size_t space_pos = msg_data.find(' ');
-    if (space_pos == std::string::npos) {
-        // Invalid message format, handle error or return
-        return;
-    }
+//    if (space_pos == std::string::npos) {
+//        // Invalid message format, handle error or return
+//        return;
+//    }
 
     // Extract pwmValue and direction
     int pwm = std::stoi(msg_data.substr(0, space_pos));
@@ -101,19 +116,29 @@ int main()
 
   // create a publisher
   rclc_publisher_init_default(
-    &publisher,
+    &motor_publisher,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "control_topic");
+    "motor_feedback_topic");
+//  rclc_publisher_init_default(
+//    &servo_publisher,
+//    &node,
+//    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+//    "servo_feedback_topic");
 
   // create a timer,
   rcl_timer_t timer;
   const unsigned int timer_timeout = 1000;
+//  rclc_timer_init_default(
+//    &timer,
+//    &support,
+//    RCL_MS_TO_NS(timer_timeout),
+//    timer_callback_servo);
   rclc_timer_init_default(
     &timer,
     &support,
     RCL_MS_TO_NS(timer_timeout),
-    timer_callback);
+    timer_callback_motor);
 
   // create a subscriber for the motor
   rclc_subscription_init_default(
@@ -141,7 +166,8 @@ int main()
   }
 
   // free resources
-  rcl_publisher_fini(&publisher, &node);
+  rcl_publisher_fini(&motor_publisher, &node);
+  //rcl_publisher_fini(&servo_publisher, &node);
   rcl_subscription_fini(&motor_subscriber, &node);
   rcl_subscription_fini(&servo_subscriber, &node);
   rcl_node_fini(&node);
