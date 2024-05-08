@@ -19,7 +19,6 @@ alarm_pool_t *timer_pool;
 
 int64_t timer_interrupt(alarm_id_t id, void *user_data) {
     IRSensor::resetSensorInterrupts();
-    return 0;
 }
 
 IRSensor::IRSensor() {
