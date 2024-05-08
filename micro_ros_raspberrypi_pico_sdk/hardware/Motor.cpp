@@ -52,9 +52,8 @@ void Motor::setSpeed(int speedPWM) {
     currentPwm = speedPWM;
 }
 
-int Motor::getSpeed() {
-    // Use the IRSensor to calculate the rotations per second
-    return irSensor->getSpeed();
+double Motor::getSpeed() {
+    return static_cast<double>(irSensor->getSpeed());//(2 * 3.14159 * 0.05 * (static_cast<double>(irSensor->getSpeed())/279));
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {

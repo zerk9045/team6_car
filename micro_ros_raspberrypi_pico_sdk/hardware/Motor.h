@@ -17,7 +17,7 @@ public:
     // Function to set motor speed
     void setSpeed(int speedPWM);
     // Function to read motor speed
-    int getSpeed();
+    double getSpeed();
     static void updateDirection(bool inAValue, bool inBValue);
 
 private:

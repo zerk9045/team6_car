@@ -5,30 +5,35 @@
 #include "../config/pin_config.h"
 #include "hardware/clocks.h"
 #include "hardware/pwm.h"
+#include "pico/time.h"
+// Declare a global instance of IRSensor
 
-IRSensor irSensor;
+// Initialize static member
+int IRSensor::sensor_interrupts = 0;
+uint32_t IRSensor::last_reset = time_us_32();
 
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, &IRSensor::interrupt_callback);
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
+    // Create a repeating timer that resets sensor_interrupts every second
+    last_reset = time_us_32();
 }
 
+void IRSensor::resetSensorInterrupts() {
+    sensor_interrupts = 0;
+    last_reset = time_us_32();
+}
 
 int IRSensor::getSpeed() {
-    repeating_timer_callback_t rt;
-    add_repeating_timer_ms(1000, rt, NULL, NULL);
-    
     speed = sensor_interrupts;
-    sensor_interrupts = 0;
     return speed;
 }
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
-    
-    sensor_interrupts = sensor_interrupts + 1;
+    sensor_interrupts++;
+    if (time_us_32() - last_reset >= 1000000) {
+        resetSensorInterrupts();
+    }
 }
 
-void IRSensor::interrupt_callback(unsigned int gpio, long unsigned int events) {
-    irSensor.do_interrupt(gpio, events);
-}
