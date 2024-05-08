@@ -7,10 +7,9 @@
 #include "hardware/pwm.h"
 
 IRSensor::IRSensor() {
-    sensor_interrupts = 0;
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, &IRSensor::do_interrupt);
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
 }
 
 
@@ -31,6 +30,6 @@ int IRSensor::getSpeed() {
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     
-    sensor_interrupts = sensor_interrupts + 1;
+    sensor_interrupts++;
 }
 
