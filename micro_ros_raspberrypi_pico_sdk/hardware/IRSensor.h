@@ -16,7 +16,7 @@ class IRSensor {
 
         // Method to handle interrupts
         static void do_interrupt(uint gpio, uint32_t events);
-        static bool reset_interrupts(repeating_timer_t *t);
+        void resetSensorInterrupts();
         
     private:
 
