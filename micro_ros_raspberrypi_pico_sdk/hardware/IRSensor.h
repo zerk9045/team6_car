@@ -29,7 +29,6 @@ class IRSensor {
         // Variable to store the speed;
         int speed;
 };
-// Initialize static member
-int IRSensor::sensor_interrupts = 0;
+
 
 #endif //TEAM6_CAR_IRSENSOR_H

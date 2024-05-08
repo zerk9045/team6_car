@@ -6,6 +6,8 @@
 #include "hardware/clocks.h"
 #include "hardware/pwm.h"
 
+// Initialize static member
+int IRSensor::sensor_interrupts = 0;
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
