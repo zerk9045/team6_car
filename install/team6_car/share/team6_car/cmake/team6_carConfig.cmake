@@ -1,1 +1,0 @@
-/home/adrien/dev_ws/src/build/team6_car/ament_cmake_core/team6_carConfig.cmake
