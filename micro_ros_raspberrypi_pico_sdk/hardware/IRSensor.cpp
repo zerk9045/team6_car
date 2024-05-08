@@ -6,12 +6,11 @@
 #include "hardware/clocks.h"
 #include "hardware/pwm.h"
 
-IRSensor irSensor;
-
 IRSensor::IRSensor() {
+    sensor_interrupts = 0;
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, &IRSensor::interrupt_callback);
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, &IRSensor::do_interrupt);
 }
 
 
@@ -26,10 +25,8 @@ int IRSensor::getSpeed() {
 //
 //
 //    add_repeating_timer_ms(1000, callback, NULL, &timer);
-    
-    speed = sensor_interrupts;
 
-    return speed;
+    return sensor_interrupts;
 }
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
@@ -37,6 +34,3 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     sensor_interrupts = sensor_interrupts + 1;
 }
 
-void IRSensor::interrupt_callback(unsigned int gpio, long unsigned int events) {
-    irSensor.do_interrupt(gpio, events);
-}

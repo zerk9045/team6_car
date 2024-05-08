@@ -15,8 +15,7 @@ class IRSensor {
         int getSpeed();
 
         // Method to handle interrupts
-        void do_interrupt(uint gpio, uint32_t events);
-        static void interrupt_callback(unsigned int gpio, long unsigned int events);
+        static void do_interrupt(uint gpio, uint32_t events);
             
         
     private:
@@ -25,7 +24,7 @@ class IRSensor {
         // Method to handle timer actions
 
         // Variable to store the number of interrupts
-        int sensor_interrupts = 0;
+        static int sensor_interrupts;
 
         // Variable to store the speed;
         int speed;
