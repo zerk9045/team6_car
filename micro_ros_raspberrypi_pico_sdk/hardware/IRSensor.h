@@ -16,7 +16,7 @@ class IRSensor {
 
         // Method to handle interrupts
         static void do_interrupt(uint gpio, uint32_t events);
-        void resetSensorInterrupts();
+        static void resetSensorInterrupts();
         
     private:
 
@@ -28,6 +28,8 @@ class IRSensor {
 
         // Variable to store the speed;
         int speed;
+
+        static absolute_time_t last_reset;
 };
 
 

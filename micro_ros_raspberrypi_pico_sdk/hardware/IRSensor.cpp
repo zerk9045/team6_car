@@ -9,25 +9,19 @@
 
 // Initialize static member
 int IRSensor::sensor_interrupts = 0;
-
-IRSensor irSensor;
-
-bool reset_interrupts(repeating_timer_t *t) {
-    irSensor.resetSensorInterrupts();
-    return true;
-}
+absolute_time_t IRSensor::last_reset = get_absolute_time();
 
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
     gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
     // Create a repeating timer that resets sensor_interrupts every second
-    repeating_timer_t timer;
-    add_repeating_timer_ms(1000, reset_interrupts, NULL, &timer);
+    last_reset = get_absolute_time();
 }
 
 void IRSensor::resetSensorInterrupts() {
     sensor_interrupts = 0;
+    last_reset = get_absolute_time();
 }
 
 int IRSensor::getSpeed() {
@@ -47,5 +41,8 @@ int IRSensor::getSpeed() {
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     sensor_interrupts++;
+    if (absolute_time_diff_us(get_absolute_time(), last_reset) >= 1000000) {
+        resetSensorInterrupts();
+    }
 }
 
