@@ -36,13 +36,14 @@ int IRSensor::getSpeed() {
 //
 //    add_repeating_timer_ms(1000, callback, NULL, &timer);
     speed = sensor_interrupts;
+    if (absolute_time_diff_us(get_absolute_time(), last_reset) >= 1000000) {
+        resetSensorInterrupts();
+    }
     return speed;
 }
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     sensor_interrupts++;
-    if (absolute_time_diff_us(get_absolute_time(), last_reset) >= 1000000) {
-        resetSensorInterrupts();
-    }
+
 }
 
