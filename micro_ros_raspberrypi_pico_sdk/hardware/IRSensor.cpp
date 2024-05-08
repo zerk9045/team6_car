@@ -28,7 +28,7 @@ IRSensor::IRSensor() {
     // Create a repeating timer that resets sensor_interrupts every second
 //    last_reset = time_us_32();
     // Initialize the hardware timer
-    //timer = make_timeout_time_ms(1000);
+    timer = make_timeout_time_ms(1000);
     add_alarm_in_us(1000000, timer_interrupt, NULL, true);
 }
 
