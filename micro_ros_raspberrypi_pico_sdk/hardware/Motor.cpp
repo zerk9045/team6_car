@@ -53,7 +53,7 @@ void Motor::setSpeed(int speedPWM) {
 }
 
 double Motor::getSpeed() {
-    return static_cast<double>(irSensor->getSpeed());//(2 * 3.14159 * 0.05 * (static_cast<double>(irSensor->getSpeed())/279));
+    return currentPwm;//static_cast<double>(irSensor->getSpeed());//(2 * 3.14159 * 0.05 * (static_cast<double>(irSensor->getSpeed())/279));
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
