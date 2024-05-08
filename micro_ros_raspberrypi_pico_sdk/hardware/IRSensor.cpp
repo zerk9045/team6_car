@@ -16,11 +16,19 @@ IRSensor::IRSensor() {
 
 
 int IRSensor::getSpeed() {
-    repeating_timer_callback_t rt;
-    add_repeating_timer_ms(1000, rt, NULL, NULL);
+//    repeating_timer_t timer;
+//
+//
+//    auto callback = [](repeating_timer_t *t) {
+//        // Do not increment sensor_interrupts here
+//        return true; // return true to keep the timer repeating
+//    };
+//
+//
+//    add_repeating_timer_ms(1000, callback, NULL, &timer);
     
     speed = sensor_interrupts;
-    sensor_interrupts = 0;
+
     return speed;
 }
 
