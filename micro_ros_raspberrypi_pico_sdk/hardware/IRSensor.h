@@ -1,7 +1,7 @@
 //
 // Created by Raphael Bret-Mounet on 4/27/24.
 //
-
+#include "pico/stdlib.h"
 #ifndef TEAM6_CAR_IRSENSOR_H
 #define TEAM6_CAR_IRSENSOR_H
 
@@ -15,21 +15,20 @@ class IRSensor {
         int getSpeed();
 
         // Method to handle interrupts
-        static void do_interrupt(uint gpio, uint32_t events, uintptr_t data);
+        void do_interrupt(uint gpio, uint32_t events);
+        static void interrupt_callback(unsigned int gpio, long unsigned int events);
+            
+        
     private:
 
 
         // Method to handle timer actions
-        void timer_action();
-        void timer_init();  // Add this line
-        void timer_set_callback();  // Add this line
-        void timer_start();  // Add this line
+
         // Variable to store the number of interrupts
         int sensor_interrupts;
 
         // Variable to store the speed;
         int speed;
-
 };
 
 
