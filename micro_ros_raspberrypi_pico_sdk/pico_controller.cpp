@@ -31,7 +31,7 @@ void timer_callback_servo(rcl_timer_t * timer, int64_t last_call_time)
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
-        rcl_publish(&publisher, &msg, NULL);
+        rcl_publish(&servo_publisher, &msg, NULL);
         printf("Published: '%s'\n", msg.data.data);
         free(msg.data.data); // Free the allocated memory
     }
@@ -45,7 +45,7 @@ void timer_callback_motor(rcl_timer_t * timer, int64_t last_call_time)
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
-        rcl_publish(&publisher, &msg, NULL);
+        rcl_publish(&motor_publisher, &msg, NULL);
         printf("Published: '%s'\n", msg.data.data);
         free(msg.data.data); // Free the allocated memory
     }
@@ -166,7 +166,8 @@ int main()
   }
 
   // free resources
-  rcl_publisher_fini(&publisher, &node);
+  rcl_publisher_fini(&motor_publisher, &node);
+    rcl_publisher_fini(&servo_publisher, &node);
   rcl_subscription_fini(&motor_subscriber, &node);
   rcl_subscription_fini(&servo_subscriber, &node);
   rcl_node_fini(&node);
