@@ -25,8 +25,8 @@ int IRSensor::getSpeed() {
 //
 //
 //    add_repeating_timer_ms(1000, callback, NULL, &timer);
-
-    return sensor_interrupts;
+    speed = sensor_interrupts;
+    return speed;
 }
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
