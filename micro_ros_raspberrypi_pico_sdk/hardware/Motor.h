@@ -18,7 +18,7 @@ public:
     void setSpeed(int speedPWM);
     // Function to read motor speed
     double getSpeed();
-    static void updateDirection(bool inAValue, bool inBValue);
+    static void updateDirection(bool inAValue, bool inBValue, std::string direction);
 
 private:
     int pwmPin; // PWM pin for motor speed control
