@@ -9,7 +9,6 @@
 #include <sstream>
 #include <vector>
 #include <iterator>
-
 #include "pico_uart_transports.h"
 #include <rcl/error_handling.h>
 
@@ -109,7 +108,7 @@ int main()
 
   // create a timer,
   rcl_timer_t timer;
-  const unsigned int timer_timeout = 55;
+  const unsigned int timer_timeout = 70;
   rclc_timer_init_default(
     &timer,
     &support,

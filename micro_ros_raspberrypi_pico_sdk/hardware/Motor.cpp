@@ -3,7 +3,7 @@
 #include "../config/pin_config.h"
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
-// Need to change this logic since max_pwm is the same for forward and reverse
+
 #define BRAKE_PWM 1500000
 #define MAX_PWM 3000000
 #define MIN_PWM 1375000
@@ -54,7 +54,10 @@ void Motor::setSpeed(int speedPWM) {
 
 double Motor::getSpeed() {
     //Linear Speed (m/s)=RPS×Circumference
-    return (irSensor->getSpeed()* WHEEL_DIAMETER * M_PI);
+    //Gear Ratio = (# Spur Gear Teeth /# Pinion Gear Teeth )x 2.72
+    double rps = ((irSensor->getCountsPerTimer()/(INTERRUPT_TIME_MS*0.001))/3); // Divide by 3 since we get 3 interrupts per revolution
+    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
+    return (tireRPS * WHEEL_DIAMETER * M_PI);
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {

@@ -5,14 +5,15 @@
 #ifndef TEAM6_CAR_IRSENSOR_H
 #define TEAM6_CAR_IRSENSOR_H
 
-
+#define INTERRUPT_TIME_MS 70
+#define INTERRUPT_TIME_US  (INTERRUPT_TIME_MS*1000)
 class IRSensor {
     public:
         // Constructor
         IRSensor();
 
         // Method to get the speed
-        int getSpeed();
+        int getCountsPerTimer();
 
         // Method to handle interrupts
         static void do_interrupt(uint gpio, uint32_t events);
@@ -28,8 +29,7 @@ class IRSensor {
 
         // Variable to store the speed;
         int speed;
-
-        static uint32_t last_reset;
+        static int counts_per_timer;
 };
 
 
