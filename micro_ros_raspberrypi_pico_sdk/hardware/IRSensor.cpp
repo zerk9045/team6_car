@@ -27,8 +27,8 @@ IRSensor::IRSensor() {
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
     gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
-    timer = make_timeout_time_ms(INTERRUPT_TIME_MS);
-    add_alarm_in_us((INTERRUPT_TIME_US), timer_interrupt, NULL, true);
+    timer = make_timeout_time_ms(70);
+    add_alarm_in_us((70*1000), timer_interrupt, NULL, true);
 }
 
 void IRSensor::resetSensorInterrupts() {
