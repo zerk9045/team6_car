@@ -3,7 +3,7 @@
 
 #include "pico/stdlib.h"
 #include "IRSensor.h"
-
+#include <string>
 
 class Motor {
     IRSensor* irSensor;
@@ -26,6 +26,7 @@ private:
     int inBPin; // INB pin for motor direction control
     //IRSensor* irSensor; // IRSensor object for speed calculation
     // Private helper function to set motor direction
+    std::string direction;
     int currentPwm;
 };
 

@@ -59,7 +59,7 @@ void subscription_callback_motor(const void *msgin) {
     // Set motor direction based on the extracted direction string
     bool forward = (direction == "forward");
     bool reverse = (direction == "reverse");
-    motor.updateDirection(forward, reverse);
+    motor.updateDirection(forward, reverse,direction);
 
     // Set the motor speed
     motor.setSpeed(pwm);
