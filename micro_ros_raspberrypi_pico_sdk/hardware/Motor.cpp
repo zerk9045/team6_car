@@ -57,7 +57,7 @@ double Motor::getSpeed() {
     //Gear Ratio = (# Spur Gear Teeth /# Pinion Gear Teeth )x 2.72
 //    double rps = ; // Divide by 3 since we get 3 interrupts per revolution
 //    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
-    return static_cast<double>(irSensor->getCountsPerTimer()/3/0.07/2.72*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+    return static_cast<double>(irSensor->getCountsPerTimer()/3/0.10/2.72*0.05*3.14);///3/2.72 * 0.05 * 3.14;
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
