@@ -59,10 +59,10 @@ double Motor::getSpeed() {
 //    double rps = ; // Divide by 3 since we get 3 interrupts per revolution
 //    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
 //cpr = 19.4778744511
-    if(direction == "forward"){
+    if(motor_direction == "forward"){
         return static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
-    else if(direction == "backward"){
+    else if(motor_direction == "backward"){
         return static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
     else{
@@ -73,5 +73,5 @@ double Motor::getSpeed() {
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
     gpio_put(INA_PIN, inAValue ? 1 : 0);
     gpio_put(INB_PIN, inBValue ? 1 : 0);
-    this->direction = direction;
+    motor_direction = direction;
 }
