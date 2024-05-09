@@ -25,7 +25,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
-        std::string data =  "test";//std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
