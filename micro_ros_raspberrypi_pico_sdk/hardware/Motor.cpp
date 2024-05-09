@@ -4,11 +4,11 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 
-// Need to change this logic since max_pwm is the same for forward and reverse
 #define BRAKE_PWM 1500000
 #define MAX_PWM 3000000
 #define MIN_PWM 1375000
-
+#define WHEEL_DIAMETER 0.05
+#define M_PI        3.14159265358979323846264338327950288
 Motor::Motor(){//, ) {
     irSensor = new IRSensor();
     // Initialize motor hardware or perform any necessary setup here
@@ -53,7 +53,11 @@ void Motor::setSpeed(int speedPWM) {
 }
 
 double Motor::getSpeed() {
-    return static_cast<double>(irSensor->getSpeed());//(2 * 3.14159 * 0.05 * (static_cast<double>(irSensor->getSpeed())/279));
+    //Linear Speed (m/s)=RPS×Circumference
+    //Gear Ratio = (# Spur Gear Teeth /# Pinion Gear Teeth )x 2.72
+    double rps = ((irSensor->getCountsPerTimer()/(INTERRUPT_TIME_MS*0.001))/3); // Divide by 3 since we get 3 interrupts per revolution
+    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
+    return (tireRPS * WHEEL_DIAMETER * M_PI);
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
