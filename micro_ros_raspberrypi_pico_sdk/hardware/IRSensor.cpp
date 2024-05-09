@@ -18,10 +18,10 @@ absolute_time_t timer;
 alarm_pool_t *timer_pool;
 // Interrupt handler for the timer
 
-int64_t timer_interrupt(alarm_id_t id, void *user_data) {
-    IRSensor::resetSensorInterrupts();
-    return 100000;
-}
+//int64_t timer_interrupt(alarm_id_t id, void *user_data) {
+//    IRSensor::resetSensorInterrupts();
+//    return 100000;
+//}
 
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
@@ -32,14 +32,14 @@ IRSensor::IRSensor() {
     add_alarm_in_us(100000, timer_interrupt, NULL, true);
 }
 
-void IRSensor::resetSensorInterrupts() {
-    counts_per_timer = sensor_interrupts;
-    sensor_interrupts = 0;
-    //printf("Interrupts: %d\n", counts_per_timer);
-}
+//void IRSensor::resetSensorInterrupts() {
+//    counts_per_timer = sensor_interrupts;
+//    sensor_interrupts = 0;
+//    //printf("Interrupts: %d\n", counts_per_timer);
+//}
 
 int IRSensor::getCountsPerTimer() {
-    return counts_per_timer;
+    return sensor_interrupts;
 }
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
