@@ -3,6 +3,7 @@
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
+#include <cstdlib>
 
 #define M_PI        3.14159265358979323846264338327950288
 #define THRESHOLD 5000
@@ -35,7 +36,7 @@ void Servo::setAngle(int anglePWM) {
 
     // Set PWM duty cycle for servo control pin//1500000
     // Convert anglePWM to duty cycle percentage (assuming MAX_ANGLE_PWM is the maximum PWM value)
-    float duty_cycle = (float)anglePWM / MAX_ANGLE_PWM;
+    float duty_cycle = (float)anglePWM / MAX_SERVO_ANGLE_PWM;
     if (abs(currAnglePWM-anglePWM) >= THRESHOLD ) {
         //set_pwm_pin(SERVO_PWM, 100, anglePWM/1000);
         pwm_set_gpio_level(SERVO_PWM, (uint)(anglePWM/1000));
