@@ -62,7 +62,7 @@ double Motor::getSpeed() {
     if(motor_direction == "forward"){
         return static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
-    else if(motor_direction == "backward"){
+    else if(motor_direction == "reverse"){
         return static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
     else{
