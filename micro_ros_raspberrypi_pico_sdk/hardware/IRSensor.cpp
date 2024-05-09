@@ -34,7 +34,7 @@ IRSensor::IRSensor() {
 void IRSensor::resetSensorInterrupts() {
     counts_per_timer = sensor_interrupts;
     sensor_interrupts = 0;
-    printf("Interrupts: %d\n", counts_per_timer);
+    //printf("Interrupts: %d\n", counts_per_timer);
 }
 
 int IRSensor::getCountsPerTimer() {
