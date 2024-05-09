@@ -11,6 +11,7 @@
 
 // Initialize static member
 int IRSensor::sensor_interrupts = 0;
+int IRSensor::counts_per_timer = 0;
 // Declare a hardware timer
 absolute_time_t timer;
 // Declare a timer pool
