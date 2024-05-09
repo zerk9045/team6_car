@@ -3,10 +3,8 @@
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
-#include <cmath>
-#define STRAIGHT_SERVO_ANGLE_PWM 1500000
-#define MAX_SERVO_ANGLE_PWM 2000000
-#define MIN_SERVO_ANGLE_PWM 1000000
+
+#define M_PI        3.14159265358979323846264338327950288
 #define THRESHOLD 5000
 Servo::Servo(){
     gpio_init(SERVO_PWM);
@@ -52,11 +50,10 @@ void Servo::setAngle(int anglePWM) {
 
 
 
-int Servo::getAngle() {
-    // convert the pwm signal to an angle
-//    int rangePWM = MAX_ANGLE_PWM - MIN_ANGLE_PWM;
-//    float scale = 2.0 / rangePWM; // Adjust the scale to map to the range -1 to 1
-//    int normalizedAngle = ((currAnglePWM - MIN_ANGLE_PWM) * scale) - 1; // Subtract 1 to shift the range to -1 to 1
+double Servo::getAngle() {
+    // Normalize PWM to the range of 0 to 180 degrees
+    double angleDegrees = ((double)currAnglePWM - MIN_SERVO_ANGLE_PWM) / (MAX_SERVO_ANGLE_PWM - MIN_SERVO_ANGLE_PWM) * 180;
 
-    return currAnglePWM;
+    // Convert angle to radians
+    return (angleDegrees * M_PI / 180);
 }

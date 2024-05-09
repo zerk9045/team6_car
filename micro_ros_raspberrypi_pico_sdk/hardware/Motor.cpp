@@ -3,13 +3,12 @@
 #include "../config/pin_config.h"
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
-
 // Need to change this logic since max_pwm is the same for forward and reverse
 #define BRAKE_PWM 1500000
 #define MAX_PWM 3000000
 #define MIN_PWM 1375000
-#define PI 3.14159
 #define WHEEL_DIAMETER 0.05
+#define M_PI        3.14159265358979323846264338327950288
 Motor::Motor(){//, ) {
     irSensor = new IRSensor();
     // Initialize motor hardware or perform any necessary setup here
@@ -55,7 +54,7 @@ void Motor::setSpeed(int speedPWM) {
 
 double Motor::getSpeed() {
     //Linear Speed (m/s)=RPS×Circumference
-    return (irSensor->getSpeed()* WHEEL_DIAMETER * PI);
+    return (irSensor->getSpeed()* WHEEL_DIAMETER * M_PI);
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue) {
