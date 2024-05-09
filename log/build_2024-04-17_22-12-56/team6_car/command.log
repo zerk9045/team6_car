@@ -1,2 +1,0 @@
-Invoking command in '/home/adrien/dev_ws/src/build/team6_car': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/adrien/dev_ws/src/build/team6_car -- -j8 -l8
-Invoked command in '/home/adrien/dev_ws/src/build/team6_car' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/adrien/dev_ws/src/build/team6_car -- -j8 -l8
