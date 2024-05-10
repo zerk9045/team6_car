@@ -60,10 +60,10 @@ double Motor::getSpeed() {
 //    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
 //cpr = 19.4778744511
     if(motor_direction == "forward"){
-        return static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+        return static_cast<double>(2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
     else if(motor_direction == "reverse"){
-        return static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+        return static_cast<double>(-1*2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
     else{
         return 0;
