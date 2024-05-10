@@ -25,7 +25,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
-        std::string data =  std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
@@ -59,7 +59,7 @@ void subscription_callback_motor(const void *msgin) {
     // Set motor direction based on the extracted direction string
     bool forward = (direction == "forward");
     bool reverse = (direction == "reverse");
-    motor.updateDirection(forward, reverse);
+    motor.updateDirection(forward, reverse,direction);
 
     // Set the motor speed
     motor.setSpeed(pwm);
@@ -103,12 +103,12 @@ int main()
     &publisher,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-    "motor_feedback_topic");
+    "control_topic");
 
 
   // create a timer,
   rcl_timer_t timer;
-  const unsigned int timer_timeout = 70;
+  const unsigned int timer_timeout = 1000;
   rclc_timer_init_default(
     &timer,
     &support,

@@ -3,6 +3,7 @@
 #include "../config/pin_config.h" // Include the pin configuration header
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
+#include <cstdlib>
 
 #define M_PI        3.14159265358979323846264338327950288
 #define THRESHOLD 5000
@@ -35,25 +36,19 @@ void Servo::setAngle(int anglePWM) {
 
     // Set PWM duty cycle for servo control pin//1500000
     // Convert anglePWM to duty cycle percentage (assuming MAX_ANGLE_PWM is the maximum PWM value)
-    float duty_cycle = (float)anglePWM / MAX_ANGLE_PWM;
-    if (abs(currAnglePWM-anglePWM) >= THRESHOLD ) {
-        //set_pwm_pin(SERVO_PWM, 100, anglePWM/1000);
-        pwm_set_gpio_level(SERVO_PWM, (uint)(anglePWM/1000));
-        currAnglePWM = anglePWM;
+    float duty_cycle = (float)anglePWM / MAX_SERVO_ANGLE_PWM;
+    if (currAnglePWM == anglePWM) {
         return;
     }
-    else{
-        return;
-    }
-
+    pwm_set_gpio_level(SERVO_PWM, (uint)(anglePWM/1000));
+    currAnglePWM = anglePWM;
 }
 
 
 
 double Servo::getAngle() {
-    // Normalize PWM to the range of 0 to 180 degrees
-    double angleDegrees = ((double)currAnglePWM - MIN_SERVO_ANGLE_PWM) / (MAX_SERVO_ANGLE_PWM - MIN_SERVO_ANGLE_PWM) * 180;
+    // Normalize PWM to the range of -π/2 to π/2 radians
+    double angleRadians = ((double)currAnglePWM - STRAIGHT_SERVO_ANGLE_PWM) / (MAX_SERVO_ANGLE_PWM - MIN_SERVO_ANGLE_PWM) * M_PI / 2;
 
-    // Convert angle to radians
-    return (angleDegrees * M_PI / 180);
+    return angleRadians;
 }

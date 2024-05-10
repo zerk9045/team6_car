@@ -3,6 +3,7 @@
 #include "../config/pin_config.h"
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
+#include <string>
 
 #define BRAKE_PWM 1500000
 #define MAX_PWM 3000000
@@ -55,12 +56,22 @@ void Motor::setSpeed(int speedPWM) {
 double Motor::getSpeed() {
     //Linear Speed (m/s)=RPS×Circumference
     //Gear Ratio = (# Spur Gear Teeth /# Pinion Gear Teeth )x 2.72
-    double rps = ((irSensor->getCountsPerTimer()/(INTERRUPT_TIME_MS*0.001))/3); // Divide by 3 since we get 3 interrupts per revolution
-    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
-    return (tireRPS * WHEEL_DIAMETER * M_PI);
+//    double rps = ; // Divide by 3 since we get 3 interrupts per revolution
+//    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
+//cpr = 19.4778744511
+    if(motor_direction == "forward"){
+        return static_cast<double>(2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+    }
+    else if(motor_direction == "reverse"){
+        return static_cast<double>(-1*2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+    }
+    else{
+        return 0;
+    }
 }
 
-void Motor::updateDirection(bool inAValue, bool inBValue) {
+void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
     gpio_put(INA_PIN, inAValue ? 1 : 0);
     gpio_put(INB_PIN, inBValue ? 1 : 0);
+    motor_direction = direction;
 }
