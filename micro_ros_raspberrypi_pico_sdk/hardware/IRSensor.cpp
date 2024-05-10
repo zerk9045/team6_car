@@ -27,7 +27,7 @@ int64_t timer_interrupt(alarm_id_t id, void *user_data) {
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_RISE, true, IRSensor::do_interrupt);
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
     timer = make_timeout_time_ms(1000);
     add_alarm_in_us(1000000, timer_interrupt, NULL, true);
@@ -53,7 +53,7 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // If the time difference is less than the debounce period (e.g., 1000 microseconds),
     // then this interrupt is likely due to noise, so we ignore it
     // Will have to adjust this time.
-    if (diff_us < 20000) {
+    if (diff_us < 30000) {
         return;
     }
 
