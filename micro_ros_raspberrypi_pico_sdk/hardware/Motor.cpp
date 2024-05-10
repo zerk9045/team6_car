@@ -70,10 +70,10 @@ double Motor::getSpeed() {
     // Speed = (Distance per count * Counts per second) / (counts per revolution)
     
     if(motor_direction == "forward"){
-        return static_cast<double>((irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+        return static_cast<double>(((irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288))/20;//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
     else if(motor_direction == "reverse"){
-        return static_cast<double>(-1*(irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);//static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+        return static_cast<double>((-1*(irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288)/20);//static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
     else{
         return 0;
