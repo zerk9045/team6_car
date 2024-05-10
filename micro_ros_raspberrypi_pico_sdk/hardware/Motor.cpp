@@ -56,9 +56,18 @@ void Motor::setSpeed(int speedPWM) {
 double Motor::getSpeed() {
     //Linear Speed (m/s)=RPS×Circumference
     //Gear Ratio = (# Spur Gear Teeth /# Pinion Gear Teeth )x 2.72
-//    double rps = ; // Divide by 3 since we get 3 interrupts per revolution
-//    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
-//cpr = 19.4778744511
+    //    double rps = ; // Divide by 3 since we get 3 interrupts per revolution
+    //    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
+    //cpr = 19.4778744511
+
+    // Constants
+    // pi = 3.14159265358979323846264338327950288
+    // wheel + tire diameter = REMEASURE
+    // counts per revolution = 1
+
+    // Formulas to find speed in m/s
+    // Distance per count = (wheel diameter * pi) / (counts per revolution)
+    // Speed = (Distance per count * Counts per second) / (counts per revolution)
     if(motor_direction == "forward"){
         return static_cast<double>(2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
     }
