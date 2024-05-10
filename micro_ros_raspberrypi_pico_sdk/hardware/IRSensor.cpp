@@ -53,7 +53,7 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // If the time difference is less than the debounce period (e.g., 1000 microseconds),
     // then this interrupt is likely due to noise, so we ignore it
     // Will have to adjust this time.
-    if (diff_us < 30000) {
+    if (diff_us < 40000) {
         return;
     }
 
