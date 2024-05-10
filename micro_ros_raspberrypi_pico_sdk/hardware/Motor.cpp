@@ -69,15 +69,16 @@ double Motor::getSpeed() {
     // Distance per count = (wheel diameter * pi) / (counts per revolution)
     // Speed = (Distance per count * Counts per second) / (counts per revolution)
     
-    if(motor_direction == "forward"){
-        return static_cast<double>(2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
-    }
-    else if(motor_direction == "reverse"){
-        return static_cast<double>(-1*2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
-    }
-    else{
-        return 0;
-    }
+//    if(motor_direction == "forward"){
+//        return static_cast<double>(2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+//    }
+//    else if(motor_direction == "reverse"){
+//        return static_cast<double>(-1*2*irSensor->getCountsPerTimer()*0.15707963267);//static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
+//    }
+//    else{
+//        return 0;
+//    }
+    return static_cast<double>(irSensor->getCountsPerTimer());
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
