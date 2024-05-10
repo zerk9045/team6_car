@@ -47,9 +47,8 @@ void Servo::setAngle(int anglePWM) {
 
 
 double Servo::getAngle() {
-    // Normalize PWM to the range of 0 to 180 degrees
+    // Normalize PWM to the range of -π/2 to π/2 radians
     double angleRadians = ((double)currAnglePWM - STRAIGHT_SERVO_ANGLE_PWM) / (MAX_SERVO_ANGLE_PWM - MIN_SERVO_ANGLE_PWM) * M_PI / 2;
 
-    // Convert angle to radians
-    return angleRadians ;
+    return angleRadians;
 }

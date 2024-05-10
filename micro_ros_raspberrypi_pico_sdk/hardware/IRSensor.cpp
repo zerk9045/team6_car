@@ -17,6 +17,7 @@ absolute_time_t timer;
 // Declare a timer pool
 alarm_pool_t *timer_pool;
 // Interrupt handler for the timer
+absolute_time_t last_interrupt_time;
 
 int64_t timer_interrupt(alarm_id_t id, void *user_data) {
     IRSensor::resetSensorInterrupts();
@@ -43,6 +44,22 @@ int IRSensor::getCountsPerTimer() {
 }
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
+    // Get the current time
+    absolute_time_t now = get_absolute_time();
+
+    // Calculate the time difference since the last interrupt
+    int64_t diff_us = absolute_time_diff_us(last_interrupt_time, now);
+
+    // If the time difference is less than the debounce period (e.g., 1000 microseconds),
+    // then this interrupt is likely due to noise, so we ignore it
+    // Will have to adjust this time.
+    if (diff_us < 1000) {
+        return;
+    }
+
+    // Otherwise, this is a valid interrupt, so we update the last interrupt time
+    // and increment the interrupt counter
+    last_interrupt_time = now;
     sensor_interrupts++;
 }
 
