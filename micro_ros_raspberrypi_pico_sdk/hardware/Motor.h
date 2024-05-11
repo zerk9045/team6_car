@@ -28,6 +28,8 @@ private:
     // Private helper function to set motor direction
     std::string motor_direction;
     int currentPwm;
+    double previous_speed_estimate; // Previous speed estimate for Kalman filter
+    double estimated_error; // Estimated error for Kalman filter
 };
 
 #endif //TEAM6_CAR_MOTOR_H
