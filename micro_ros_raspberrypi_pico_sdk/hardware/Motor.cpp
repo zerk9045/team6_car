@@ -65,14 +65,8 @@ double Motor::getSpeed() {
     //    double tireRPS = rps/2.72; // Divide by gear ratio to get the tire RPS
     //cpr = 19.4778744511
 
-    // Constants
-    // pi = 3.14159265358979323846264338327950288
-    // wheel + tire diameter = REMEASURE
-    // counts per revolution = 1
 
-    // Formulas to find speed in m/s
-    // Distance per count = (wheel diameter * pi) / (counts per revolution)
-    // Speed = (Distance per count * Counts per second) / (counts per revolution)
+// Old speed calculations
 //    if(motor_direction == "forward"){
 //        return static_cast<double>((irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
 //    }
@@ -82,29 +76,56 @@ double Motor::getSpeed() {
 //    else{
 //        return 0;
 //    }
-//return static_cast<double>(irSensor->getCountsPerTimer());
-    // Get the raw speed reading
-    double raw_speed = static_cast<double>((irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);
+// return static_cast<double>(irSensor->getCountsPerTimer());
 
-    // Define the system model parameters
-    double process_noise = 0.05; // This would depend on your specific system
-    double sensor_noise = 0.05; // This would depend on your specific sensor
+// testing out different way of calculating speed
+    
+    // angular speed in rads/sec = (Revs per second / second) * (2pi)
+    // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
 
-    // Perform the Kalman filter update
-    double kalman_gain = estimated_error / (estimated_error + sensor_noise);
-    double current_speed_estimate = previous_speed_estimate + kalman_gain * (raw_speed - previous_speed_estimate);
-    estimated_error = (1.0 - kalman_gain) * estimated_error + fabs(previous_speed_estimate - current_speed_estimate) * process_noise;
+    // linear speed = angular speed * radius
+    // v = w * 0.05;
 
-    // Store the current speed estimate for the next iteration
-    previous_speed_estimate = current_speed_estimate;
-
-    // If the motor is moving in reverse, return the speed as a negative value
-    if (motor_direction == "reverse") {
-        current_speed_estimate = -current_speed_estimate;
+    if (motor_direction == "forward"){
+        return static_cast<double>(
+            ((irSensor->getCountsPerTimer()/0.3) * (2*M_PI)) * 0.05;
+        )
+    }
+    else if (motor_direction == "reverse"){
+        return static_cast<double>(
+            -1* ((irSensor->getCountsPerTimer()/0.3) * (2*M_PI)) * 0.05;
+        )
+    }
+    else {
+        return 0;
     }
 
-    // Return the speed estimate
-    return current_speed_estimate;
+return static_cast<double>(irSensor->getCountsPerTimer());
+
+
+// Commenting out the Kalman Filter for now
+    // Get the raw speed reading
+//     double raw_speed = static_cast<double>((irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);
+
+//     // Define the system model parameters
+//     double process_noise = 0.05; // This would depend on your specific system
+//     double sensor_noise = 0.05; // This would depend on your specific sensor
+
+//     // Perform the Kalman filter update
+//     double kalman_gain = estimated_error / (estimated_error + sensor_noise);
+//     double current_speed_estimate = previous_speed_estimate + kalman_gain * (raw_speed - previous_speed_estimate);
+//     estimated_error = (1.0 - kalman_gain) * estimated_error + fabs(previous_speed_estimate - current_speed_estimate) * process_noise;
+
+//     // Store the current speed estimate for the next iteration
+//     previous_speed_estimate = current_speed_estimate;
+
+//     // If the motor is moving in reverse, return the speed as a negative value
+//     if (motor_direction == "reverse") {
+//         current_speed_estimate = -current_speed_estimate;
+//     }
+
+//     // Return the speed estimate
+//     return current_speed_estimate;
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
