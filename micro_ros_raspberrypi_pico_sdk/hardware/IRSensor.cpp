@@ -21,7 +21,7 @@ absolute_time_t last_interrupt_time;
 
 int64_t timer_interrupt(alarm_id_t id, void *user_data) {
     IRSensor::resetSensorInterrupts();
-    return 300000;
+    return 1000000;
 }
 
 IRSensor::IRSensor() {
@@ -29,8 +29,8 @@ IRSensor::IRSensor() {
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
     gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
-    timer = make_timeout_time_ms(300);
-    add_alarm_in_us(300000, timer_interrupt, NULL, true);
+    timer = make_timeout_time_ms(1000);
+    add_alarm_in_us(1000000, timer_interrupt, NULL, true);
 }
 
 void IRSensor::resetSensorInterrupts() {
