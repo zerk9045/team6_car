@@ -1,74 +1,77 @@
+#TODO: Update parameters for better mapping performance
 slam_toolbox:
   ros__parameters:
 
     # Plugin params
-    solver_plugin: solver_plugins::CeresSolver
-    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
-    ceres_preconditioner: SCHUR_JACOBI
-    ceres_trust_strategy: LEVENBERG_MARQUARDT
-    ceres_dogleg_type: TRADITIONAL_DOGLEG
-    ceres_loss_function: None
+    solver_plugin: solver_plugins::CeresSolver # Specifies the solver plugin to use
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY # Specifies the linear solver to use in Ceres
+    ceres_preconditioner: SCHUR_JACOBI # Specifies the preconditioner to use in Ceres
+    ceres_trust_strategy: LEVENBERG_MARQUARDT # Specifies the trust region strategy to use in Ceres
+    ceres_dogleg_type: TRADITIONAL_DOGLEG # Specifies the type of Dogleg strategy to use in Ceres
+    ceres_loss_function: None # Specifies the loss function to use in Ceres
 
     # ROS Parameters
-    odom_frame: odom
-    map_frame: map
-    base_frame: base_footprint
-    scan_topic: /scan
-    use_map_saver: true
-    mode: mapping #localization
+    odom_frame: odom # Specifies the frame of the odometry
+    map_frame: map # Specifies the frame of the map
+    base_frame: base_footprint # Specifies the base frame of the robot
+    scan_topic: /scan # Specifies the topic where the laser scans are published
+    use_map_saver: true # Specifies whether to use the map saver functionality
+    mode: mapping # Specifies the mode of operation (mapping or localization)
 
-    # if you'd like to immediately start continuing a map at a given pose
-    # or at the dock, but they are mutually exclusive, if pose is given
-    # will use pose
-    #map_file_name: test_steve
-    # map_start_pose: [0.0, 0.0, 0.0]
-    #map_start_at_dock: true
-
-    debug_logging: false
-    throttle_scans: 1
-    transform_publish_period: 0.02 #if 0 never publishes odometry
-    map_update_interval: 5.0
-    resolution: 0.05
-    max_laser_range: 12.0 #for rastering images
-    minimum_time_interval: 0.5
-    transform_timeout: 0.2
-    tf_buffer_duration: 30.0
-    stack_size_to_use: 40000000 #// program needs a larger stack size to serialize large maps
-    enable_interactive_mode: true
+    debug_logging: false # Specifies whether to enable debug logging
+    throttle_scans: 1 # Specifies the number of scans to skip between each processed scan
+    transform_publish_period: 0.02 # Specifies the period at which to publish transforms
+    #TODO: map_update_interval: 3 try lower values to see if it works
+    map_update_interval: 5.0 # Specifies the interval at which to update the map
+    #TODO: resolution: 0.025 try lower values to see if it works
+    resolution: 0.05 # Specifies the resolution of the map
+    max_laser_range: 12.0 # Specifies the maximum range of the laser (meters)
+    minimum_time_interval: 0.5 # Specifies the minimum time interval between processed scans
+    transform_timeout: 0.2 # Specifies the timeout for waiting for a transform
+    tf_buffer_duration: 30.0 # Specifies the duration of the tf buffer
+    stack_size_to_use: 40000000 # Specifies the stack size to use
+    enable_interactive_mode: true # Specifies whether to enable interactive mode
 
     # General Parameters
-    use_scan_matching: true
-    use_scan_barycenter: true
-    minimum_travel_distance: 0.5
-    minimum_travel_heading: 0.5
-    scan_buffer_size: 10
-    scan_buffer_maximum_scan_distance: 10.0
-    link_match_minimum_response_fine: 0.1  
-    link_scan_maximum_distance: 1.5
-    loop_search_maximum_distance: 1000.0
-    do_loop_closing: true 
-    loop_match_minimum_chain_size: 10           
-    loop_match_maximum_variance_coarse: 3.0  
-    loop_match_minimum_response_coarse: 0.35    
-    loop_match_minimum_response_fine: 0.45
+    use_scan_matching: true # Specifies whether to use scan matching
+    use_scan_barycenter: true # Specifies whether to use the barycenter of the scan
+    #TODO:  minimum_travel_distance: 0.0, minimum_travel_heading: 0.0 try lower values to see if it updates map faster
+    minimum_travel_distance: 0.5 # Specifies the minimum travel distance before processing a new scan
+    minimum_travel_heading: 0.5 # Specifies the minimum travel heading before processing a new scan
+    scan_buffer_size: 10 # Specifies the size of the scan buffer
+    #TODO: scan_buffer_maximum_scan_distance: 12.0 change to match max_laser_range
+    scan_buffer_maximum_scan_distance: 10.0 # Specifies the maximum scan distance to include in the scan buffer
+    link_match_minimum_response_fine: 0.1 # Specifies the minimum response for a fine link match
+    link_scan_maximum_distance: 1.5 # Specifies the maximum distance for a link scan
+    #TODO: loop_search_maximum_distance: 3 try higher values to see if it helps
+    loop_search_maximum_distance: 1000.0 # Specifies the maximum distance for a loop search (meters)
+    #Loop closure is a process in SLAM where the algorithm tries to identify
+    #if the current position of the robot is close to a previously visited location.
+    #If such a location is found, a loop is closed, which helps correct the accumulated
+    #drift in the robot's pose estimation over time.
+    do_loop_closing: true # Specifies whether to perform loop closing
+    loop_match_minimum_chain_size: 10 # Specifies the minimum chain size for a loop match
+    loop_match_maximum_variance_coarse: 3.0 # Specifies the maximum variance for a coarse loop match
+    loop_match_minimum_response_coarse: 0.35 # Specifies the minimum response for a coarse loop match
+    loop_match_minimum_response_fine: 0.45 # Specifies the minimum response for a fine loop match
 
     # Correlation Parameters - Correlation Parameters
-    correlation_search_space_dimension: 0.5
-    correlation_search_space_resolution: 0.01
-    correlation_search_space_smear_deviation: 0.1 
+    correlation_search_space_dimension: 0.5 # Specifies the dimension of the correlation search space
+    correlation_search_space_resolution: 0.01 # Specifies the resolution of the correlation search space
+    correlation_search_space_smear_deviation: 0.1 # Specifies the smear deviation of the correlation search space
 
     # Correlation Parameters - Loop Closure Parameters
-    loop_search_space_dimension: 8.0
-    loop_search_space_resolution: 0.05
-    loop_search_space_smear_deviation: 0.03
+    loop_search_space_dimension: 8.0 # Specifies the dimension of the loop search space
+    loop_search_space_resolution: 0.05 # Specifies the resolution of the loop search space
+    loop_search_space_smear_deviation: 0.03 # Specifies the smear deviation of the loop search space
 
     # Scan Matcher Parameters
-    distance_variance_penalty: 0.5      
-    angle_variance_penalty: 1.0    
+    distance_variance_penalty: 0.5 # Specifies the penalty for distance variance in the scan matcher
+    angle_variance_penalty: 1.0 # Specifies the penalty for angle variance in the scan matcher
 
-    fine_search_angle_offset: 0.00349     
-    coarse_search_angle_offset: 0.349   
-    coarse_angle_resolution: 0.0349        
-    minimum_angle_penalty: 0.9
-    minimum_distance_penalty: 0.5
-    use_response_expansion: true
+    fine_search_angle_offset: 0.00349 # Specifies the angle offset for the fine search
+    coarse_search_angle_offset: 0.349 # Specifies the angle offset for the coarse search
+    coarse_angle_resolution: 0.0349 # Specifies the angle resolution for the coarse search
+    minimum_angle_penalty: 0.9 # Specifies the minimum angle penalty
+    minimum_distance_penalty: 0.5 # Specifies the minimum distance penalty
+    use_response_expansion: true # Specifies whether to use response expansion
