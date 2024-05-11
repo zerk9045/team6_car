@@ -1,7 +1,9 @@
 #TODO: Tweak parameters to match lidar sensor
+# AMCL docs https://docs.nav2.org/configuration/packages/configuring-amcl.html?highlight=amcl
 amcl:
   ros__parameters:
     use_sim_time: False
+    # TODO: Tune alpha variables either increase if we think our odom is unreliable or decrease if we think our odom is reliable
     alpha1: 0.2
     alpha2: 0.2
     alpha3: 0.2
@@ -15,13 +17,15 @@ amcl:
     global_frame_id: "map"
     lambda_short: 0.1
     laser_likelihood_max_dist: 2.0
-    laser_max_range: 100.0
-    laser_min_range: -1.0
+    laser_max_range: -1.0 # -1.0 means use the maximum range of the sensor from scan message
+    laser_min_range: -1.0 # -1.0 means use the minimum range of the sensor from scan message
+    # TODO: Try using laser_model_type: "likelihood_field_prob"
     laser_model_type: "likelihood_field"
     max_beams: 60
     max_particles: 2000
     min_particles: 500
     odom_frame_id: "odom"
+    # TODO: Try increasing pf_err and pf_z if we think our odom is unreliable decrease if we think our odom is reliable
     pf_err: 0.05
     pf_z: 0.99
     recovery_alpha_fast: 0.0
@@ -29,6 +33,7 @@ amcl:
     resample_interval: 1
     robot_model_type: "nav2_amcl::OmniMotionModel"
     save_pose_rate: 0.5
+    #TODO: try increasing sigma_hit & z_hit to reduce noise
     sigma_hit: 0.2
     tf_broadcast: true
     transform_tolerance: 1.0
@@ -209,7 +214,7 @@ controller_server:
       #   enabled: true
       #   twirling_cost_power: 1
       #   twirling_cost_weight: 10.0
-
+# Costmap2D docs https://docs.nav2.org/configuration/packages/configuring-costmaps.html#costmap2d-ros-parameters
 local_costmap:
   local_costmap:
     ros__parameters:
@@ -303,6 +308,7 @@ map_saver:
     occupied_thresh_default: 0.65
     map_subscribe_transient_local: True
 
+# Planner Server Docs https://docs.nav2.org/configuration/packages/configuring-planner-server.html#parameters
 planner_server:
   ros__parameters:
     expected_planner_frequency: 20.0
@@ -314,6 +320,7 @@ planner_server:
       use_astar: false
       allow_unknown: true
 
+# Smoother Server docs https://docs.nav2.org/configuration/packages/configuring-smoother-server.html#smoother-server-parameters
 smoother_server:
   ros__parameters:
     use_sim_time: False
@@ -324,6 +331,7 @@ smoother_server:
       max_its: 1000
       do_refinement: True
 
+# Behavior Server docs https://docs.nav2.org/configuration/packages/configuring-behavior-server.html#behavior-server-parameters
 behavior_server:
   ros__parameters:
     costmap_topic: local_costmap/costmap_raw
@@ -353,6 +361,7 @@ robot_state_publisher:
   ros__parameters:
     use_sim_time: False
 
+# Waypoint Follower docs https://docs.nav2.org/configuration/packages/configuring-waypoint-follower.html#parameters
 waypoint_follower:
   ros__parameters:
     use_sim_time: False
@@ -363,15 +372,17 @@ waypoint_follower:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: True
       waypoint_pause_duration: 200
+
 # TODO: Tweak feeback, max_velocity, min_velocity, max_accel, max_decel, deadband_velocity, velocity_timeout
+# Velocity Smoother docs https://docs.nav2.org/configuration/packages/configuring-velocity-smoother.html#velocity-smoother-parameters
 velocity_smoother:
   ros__parameters:
     use_sim_time: False
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "CLOSED_LOOP"
-    max_velocity: [0.26, 0.0, 1.0]
-    min_velocity: [-0.26, 0.0, -1.0]
+    max_velocity: [0.26, 0.0, 1.0] # Maximum velocities (m/s) in [x, y, theta] axes.
+    min_velocity: [-0.26, 0.0, -1.0] # Minimum velocities (m/s) in [x, y, theta] axes.
     max_accel: [2.5, 0.0, 3.2]
     max_decel: [-2.5, 0.0, -3.2]
     odom_topic: "odom"
