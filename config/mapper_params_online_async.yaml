@@ -22,11 +22,11 @@ slam_toolbox:
     throttle_scans: 1 # Specifies the number of scans to skip between each processed scan
     transform_publish_period: 0.01 # Specifies the period at which to publish transforms
     #TODO: map_update_interval: 3 try lower values to see if it works
-    map_update_interval: 5.0 # Specifies the interval at which to update the map
+    map_update_interval: 3.0 # Specifies the interval at which to update the map
     #TODO: resolution: 0.025 try lower values to see if it works
     resolution: 0.05 # Specifies the resolution of the map
     max_laser_range: 12.0 # Specifies the maximum range of the laser (meters)
-    minimum_time_interval: 0.5 # Specifies the minimum time interval between processed scans
+    minimum_time_interval: 0.3 # Specifies the minimum time interval between processed scans
     transform_timeout: 0.2 # Specifies the timeout for waiting for a transform
     tf_buffer_duration: 30.0 # Specifies the duration of the tf buffer
     stack_size_to_use: 40000000 # Specifies the stack size to use
@@ -36,8 +36,8 @@ slam_toolbox:
     use_scan_matching: true # Specifies whether to use scan matching
     use_scan_barycenter: true # Specifies whether to use the barycenter of the scan
     #TODO:  minimum_travel_distance: 0.0, minimum_travel_heading: 0.0 try lower values to see if it updates map faster
-    minimum_travel_distance: 0.2 # Specifies the minimum travel distance before processing a new scan
-    minimum_travel_heading: 0.2 # Specifies the minimum travel heading before processing a new scan
+    minimum_travel_distance: 0.4 # Specifies the minimum travel distance before processing a new scan
+    minimum_travel_heading: 0.4 # Specifies the minimum travel heading before processing a new scan
     scan_buffer_size: 10 # Specifies the size of the scan buffer
     #TODO: scan_buffer_maximum_scan_distance: 12.0 change to match max_laser_range
     scan_buffer_maximum_scan_distance: 12.0 # Specifies the maximum scan distance to include in the scan buffer
