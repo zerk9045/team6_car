@@ -117,6 +117,7 @@ controller_server:
   ros__parameters:
     controller_frequency: 30.0
     FollowPath:
+      # MPPI Controller Docs https://github.com/ros-navigation/navigation2/tree/main/nav2_mppi_controller
       plugin: "nav2_mppi_controller::MPPIController"
       time_steps: 56
       model_dt: 0.05
