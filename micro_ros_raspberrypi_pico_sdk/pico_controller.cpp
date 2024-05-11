@@ -108,7 +108,7 @@ int main()
 
   // create a timer,
   rcl_timer_t timer;
-  const unsigned int timer_timeout = 10;
+  const unsigned int timer_timeout = 100;
   rclc_timer_init_default(
     &timer,
     &support,
