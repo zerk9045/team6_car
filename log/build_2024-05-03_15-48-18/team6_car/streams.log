@@ -1,0 +1,86 @@
+[0.107s] Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake /home/team6/robot_ws/src/team6_car -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/team6/robot_ws/src/team6_car/install/team6_car
+[0.652s] -- The C compiler identification is GNU 11.4.0
+[1.042s] -- The CXX compiler identification is GNU 11.4.0
+[1.091s] -- Detecting C compiler ABI info
+[1.715s] -- Detecting C compiler ABI info - done
+[1.743s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.745s] -- Detecting C compile features
+[1.746s] -- Detecting C compile features - done
+[1.758s] -- Detecting CXX compiler ABI info
+[2.372s] -- Detecting CXX compiler ABI info - done
+[2.399s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.401s] -- Detecting CXX compile features
+[2.402s] -- Detecting CXX compile features - done
+[2.489s] -- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)
+[4.136s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[4.598s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[5.763s] -- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)
+[6.808s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[6.980s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[7.169s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[7.392s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_microxrcedds_c;rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[7.820s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_microxrcedds_cpp;rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[8.931s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[9.023s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[10.409s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[10.794s] -- Found FastRTPS: /opt/ros/humble/include  
+[11.446s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[11.717s] -- Looking for pthread.h
+[12.337s] -- Looking for pthread.h - found
+[12.338s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[12.923s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[12.928s] -- Found Threads: TRUE  
+[13.884s] -- Found geometry_msgs: 4.2.3 (/home/team6/robot_ws/micorros_ws/install/geometry_msgs/share/geometry_msgs/cmake)
+[14.175s] -- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[15.359s] -- Added test 'copyright' to check source files copyright and LICENSE
+[18.426s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[18.426s] -- Configured cppcheck include dirs: 
+[18.427s] -- Configured cppcheck exclude dirs and/or files: 
+[21.490s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[21.491s] -- Configured cpplint exclude dirs and/or files: 
+[21.881s] -- Added test 'flake8' to check Python code syntax and style conventions
+[22.653s] -- Added test 'lint_cmake' to check CMake code style
+[23.044s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[26.979s] -- Added test 'uncrustify' to check C / C++ code style
+[26.979s] -- Configured uncrustify additional arguments: 
+[27.563s] -- Added test 'xmllint' to check XML markup files
+[27.602s] -- Configuring done
+[27.659s] -- Generating done
+[27.670s] -- Build files have been written to: /home/team6/robot_ws/src/team6_car/build/team6_car
+[27.750s] Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake /home/team6/robot_ws/src/team6_car -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/team6/robot_ws/src/team6_car/install/team6_car
+[27.765s] Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+[28.239s] Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+[28.614s] Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car
+[28.691s] -- Install configuration: ""
+[28.693s] -- Execute custom install script
+[28.694s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/joystick.yaml
+[28.793s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_async.yaml
+[28.884s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/my_controllers.yaml
+[28.992s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/teleop_twst_joy.yaml
+[29.087s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/inertial_macros.xacro
+[29.172s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/lidar.xacro
+[29.259s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/materials.xacro
+[29.342s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot.urdf.xacro
+[29.422s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot_core.xacro
+[29.511s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/ros2_bicycle.xacro
+[29.622s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/joystick.launch.py
+[29.743s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/launch_robot.launch.py
+[29.826s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/rsp.launch.py
+[29.913s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/spawn_car.launch.py
+[29.997s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/worlds/simple.world
+[30.089s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car
+[30.177s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car
+[30.261s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.sh
+[30.262s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.dsv
+[30.357s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.sh
+[30.360s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.dsv
+[30.442s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.bash
+[30.523s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.sh
+[30.611s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.zsh
+[30.700s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.dsv
+[30.782s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv
+[30.872s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/packages/team6_car
+[30.954s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig.cmake
+[31.043s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig-version.cmake
+[31.125s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.xml
+[31.210s] Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car

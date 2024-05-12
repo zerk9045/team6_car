@@ -1,0 +1,408 @@
+[0.000000] (-) TimerEvent: {}
+[0.001807] (team6_car) JobQueued: {'identifier': 'team6_car', 'dependencies': OrderedDict()}
+[0.002545] (team6_car) JobStarted: {'identifier': 'team6_car'}
+[0.100878] (-) TimerEvent: {}
+[0.104152] (team6_car) JobProgress: {'identifier': 'team6_car', 'progress': 'cmake'}
+[0.105529] (team6_car) Command: {'cmd': ['/usr/bin/cmake', '/home/team6/robot_ws/src/team6_car', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/team6/robot_ws/src/team6_car/install/team6_car'], 'cwd': '/home/team6/robot_ws/src/team6_car/build/team6_car', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'team6'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/team6/robot_ws/micorros_ws/install/visualization_msgs/lib:/home/team6/robot_ws/micorros_ws/install/test_msgs/lib:/home/team6/robot_ws/micorros_ws/install/example_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/action_msgs/lib:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs/lib:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs/lib:/home/team6/robot_ws/micorros_ws/install/stereo_msgs/lib:/home/team6/robot_ws/micorros_ws/install/std_srvs/lib:/home/team6/robot_ws/micorros_ws/install/shape_msgs/lib:/home/team6/robot_ws/micorros_ws/install/sensor_msgs/lib:/home/team6/robot_ws/micorros_ws/install/nav_msgs/lib:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs/lib:/home/team6/robot_ws/micorros_ws/install/geometry_msgs/lib:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs/lib:/home/team6/robot_ws/micorros_ws/install/std_msgs/lib:/home/team6/robot_ws/micorros_ws/install/statistics_msgs/lib:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds/lib:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp/lib:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c/lib:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs/lib:/home/team6/robot_ws/micorros_ws/install/rclc_parameter/lib:/home/team6/robot_ws/micorros_ws/install/rclc/lib:/home/team6/robot_ws/micorros_ws/install/composition_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/microxrcedds_client/lib:/home/team6/robot_ws/micorros_ws/install/microcdr/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs/lib:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs/lib:/home/team6/robot_ws/micorros_ws/install/complex_msgs/lib:/home/team6/robot_ws/micorros_ws/install/builtin_interfaces/lib:/home/team6/ros2_ws/install/ldlidar_component/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/team6'), ('OLDPWD', '/home/team6/robot_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1117'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('PICO_TOOLCHAIN_PATH', '...'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/team6/robot_ws/src/install:/home/team6/ros2_ws/install:/home/team6/ldlidar_ros_ws/install:/home/team6/robot_ws/micorros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'team6'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'team6'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/team6-desktop:@/tmp/.ICE-unix/1095,unix/team6-desktop:/tmp/.ICE-unix/1095'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3a272b9d_ebc0_45b5_81e3_c7c8d8d98b19'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ST6JN2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.117'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/team6/robot_ws/src/install/team6_car:/home/team6/ldlidar_ros_ws/install/ldlidar_stl_ros2:/home/team6/robot_ws/micorros_ws/install/micro_ros_demos_rclc:/home/team6/robot_ws/micorros_ws/install/common_interfaces:/home/team6/robot_ws/micorros_ws/install/visualization_msgs:/home/team6/robot_ws/micorros_ws/install/test_msgs:/home/team6/robot_ws/micorros_ws/install/example_interfaces:/home/team6/robot_ws/micorros_ws/install/action_msgs:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs:/home/team6/robot_ws/micorros_ws/install/stereo_msgs:/home/team6/robot_ws/micorros_ws/install/std_srvs:/home/team6/robot_ws/micorros_ws/install/shape_msgs:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/home/team6/robot_ws/micorros_ws/install/sensor_msgs:/home/team6/robot_ws/micorros_ws/install/nav_msgs:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs:/home/team6/robot_ws/micorros_ws/install/geometry_msgs:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs:/home/team6/robot_ws/micorros_ws/install/std_msgs:/home/team6/robot_ws/micorros_ws/install/statistics_msgs:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_test_msg:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp_tests:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c_tests:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs:/home/team6/robot_ws/micorros_ws/install/rclc_parameter:/home/team6/robot_ws/micorros_ws/install/rclc:/home/team6/robot_ws/micorros_ws/install/composition_interfaces:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities:/home/team6/robot_ws/micorros_ws/install/micro_ros_setup:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs:/home/team6/robot_ws/micorros_ws/install/complex_msgs:/home/team6/ros2_ws/install/ldlidar:/home/team6/ros2_ws/install/ldlidar_node:/home/team6/ros2_ws/install/ldlidar_component:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/team6/robot_ws/src/team6_car/build/team6_car'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('PICO_SDK_PATH', '/home/team6/pico-sdk'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/team6/robot_ws/micorros_ws/install/visualization_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/test_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/example_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/action_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/stereo_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/std_srvs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/shape_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py/lib/python3.10/site-packages:/home/team6/robot_ws/micorros_ws/install/sensor_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/nav_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/geometry_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/std_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/statistics_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/composition_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/complex_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/team6/robot_ws/src/install/team6_car:/home/team6/ldlidar_ros_ws/install/ldlidar_stl_ros2:/home/team6/robot_ws/micorros_ws/install/micro_ros_demos_rclc:/home/team6/robot_ws/micorros_ws/install/common_interfaces:/home/team6/robot_ws/micorros_ws/install/visualization_msgs:/home/team6/robot_ws/micorros_ws/install/test_msgs:/home/team6/robot_ws/micorros_ws/install/example_interfaces:/home/team6/robot_ws/micorros_ws/install/action_msgs:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs:/home/team6/robot_ws/micorros_ws/install/stereo_msgs:/home/team6/robot_ws/micorros_ws/install/std_srvs:/home/team6/robot_ws/micorros_ws/install/shape_msgs:/home/team6/robot_ws/micorros_ws/install/sensor_msgs:/home/team6/robot_ws/micorros_ws/install/nav_msgs:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs:/home/team6/robot_ws/micorros_ws/install/geometry_msgs:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs:/home/team6/robot_ws/micorros_ws/install/std_msgs:/home/team6/robot_ws/micorros_ws/install/statistics_msgs:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_test_msg:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp_tests:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c_tests:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs:/home/team6/robot_ws/micorros_ws/install/rclc_parameter:/home/team6/robot_ws/micorros_ws/install/rclc:/home/team6/robot_ws/micorros_ws/install/composition_interfaces:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces:/home/team6/robot_ws/micorros_ws/install/microxrcedds_client:/home/team6/robot_ws/micorros_ws/install/microcdr:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities:/home/team6/robot_ws/micorros_ws/install/micro_ros_setup:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs:/home/team6/robot_ws/micorros_ws/install/complex_msgs:/home/team6/robot_ws/micorros_ws/install/builtin_interfaces:/home/team6/ros2_ws/install/ldlidar:/home/team6/ros2_ws/install/ldlidar_node:/home/team6/ros2_ws/install/ldlidar_component:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble')]), 'shell': False}
+[0.201094] (-) TimerEvent: {}
+[0.302041] (-) TimerEvent: {}
+[0.402831] (-) TimerEvent: {}
+[0.503502] (-) TimerEvent: {}
+[0.604200] (-) TimerEvent: {}
+[0.653857] (team6_car) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.704384] (-) TimerEvent: {}
+[0.805159] (-) TimerEvent: {}
+[0.905880] (-) TimerEvent: {}
+[1.006729] (-) TimerEvent: {}
+[1.044223] (team6_car) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[1.093254] (team6_car) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.106942] (-) TimerEvent: {}
+[1.207685] (-) TimerEvent: {}
+[1.308406] (-) TimerEvent: {}
+[1.409182] (-) TimerEvent: {}
+[1.509859] (-) TimerEvent: {}
+[1.610573] (-) TimerEvent: {}
+[1.711336] (-) TimerEvent: {}
+[1.718045] (team6_car) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.744782] (team6_car) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.746343] (team6_car) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.748651] (team6_car) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.760382] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.811532] (-) TimerEvent: {}
+[1.912427] (-) TimerEvent: {}
+[2.013112] (-) TimerEvent: {}
+[2.113778] (-) TimerEvent: {}
+[2.214632] (-) TimerEvent: {}
+[2.315452] (-) TimerEvent: {}
+[2.375101] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[2.401980] (team6_car) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[2.403414] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[2.404796] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[2.415585] (-) TimerEvent: {}
+[2.491941] (team6_car) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.515744] (-) TimerEvent: {}
+[2.616625] (-) TimerEvent: {}
+[2.717806] (-) TimerEvent: {}
+[2.818623] (-) TimerEvent: {}
+[2.919265] (-) TimerEvent: {}
+[3.019975] (-) TimerEvent: {}
+[3.120775] (-) TimerEvent: {}
+[3.221522] (-) TimerEvent: {}
+[3.322422] (-) TimerEvent: {}
+[3.423168] (-) TimerEvent: {}
+[3.523977] (-) TimerEvent: {}
+[3.624615] (-) TimerEvent: {}
+[3.725316] (-) TimerEvent: {}
+[3.826049] (-) TimerEvent: {}
+[3.926883] (-) TimerEvent: {}
+[4.027537] (-) TimerEvent: {}
+[4.128285] (-) TimerEvent: {}
+[4.138567] (team6_car) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[4.228501] (-) TimerEvent: {}
+[4.329420] (-) TimerEvent: {}
+[4.431735] (-) TimerEvent: {}
+[4.532728] (-) TimerEvent: {}
+[4.600370] (team6_car) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[4.632888] (-) TimerEvent: {}
+[4.733519] (-) TimerEvent: {}
+[4.834253] (-) TimerEvent: {}
+[4.935090] (-) TimerEvent: {}
+[5.035951] (-) TimerEvent: {}
+[5.136676] (-) TimerEvent: {}
+[5.237324] (-) TimerEvent: {}
+[5.338013] (-) TimerEvent: {}
+[5.438739] (-) TimerEvent: {}
+[5.539390] (-) TimerEvent: {}
+[5.640035] (-) TimerEvent: {}
+[5.740705] (-) TimerEvent: {}
+[5.765953] (team6_car) StdoutLine: {'line': b'-- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[5.840875] (-) TimerEvent: {}
+[5.941540] (-) TimerEvent: {}
+[6.042302] (-) TimerEvent: {}
+[6.143172] (-) TimerEvent: {}
+[6.244012] (-) TimerEvent: {}
+[6.345056] (-) TimerEvent: {}
+[6.445960] (-) TimerEvent: {}
+[6.546955] (-) TimerEvent: {}
+[6.647792] (-) TimerEvent: {}
+[6.748451] (-) TimerEvent: {}
+[6.810899] (team6_car) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[6.848623] (-) TimerEvent: {}
+[6.949292] (-) TimerEvent: {}
+[6.982791] (team6_car) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[7.049464] (-) TimerEvent: {}
+[7.150115] (-) TimerEvent: {}
+[7.171125] (team6_car) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[7.250282] (-) TimerEvent: {}
+[7.350967] (-) TimerEvent: {}
+[7.394286] (team6_car) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_microxrcedds_c;rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[7.451142] (-) TimerEvent: {}
+[7.551813] (-) TimerEvent: {}
+[7.652465] (-) TimerEvent: {}
+[7.753153] (-) TimerEvent: {}
+[7.822870] (team6_car) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_microxrcedds_cpp;rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[7.853321] (-) TimerEvent: {}
+[7.954025] (-) TimerEvent: {}
+[8.054901] (-) TimerEvent: {}
+[8.155643] (-) TimerEvent: {}
+[8.256476] (-) TimerEvent: {}
+[8.357779] (-) TimerEvent: {}
+[8.458586] (-) TimerEvent: {}
+[8.559269] (-) TimerEvent: {}
+[8.659946] (-) TimerEvent: {}
+[8.760609] (-) TimerEvent: {}
+[8.861320] (-) TimerEvent: {}
+[8.933178] (team6_car) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[8.961489] (-) TimerEvent: {}
+[9.025639] (team6_car) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[9.061692] (-) TimerEvent: {}
+[9.162519] (-) TimerEvent: {}
+[9.263216] (-) TimerEvent: {}
+[9.363878] (-) TimerEvent: {}
+[9.464542] (-) TimerEvent: {}
+[9.565217] (-) TimerEvent: {}
+[9.665898] (-) TimerEvent: {}
+[9.766625] (-) TimerEvent: {}
+[9.867395] (-) TimerEvent: {}
+[9.968438] (-) TimerEvent: {}
+[10.069328] (-) TimerEvent: {}
+[10.170424] (-) TimerEvent: {}
+[10.271164] (-) TimerEvent: {}
+[10.372153] (-) TimerEvent: {}
+[10.411294] (team6_car) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[10.472312] (-) TimerEvent: {}
+[10.572996] (-) TimerEvent: {}
+[10.673677] (-) TimerEvent: {}
+[10.774492] (-) TimerEvent: {}
+[10.795947] (team6_car) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[10.874685] (-) TimerEvent: {}
+[10.975567] (-) TimerEvent: {}
+[11.076452] (-) TimerEvent: {}
+[11.177570] (-) TimerEvent: {}
+[11.278608] (-) TimerEvent: {}
+[11.379453] (-) TimerEvent: {}
+[11.448750] (team6_car) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[11.479603] (-) TimerEvent: {}
+[11.580267] (-) TimerEvent: {}
+[11.681019] (-) TimerEvent: {}
+[11.719211] (team6_car) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[11.781273] (-) TimerEvent: {}
+[11.882079] (-) TimerEvent: {}
+[11.982860] (-) TimerEvent: {}
+[12.083635] (-) TimerEvent: {}
+[12.184410] (-) TimerEvent: {}
+[12.285168] (-) TimerEvent: {}
+[12.339160] (team6_car) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[12.340486] (team6_car) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[12.385353] (-) TimerEvent: {}
+[12.486204] (-) TimerEvent: {}
+[12.587221] (-) TimerEvent: {}
+[12.688009] (-) TimerEvent: {}
+[12.789024] (-) TimerEvent: {}
+[12.890056] (-) TimerEvent: {}
+[12.925401] (team6_car) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[12.930326] (team6_car) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[12.989978] (-) TimerEvent: {}
+[13.090690] (-) TimerEvent: {}
+[13.191437] (-) TimerEvent: {}
+[13.292239] (-) TimerEvent: {}
+[13.392891] (-) TimerEvent: {}
+[13.493588] (-) TimerEvent: {}
+[13.594312] (-) TimerEvent: {}
+[13.694960] (-) TimerEvent: {}
+[13.795657] (-) TimerEvent: {}
+[13.886215] (team6_car) StdoutLine: {'line': b'-- Found geometry_msgs: 4.2.3 (/home/team6/robot_ws/micorros_ws/install/geometry_msgs/share/geometry_msgs/cmake)\n'}
+[13.895841] (-) TimerEvent: {}
+[13.996601] (-) TimerEvent: {}
+[14.097320] (-) TimerEvent: {}
+[14.177248] (team6_car) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[14.197502] (-) TimerEvent: {}
+[14.298612] (-) TimerEvent: {}
+[14.399482] (-) TimerEvent: {}
+[14.500147] (-) TimerEvent: {}
+[14.600970] (-) TimerEvent: {}
+[14.701672] (-) TimerEvent: {}
+[14.802424] (-) TimerEvent: {}
+[14.903265] (-) TimerEvent: {}
+[15.003941] (-) TimerEvent: {}
+[15.104695] (-) TimerEvent: {}
+[15.205361] (-) TimerEvent: {}
+[15.306171] (-) TimerEvent: {}
+[15.361861] (team6_car) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[15.406339] (-) TimerEvent: {}
+[15.506983] (-) TimerEvent: {}
+[15.607642] (-) TimerEvent: {}
+[15.708286] (-) TimerEvent: {}
+[15.808973] (-) TimerEvent: {}
+[15.909859] (-) TimerEvent: {}
+[16.010537] (-) TimerEvent: {}
+[16.111204] (-) TimerEvent: {}
+[16.211862] (-) TimerEvent: {}
+[16.312524] (-) TimerEvent: {}
+[16.413168] (-) TimerEvent: {}
+[16.513943] (-) TimerEvent: {}
+[16.614605] (-) TimerEvent: {}
+[16.715261] (-) TimerEvent: {}
+[16.816034] (-) TimerEvent: {}
+[16.916710] (-) TimerEvent: {}
+[17.017366] (-) TimerEvent: {}
+[17.118106] (-) TimerEvent: {}
+[17.218762] (-) TimerEvent: {}
+[17.319445] (-) TimerEvent: {}
+[17.420115] (-) TimerEvent: {}
+[17.520794] (-) TimerEvent: {}
+[17.621440] (-) TimerEvent: {}
+[17.722119] (-) TimerEvent: {}
+[17.822778] (-) TimerEvent: {}
+[17.923423] (-) TimerEvent: {}
+[18.024057] (-) TimerEvent: {}
+[18.124696] (-) TimerEvent: {}
+[18.225428] (-) TimerEvent: {}
+[18.326457] (-) TimerEvent: {}
+[18.427215] (-) TimerEvent: {}
+[18.428121] (team6_car) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[18.428829] (team6_car) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[18.429246] (team6_car) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[18.527352] (-) TimerEvent: {}
+[18.627979] (-) TimerEvent: {}
+[18.728630] (-) TimerEvent: {}
+[18.829285] (-) TimerEvent: {}
+[18.929988] (-) TimerEvent: {}
+[19.030646] (-) TimerEvent: {}
+[19.131386] (-) TimerEvent: {}
+[19.231993] (-) TimerEvent: {}
+[19.332600] (-) TimerEvent: {}
+[19.433252] (-) TimerEvent: {}
+[19.533894] (-) TimerEvent: {}
+[19.634558] (-) TimerEvent: {}
+[19.735194] (-) TimerEvent: {}
+[19.836167] (-) TimerEvent: {}
+[19.936890] (-) TimerEvent: {}
+[20.037536] (-) TimerEvent: {}
+[20.138209] (-) TimerEvent: {}
+[20.238863] (-) TimerEvent: {}
+[20.339519] (-) TimerEvent: {}
+[20.440172] (-) TimerEvent: {}
+[20.540871] (-) TimerEvent: {}
+[20.641508] (-) TimerEvent: {}
+[20.742193] (-) TimerEvent: {}
+[20.842841] (-) TimerEvent: {}
+[20.943497] (-) TimerEvent: {}
+[21.044152] (-) TimerEvent: {}
+[21.144810] (-) TimerEvent: {}
+[21.245507] (-) TimerEvent: {}
+[21.346183] (-) TimerEvent: {}
+[21.446842] (-) TimerEvent: {}
+[21.492630] (team6_car) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[21.493321] (team6_car) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[21.547007] (-) TimerEvent: {}
+[21.647657] (-) TimerEvent: {}
+[21.748295] (-) TimerEvent: {}
+[21.848937] (-) TimerEvent: {}
+[21.883366] (team6_car) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[21.949101] (-) TimerEvent: {}
+[22.049764] (-) TimerEvent: {}
+[22.150714] (-) TimerEvent: {}
+[22.251357] (-) TimerEvent: {}
+[22.352344] (-) TimerEvent: {}
+[22.453007] (-) TimerEvent: {}
+[22.553653] (-) TimerEvent: {}
+[22.654822] (-) TimerEvent: {}
+[22.655723] (team6_car) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[22.754854] (-) TimerEvent: {}
+[22.855660] (-) TimerEvent: {}
+[22.956426] (-) TimerEvent: {}
+[23.046411] (team6_car) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[23.056600] (-) TimerEvent: {}
+[23.157251] (-) TimerEvent: {}
+[23.257871] (-) TimerEvent: {}
+[23.358567] (-) TimerEvent: {}
+[23.459287] (-) TimerEvent: {}
+[23.559998] (-) TimerEvent: {}
+[23.660793] (-) TimerEvent: {}
+[23.761510] (-) TimerEvent: {}
+[23.862840] (-) TimerEvent: {}
+[23.964447] (-) TimerEvent: {}
+[24.065507] (-) TimerEvent: {}
+[24.166861] (-) TimerEvent: {}
+[24.268064] (-) TimerEvent: {}
+[24.369646] (-) TimerEvent: {}
+[24.471397] (-) TimerEvent: {}
+[24.572124] (-) TimerEvent: {}
+[24.673367] (-) TimerEvent: {}
+[24.774090] (-) TimerEvent: {}
+[24.874846] (-) TimerEvent: {}
+[24.975717] (-) TimerEvent: {}
+[25.076647] (-) TimerEvent: {}
+[25.177511] (-) TimerEvent: {}
+[25.279354] (-) TimerEvent: {}
+[25.380252] (-) TimerEvent: {}
+[25.481049] (-) TimerEvent: {}
+[25.581748] (-) TimerEvent: {}
+[25.683136] (-) TimerEvent: {}
+[25.784153] (-) TimerEvent: {}
+[25.885207] (-) TimerEvent: {}
+[25.986791] (-) TimerEvent: {}
+[26.088153] (-) TimerEvent: {}
+[26.188969] (-) TimerEvent: {}
+[26.289823] (-) TimerEvent: {}
+[26.390713] (-) TimerEvent: {}
+[26.491535] (-) TimerEvent: {}
+[26.592309] (-) TimerEvent: {}
+[26.693643] (-) TimerEvent: {}
+[26.794463] (-) TimerEvent: {}
+[26.895205] (-) TimerEvent: {}
+[26.981396] (team6_car) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[26.982114] (team6_car) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[26.995918] (-) TimerEvent: {}
+[27.097194] (-) TimerEvent: {}
+[27.197939] (-) TimerEvent: {}
+[27.298617] (-) TimerEvent: {}
+[27.399341] (-) TimerEvent: {}
+[27.500056] (-) TimerEvent: {}
+[27.564984] (team6_car) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[27.600211] (-) TimerEvent: {}
+[27.604434] (team6_car) StdoutLine: {'line': b'-- Configuring done\n'}
+[27.661348] (team6_car) StdoutLine: {'line': b'-- Generating done\n'}
+[27.672915] (team6_car) StdoutLine: {'line': b'-- Build files have been written to: /home/team6/robot_ws/src/team6_car/build/team6_car\n'}
+[27.700554] (-) TimerEvent: {}
+[27.751593] (team6_car) CommandEnded: {'returncode': 0}
+[27.754346] (team6_car) JobProgress: {'identifier': 'team6_car', 'progress': 'build'}
+[27.766831] (team6_car) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/team6/robot_ws/src/team6_car/build/team6_car', '--', '-j4', '-l4'], 'cwd': '/home/team6/robot_ws/src/team6_car/build/team6_car', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'team6'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/team6/robot_ws/micorros_ws/install/visualization_msgs/lib:/home/team6/robot_ws/micorros_ws/install/test_msgs/lib:/home/team6/robot_ws/micorros_ws/install/example_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/action_msgs/lib:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs/lib:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs/lib:/home/team6/robot_ws/micorros_ws/install/stereo_msgs/lib:/home/team6/robot_ws/micorros_ws/install/std_srvs/lib:/home/team6/robot_ws/micorros_ws/install/shape_msgs/lib:/home/team6/robot_ws/micorros_ws/install/sensor_msgs/lib:/home/team6/robot_ws/micorros_ws/install/nav_msgs/lib:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs/lib:/home/team6/robot_ws/micorros_ws/install/geometry_msgs/lib:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs/lib:/home/team6/robot_ws/micorros_ws/install/std_msgs/lib:/home/team6/robot_ws/micorros_ws/install/statistics_msgs/lib:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds/lib:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp/lib:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c/lib:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs/lib:/home/team6/robot_ws/micorros_ws/install/rclc_parameter/lib:/home/team6/robot_ws/micorros_ws/install/rclc/lib:/home/team6/robot_ws/micorros_ws/install/composition_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/microxrcedds_client/lib:/home/team6/robot_ws/micorros_ws/install/microcdr/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs/lib:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs/lib:/home/team6/robot_ws/micorros_ws/install/complex_msgs/lib:/home/team6/robot_ws/micorros_ws/install/builtin_interfaces/lib:/home/team6/ros2_ws/install/ldlidar_component/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/team6'), ('OLDPWD', '/home/team6/robot_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1117'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('PICO_TOOLCHAIN_PATH', '...'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/team6/robot_ws/src/install:/home/team6/ros2_ws/install:/home/team6/ldlidar_ros_ws/install:/home/team6/robot_ws/micorros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'team6'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'team6'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/team6-desktop:@/tmp/.ICE-unix/1095,unix/team6-desktop:/tmp/.ICE-unix/1095'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3a272b9d_ebc0_45b5_81e3_c7c8d8d98b19'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ST6JN2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.117'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/team6/robot_ws/src/install/team6_car:/home/team6/ldlidar_ros_ws/install/ldlidar_stl_ros2:/home/team6/robot_ws/micorros_ws/install/micro_ros_demos_rclc:/home/team6/robot_ws/micorros_ws/install/common_interfaces:/home/team6/robot_ws/micorros_ws/install/visualization_msgs:/home/team6/robot_ws/micorros_ws/install/test_msgs:/home/team6/robot_ws/micorros_ws/install/example_interfaces:/home/team6/robot_ws/micorros_ws/install/action_msgs:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs:/home/team6/robot_ws/micorros_ws/install/stereo_msgs:/home/team6/robot_ws/micorros_ws/install/std_srvs:/home/team6/robot_ws/micorros_ws/install/shape_msgs:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/home/team6/robot_ws/micorros_ws/install/sensor_msgs:/home/team6/robot_ws/micorros_ws/install/nav_msgs:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs:/home/team6/robot_ws/micorros_ws/install/geometry_msgs:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs:/home/team6/robot_ws/micorros_ws/install/std_msgs:/home/team6/robot_ws/micorros_ws/install/statistics_msgs:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_test_msg:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp_tests:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c_tests:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs:/home/team6/robot_ws/micorros_ws/install/rclc_parameter:/home/team6/robot_ws/micorros_ws/install/rclc:/home/team6/robot_ws/micorros_ws/install/composition_interfaces:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities:/home/team6/robot_ws/micorros_ws/install/micro_ros_setup:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs:/home/team6/robot_ws/micorros_ws/install/complex_msgs:/home/team6/ros2_ws/install/ldlidar:/home/team6/ros2_ws/install/ldlidar_node:/home/team6/ros2_ws/install/ldlidar_component:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/team6/robot_ws/src/team6_car/build/team6_car'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('PICO_SDK_PATH', '/home/team6/pico-sdk'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/team6/robot_ws/micorros_ws/install/visualization_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/test_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/example_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/action_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/stereo_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/std_srvs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/shape_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py/lib/python3.10/site-packages:/home/team6/robot_ws/micorros_ws/install/sensor_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/nav_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/geometry_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/std_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/statistics_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/composition_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/complex_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/team6/robot_ws/src/install/team6_car:/home/team6/ldlidar_ros_ws/install/ldlidar_stl_ros2:/home/team6/robot_ws/micorros_ws/install/micro_ros_demos_rclc:/home/team6/robot_ws/micorros_ws/install/common_interfaces:/home/team6/robot_ws/micorros_ws/install/visualization_msgs:/home/team6/robot_ws/micorros_ws/install/test_msgs:/home/team6/robot_ws/micorros_ws/install/example_interfaces:/home/team6/robot_ws/micorros_ws/install/action_msgs:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs:/home/team6/robot_ws/micorros_ws/install/stereo_msgs:/home/team6/robot_ws/micorros_ws/install/std_srvs:/home/team6/robot_ws/micorros_ws/install/shape_msgs:/home/team6/robot_ws/micorros_ws/install/sensor_msgs:/home/team6/robot_ws/micorros_ws/install/nav_msgs:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs:/home/team6/robot_ws/micorros_ws/install/geometry_msgs:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs:/home/team6/robot_ws/micorros_ws/install/std_msgs:/home/team6/robot_ws/micorros_ws/install/statistics_msgs:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_test_msg:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp_tests:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c_tests:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs:/home/team6/robot_ws/micorros_ws/install/rclc_parameter:/home/team6/robot_ws/micorros_ws/install/rclc:/home/team6/robot_ws/micorros_ws/install/composition_interfaces:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces:/home/team6/robot_ws/micorros_ws/install/microxrcedds_client:/home/team6/robot_ws/micorros_ws/install/microcdr:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities:/home/team6/robot_ws/micorros_ws/install/micro_ros_setup:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs:/home/team6/robot_ws/micorros_ws/install/complex_msgs:/home/team6/robot_ws/micorros_ws/install/builtin_interfaces:/home/team6/ros2_ws/install/ldlidar:/home/team6/ros2_ws/install/ldlidar_node:/home/team6/ros2_ws/install/ldlidar_component:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble')]), 'shell': False}
+[27.800674] (-) TimerEvent: {}
+[27.902104] (-) TimerEvent: {}
+[28.002786] (-) TimerEvent: {}
+[28.103756] (-) TimerEvent: {}
+[28.204861] (-) TimerEvent: {}
+[28.241622] (team6_car) CommandEnded: {'returncode': 0}
+[28.305029] (-) TimerEvent: {}
+[28.405776] (-) TimerEvent: {}
+[28.506861] (-) TimerEvent: {}
+[28.527586] (team6_car) JobProgress: {'identifier': 'team6_car', 'progress': 'install'}
+[28.606795] (team6_car) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/team6/robot_ws/src/team6_car/build/team6_car'], 'cwd': '/home/team6/robot_ws/src/team6_car/build/team6_car', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'team6'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/team6/robot_ws/micorros_ws/install/visualization_msgs/lib:/home/team6/robot_ws/micorros_ws/install/test_msgs/lib:/home/team6/robot_ws/micorros_ws/install/example_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/action_msgs/lib:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs/lib:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs/lib:/home/team6/robot_ws/micorros_ws/install/stereo_msgs/lib:/home/team6/robot_ws/micorros_ws/install/std_srvs/lib:/home/team6/robot_ws/micorros_ws/install/shape_msgs/lib:/home/team6/robot_ws/micorros_ws/install/sensor_msgs/lib:/home/team6/robot_ws/micorros_ws/install/nav_msgs/lib:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs/lib:/home/team6/robot_ws/micorros_ws/install/geometry_msgs/lib:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs/lib:/home/team6/robot_ws/micorros_ws/install/std_msgs/lib:/home/team6/robot_ws/micorros_ws/install/statistics_msgs/lib:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds/lib:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp/lib:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c/lib:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs/lib:/home/team6/robot_ws/micorros_ws/install/rclc_parameter/lib:/home/team6/robot_ws/micorros_ws/install/rclc/lib:/home/team6/robot_ws/micorros_ws/install/composition_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces/lib:/home/team6/robot_ws/micorros_ws/install/microxrcedds_client/lib:/home/team6/robot_ws/micorros_ws/install/microcdr/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent/lib:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs/lib:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs/lib:/home/team6/robot_ws/micorros_ws/install/complex_msgs/lib:/home/team6/robot_ws/micorros_ws/install/builtin_interfaces/lib:/home/team6/ros2_ws/install/ldlidar_component/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/team6'), ('OLDPWD', '/home/team6/robot_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1117'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('PICO_TOOLCHAIN_PATH', '...'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/team6/robot_ws/src/install:/home/team6/ros2_ws/install:/home/team6/ldlidar_ros_ws/install:/home/team6/robot_ws/micorros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'team6'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'team6'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/team6-desktop:@/tmp/.ICE-unix/1095,unix/team6-desktop:/tmp/.ICE-unix/1095'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3a272b9d_ebc0_45b5_81e3_c7c8d8d98b19'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ST6JN2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.117'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/team6/robot_ws/src/install/team6_car:/home/team6/ldlidar_ros_ws/install/ldlidar_stl_ros2:/home/team6/robot_ws/micorros_ws/install/micro_ros_demos_rclc:/home/team6/robot_ws/micorros_ws/install/common_interfaces:/home/team6/robot_ws/micorros_ws/install/visualization_msgs:/home/team6/robot_ws/micorros_ws/install/test_msgs:/home/team6/robot_ws/micorros_ws/install/example_interfaces:/home/team6/robot_ws/micorros_ws/install/action_msgs:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs:/home/team6/robot_ws/micorros_ws/install/stereo_msgs:/home/team6/robot_ws/micorros_ws/install/std_srvs:/home/team6/robot_ws/micorros_ws/install/shape_msgs:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/home/team6/robot_ws/micorros_ws/install/sensor_msgs:/home/team6/robot_ws/micorros_ws/install/nav_msgs:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs:/home/team6/robot_ws/micorros_ws/install/geometry_msgs:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs:/home/team6/robot_ws/micorros_ws/install/std_msgs:/home/team6/robot_ws/micorros_ws/install/statistics_msgs:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_test_msg:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp_tests:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c_tests:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs:/home/team6/robot_ws/micorros_ws/install/rclc_parameter:/home/team6/robot_ws/micorros_ws/install/rclc:/home/team6/robot_ws/micorros_ws/install/composition_interfaces:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities:/home/team6/robot_ws/micorros_ws/install/micro_ros_setup:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs:/home/team6/robot_ws/micorros_ws/install/complex_msgs:/home/team6/ros2_ws/install/ldlidar:/home/team6/ros2_ws/install/ldlidar_node:/home/team6/ros2_ws/install/ldlidar_component:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/team6/robot_ws/src/team6_car/build/team6_car'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('PICO_SDK_PATH', '/home/team6/pico-sdk'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/team6/robot_ws/micorros_ws/install/visualization_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/test_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/example_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/action_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/stereo_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/std_srvs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/shape_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py/lib/python3.10/site-packages:/home/team6/robot_ws/micorros_ws/install/sensor_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/nav_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/geometry_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/std_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/statistics_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/composition_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs/local/lib/python3.10/dist-packages:/home/team6/robot_ws/micorros_ws/install/complex_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/team6/robot_ws/src/install/team6_car:/home/team6/ldlidar_ros_ws/install/ldlidar_stl_ros2:/home/team6/robot_ws/micorros_ws/install/micro_ros_demos_rclc:/home/team6/robot_ws/micorros_ws/install/common_interfaces:/home/team6/robot_ws/micorros_ws/install/visualization_msgs:/home/team6/robot_ws/micorros_ws/install/test_msgs:/home/team6/robot_ws/micorros_ws/install/example_interfaces:/home/team6/robot_ws/micorros_ws/install/action_msgs:/home/team6/robot_ws/micorros_ws/install/unique_identifier_msgs:/home/team6/robot_ws/micorros_ws/install/trajectory_msgs:/home/team6/robot_ws/micorros_ws/install/stereo_msgs:/home/team6/robot_ws/micorros_ws/install/std_srvs:/home/team6/robot_ws/micorros_ws/install/shape_msgs:/home/team6/robot_ws/micorros_ws/install/sensor_msgs:/home/team6/robot_ws/micorros_ws/install/nav_msgs:/home/team6/robot_ws/micorros_ws/install/diagnostic_msgs:/home/team6/robot_ws/micorros_ws/install/geometry_msgs:/home/team6/robot_ws/micorros_ws/install/actionlib_msgs:/home/team6/robot_ws/micorros_ws/install/std_msgs:/home/team6/robot_ws/micorros_ws/install/statistics_msgs:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_test_msg:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp_tests:/home/team6/robot_ws/micorros_ws/install/rmw_microxrcedds:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_cpp:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c_tests:/home/team6/robot_ws/micorros_ws/install/rosidl_typesupport_microxrcedds_c:/home/team6/robot_ws/micorros_ws/install/rosgraph_msgs:/home/team6/robot_ws/micorros_ws/install/rclc_parameter:/home/team6/robot_ws/micorros_ws/install/rclc:/home/team6/robot_ws/micorros_ws/install/composition_interfaces:/home/team6/robot_ws/micorros_ws/install/rcl_interfaces:/home/team6/robot_ws/micorros_ws/install/microxrcedds_client:/home/team6/robot_ws/micorros_ws/install/microcdr:/home/team6/robot_ws/micorros_ws/install/micro_ros_utilities:/home/team6/robot_ws/micorros_ws/install/micro_ros_setup:/home/team6/robot_ws/micorros_ws/install/micro_ros_agent:/home/team6/robot_ws/micorros_ws/install/micro_ros_msgs:/home/team6/robot_ws/micorros_ws/install/lifecycle_msgs:/home/team6/robot_ws/micorros_ws/install/complex_msgs:/home/team6/robot_ws/micorros_ws/install/builtin_interfaces:/home/team6/ros2_ws/install/ldlidar:/home/team6/ros2_ws/install/ldlidar_node:/home/team6/ros2_ws/install/ldlidar_component:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble')]), 'shell': False}
+[28.617600] (-) TimerEvent: {}
+[28.693337] (team6_car) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[28.695250] (team6_car) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[28.697064] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/joystick.yaml\n'}
+[28.717870] (-) TimerEvent: {}
+[28.795919] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_async.yaml\n'}
+[28.818158] (-) TimerEvent: {}
+[28.886285] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/my_controllers.yaml\n'}
+[28.918321] (-) TimerEvent: {}
+[28.994314] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/teleop_twst_joy.yaml\n'}
+[29.018481] (-) TimerEvent: {}
+[29.088389] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/inertial_macros.xacro\n'}
+[29.118657] (-) TimerEvent: {}
+[29.174062] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/lidar.xacro\n'}
+[29.218846] (-) TimerEvent: {}
+[29.260822] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/materials.xacro\n'}
+[29.319033] (-) TimerEvent: {}
+[29.344386] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot.urdf.xacro\n'}
+[29.419218] (-) TimerEvent: {}
+[29.424496] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot_core.xacro\n'}
+[29.512674] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/ros2_bicycle.xacro\n'}
+[29.519469] (-) TimerEvent: {}
+[29.620277] (-) TimerEvent: {}
+[29.624582] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/joystick.launch.py\n'}
+[29.720481] (-) TimerEvent: {}
+[29.745115] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/launch_robot.launch.py\n'}
+[29.820691] (-) TimerEvent: {}
+[29.828194] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/rsp.launch.py\n'}
+[29.915453] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/spawn_car.launch.py\n'}
+[29.921136] (-) TimerEvent: {}
+[29.999744] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/worlds/simple.world\n'}
+[30.021320] (-) TimerEvent: {}
+[30.092112] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car\n'}
+[30.121626] (-) TimerEvent: {}
+[30.179231] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car\n'}
+[30.222018] (-) TimerEvent: {}
+[30.263875] (team6_car) StdoutLine: {'line': b'-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.sh\n'}
+[30.264725] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.dsv\n'}
+[30.322928] (-) TimerEvent: {}
+[30.359885] (team6_car) StdoutLine: {'line': b'-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.sh\n'}
+[30.361833] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.dsv\n'}
+[30.423099] (-) TimerEvent: {}
+[30.444918] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.bash\n'}
+[30.523365] (-) TimerEvent: {}
+[30.525816] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.sh\n'}
+[30.613436] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.zsh\n'}
+[30.623587] (-) TimerEvent: {}
+[30.701786] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.dsv\n'}
+[30.723900] (-) TimerEvent: {}
+[30.785079] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv\n'}
+[30.824117] (-) TimerEvent: {}
+[30.874386] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/packages/team6_car\n'}
+[30.924276] (-) TimerEvent: {}
+[30.956614] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig.cmake\n'}
+[31.024689] (-) TimerEvent: {}
+[31.045672] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig-version.cmake\n'}
+[31.124918] (-) TimerEvent: {}
+[31.127720] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.xml\n'}
+[31.212128] (team6_car) CommandEnded: {'returncode': 0}
+[31.225770] (-) TimerEvent: {}
+[31.327365] (-) TimerEvent: {}
+[31.428081] (-) TimerEvent: {}
+[31.529384] (-) TimerEvent: {}
+[31.631705] (-) TimerEvent: {}
+[31.660521] (team6_car) JobEnded: {'identifier': 'team6_car', 'rc': 0}
+[31.667187] (-) EventReactorShutdown: {}

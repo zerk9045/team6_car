@@ -1,0 +1,6 @@
+[0.106s] Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+[0.195s] [0mCMake Error: The current CMakeCache.txt directory /home/team6/robot_ws/src/team6_car/build/team6_car/CMakeCache.txt is different than the directory /home/adrien/dev_ws/src/build/team6_car where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
+[0.297s] [0mCMake Error: The source directory "/home/adrien/dev_ws/src/team6_car" does not exist.
+[0.298s] Specify --help for usage, or press the help button on the CMake GUI.[0m
+[0.301s] gmake: *** [Makefile:226: cmake_check_build_system] Error 1
+[0.308s] Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
