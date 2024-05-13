@@ -4,11 +4,11 @@ amcl:
   ros__parameters:
     use_sim_time: False
     # TODO: Tune alpha variables either increase if we think our odom is unreliable or decrease if we think our odom is reliable
-    alpha1: 0.4
-    alpha2: 0.4
-    alpha3: 0.4
-    alpha4: 0.4
-    alpha5: 0.4
+    alpha1: 0.1
+    alpha2: 0.1
+    alpha3: 0.1
+    alpha4: 0.1
+    alpha5: 0.1
     base_frame_id: "base_footprint"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
@@ -62,7 +62,6 @@ bt_navigator:
       - nav2_compute_path_through_poses_action_bt_node
       - nav2_smooth_path_action_bt_node
       - nav2_follow_path_action_bt_node
-      - nav2_spin_action_bt_node
       - nav2_wait_action_bt_node
       - nav2_assisted_teleop_action_bt_node
       - nav2_back_up_action_bt_node
@@ -100,7 +99,6 @@ bt_navigator:
       - nav2_controller_cancel_bt_node
       - nav2_path_longer_on_approach_bt_node
       - nav2_wait_cancel_bt_node
-      - nav2_spin_cancel_bt_node
       - nav2_back_up_cancel_bt_node
       - nav2_assisted_teleop_cancel_bt_node
       - nav2_drive_on_heading_cancel_bt_node
@@ -132,7 +130,7 @@ controller_server:
       wz_max: 1.9
       iteration_count: 1
       prune_distance: 1.7
-      transform_tolerance: 0.1
+      transform_tolerance: 1.0
       temperature: 0.3
       gamma: 0.015
       motion_model: "Ackermann"
