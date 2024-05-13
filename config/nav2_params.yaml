@@ -394,11 +394,12 @@
 amcl:
   ros__parameters:
     use_sim_time: False
-    alpha1: 0.4
-    alpha2: 0.4
-    alpha3: 0.4
-    alpha4: 0.4
-    alpha5: 0.4
+    # TODO: Tune alpha variables either increase if we think our odom is unreliable or decrease if we think our odom is reliable
+    alpha1: 0.5
+    alpha2: 0.5
+    alpha3: 0.5
+    alpha4: 0.5
+    alpha5: 0.5
     base_frame_id: "base_footprint"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
@@ -407,13 +408,15 @@ amcl:
     global_frame_id: "map"
     lambda_short: 0.1
     laser_likelihood_max_dist: 2.0
-    laser_max_range: 100.0
-    laser_min_range: -1.0
+    laser_max_range: -1.0 # -1.0 means use the maximum range of the sensor from scan message
+    laser_min_range: -1.0 # -1.0 means use the minimum range of the sensor from scan message
+    # TODO: Try using laser_model_type: "likelihood_field_prob"
     laser_model_type: "likelihood_field"
     max_beams: 60
     max_particles: 2000
     min_particles: 500
     odom_frame_id: "odom"
+    # TODO: Try increasing pfreqf_err and pf_z if we think our odom is unreliable decrease if we think our odom is reliable
     pf_err: 0.05
     pf_z: 0.99
     recovery_alpha_fast: 0.0
@@ -421,6 +424,7 @@ amcl:
     resample_interval: 1
     robot_model_type: "nav2_amcl::OmniMotionModel"
     save_pose_rate: 0.5
+    #TODO: try increasing sigma_hit & z_hit to reduce noise
     sigma_hit: 0.2
     tf_broadcast: true
     transform_tolerance: 1.0
