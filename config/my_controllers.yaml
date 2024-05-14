@@ -24,17 +24,8 @@ bsc:
     base_frame_id: base_link
     odom_frame_id: odom
     enable_odom_tf: true
-    # the first value in this vector represents the uncertainty in the linear.x speed from our
-    # IR sensor. increasing this from 0 may improve the built-in kalman filter performance and thus
-    # our car's performance in rviz. we've been using it a 0.0 which suggests the IR sensor is a 
-    # reliable source, which it is not
     twist_covariance_diagonal: [0.0, 7.0, 14.0, 21.0, 28.0, 35.0]
-    #                            l.x  l.y  l.z   a.x   a.y   a.z
-    # similarly, this vector represents the uncertainty in the xyz, rpy, directions of our car.
-    # we know our odometry is unreliable, so playing around these values should help us tune the car
-    # to be 1:1 in software and real life.
     pose_covariance_diagonal: [0.0, 7.0, 14.0, 21.0, 28.0, 35.0]
-    #                           x    y     z     r     p     y
     position_feedback: false
     use_stamped_vel: true
 
