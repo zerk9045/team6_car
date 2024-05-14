@@ -423,6 +423,7 @@ amcl:
     save_pose_rate: 0.5
     sigma_hit: 0.2
     tf_broadcast: true
+    #TODO: Set transform_tolerance to 0.3 to prevent Control loop missed its desired rate
     transform_tolerance: 1.0
     update_min_a: 0.2
     update_min_d: 0.25
@@ -504,6 +505,7 @@ bt_navigator_navigate_to_pose_rclcpp_node:
 controller_server:
   ros__parameters:
     use_sim_time: False
+    # TODO: try changing controller_frequency to 4
     controller_frequency: 20.0
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
@@ -667,6 +669,7 @@ map_saver:
 
 planner_server:
   ros__parameters:
+    # TODO: try changing expected_planner_frequency to 1
     expected_planner_frequency: 20.0
     use_sim_time: False
     planner_plugins: ["GridBased"]
