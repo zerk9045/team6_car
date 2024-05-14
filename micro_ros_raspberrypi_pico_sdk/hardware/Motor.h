@@ -5,6 +5,10 @@
 #include "IRSensor.h"
 #include <string>
 
+#define BRAKE_PWM 1500000
+#define MAX_PWM 3000000
+#define MIN_PWM 1375000
+
 class Motor {
     IRSensor* irSensor;
 public:
@@ -19,7 +23,7 @@ public:
     // Function to read motor speed
     double getSpeed();
     void updateDirection(bool inAValue, bool inBValue, std::string direction);
-
+    std::string getDirection();
 private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control

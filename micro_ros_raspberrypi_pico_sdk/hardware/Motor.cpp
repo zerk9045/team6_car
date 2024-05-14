@@ -5,9 +5,6 @@
 #include "hardware/clocks.h"
 #include <string>
 
-#define BRAKE_PWM 1500000
-#define MAX_PWM 3000000
-#define MIN_PWM 1375000
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
 
@@ -39,7 +36,6 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
 
-
 void Motor::setSpeed(int speedPWM) {
     // Ensure PWM is within the valid range
     if (speedPWM > MAX_PWM) {
@@ -57,11 +53,14 @@ void Motor::setSpeed(int speedPWM) {
     previous_speed_estimate = 0.0; // Initial speed estimate, can be set to 0
     estimated_error = 1.0; // Initial error estimate, can be set to a high value
 }
+std::string Motor::getDirection() {
+    return motor_direction;
+}
 
 double Motor::getSpeed() {
 
 // testing out different way of calculating speed
-    
+
     // angular speed in rads/sec = (Revs per second / second) * (2pi)
     // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
 
@@ -70,7 +69,7 @@ double Motor::getSpeed() {
 
     if (motor_direction == "forward"){
         return static_cast<double>(
-            ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+                ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
     else if (motor_direction == "reverse"){
         return static_cast<double>(
@@ -82,6 +81,10 @@ double Motor::getSpeed() {
 
 return static_cast<double>(irSensor->getCountsPerTimer());
 
+    // Constants
+    // pi = 3.14159265358979323846264338327950288
+    // wheel + tire diameter = REMEASURE
+    // counts per revolution = 1
 
 // Commenting out the Kalman Filter for now
     // Get the raw speed reading

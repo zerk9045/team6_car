@@ -34,11 +34,21 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         free(msg.data.data); // Free the allocated memory
     }
 }
+
+// TODO: add error checks to ensure the message is in the correct format
 void subscription_callback_servo(const void * msgin) {
     const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
     int pwm = std::stoi(msg->data.data);
     servo.setAngle(pwm);
 
+}
+
+bool isValidDirection(const std::string& direction) {
+    return direction == "forward" || direction == "reverse" || direction == "stop";
+}
+
+bool isValidPwm(int pwm) {
+    return pwm >= 1375000 && pwm <= 3000000;
 }
 
 void subscription_callback_motor(const void *msgin) {
@@ -56,10 +66,22 @@ void subscription_callback_motor(const void *msgin) {
     int pwm = std::stoi(msg_data.substr(0, space_pos));
     std::string direction = msg_data.substr(space_pos + 1);
 
-    // Set motor direction based on the extracted direction string
+    // Validate direction and pwm
+    if (!isValidDirection(direction) || !isValidPwm(pwm)) {
+        // Invalid direction or pwm value, handle error or return
+        return;
+    }
+
+    // If the direction has not changed and the pwm is the same, no need to update
+    if (motor.getDirection() == direction) {
+        motor.setSpeed(pwm);
+        return;
+    }
+
+    // Update the motor direction
     bool forward = (direction == "forward");
     bool reverse = (direction == "reverse");
-    motor.updateDirection(forward, reverse,direction);
+    motor.updateDirection(forward, reverse, direction);
 
     // Set the motor speed
     motor.setSpeed(pwm);
@@ -141,7 +163,8 @@ int main()
 
   // free resources
   rcl_publisher_fini(&publisher, &node);
-  rcl_subscription_fini(&motor_subscriber, &node);
+    rcl_timer_fini(&timer);
+    rcl_subscription_fini(&motor_subscriber, &node);
   rcl_subscription_fini(&servo_subscriber, &node);
   rcl_node_fini(&node);
 }
