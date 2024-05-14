@@ -68,32 +68,20 @@ double Motor::getSpeed() {
     // linear speed = angular speed * radius
     // v = w * 0.05;
 
-//     if (motor_direction == "forward"){
-//         return static_cast<double>(
-//             ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
-//     }
-//     else if (motor_direction == "reverse"){
-//         return static_cast<double>(
-//             -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
-//     }
-//     else {
-//         return 0;
-//     }
+    if (motor_direction == "forward"){
+        return static_cast<double>(
+            ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+    }
+    else if (motor_direction == "reverse"){
+        return static_cast<double>(
+            -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+    }
+    else {
+        return 0;
+    }
 
-// return static_cast<double>(irSensor->getCountsPerTimer());
-
-
-// Old speed calculations
-   if(motor_direction == "forward"){
-       return static_cast<double>((irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);//static_cast<double>(2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
-   }
-   else if(motor_direction == "reverse"){
-       return static_cast<double>(-1*(irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);//static_cast<double>(-1*2*(irSensor->getCountsPerTimer()/19.4778744511)*0.15707963267);///0.10)*0.05*3.14);///3/2.72 * 0.05 * 3.14;
-   }
-   else{
-       return 0;
-   }
 return static_cast<double>(irSensor->getCountsPerTimer());
+
 
 // Commenting out the Kalman Filter for now
     // Get the raw speed reading
