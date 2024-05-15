@@ -1,0 +1,4 @@
+Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car
+Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car
