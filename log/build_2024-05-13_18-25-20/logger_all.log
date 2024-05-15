@@ -1,0 +1,104 @@
+[0.566s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.566s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0xffff83cfc160>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff83e86620>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff83e86620>>, mixin_verb=('build',))
+[1.501s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.501s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.501s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.501s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.501s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.502s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.502s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/team6/robot_ws/src/team6_car'
+[1.502s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.503s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.503s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.503s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.503s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.503s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.504s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.504s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.504s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.559s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_cmake' and name 'team6_car'
+[1.559s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.559s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.560s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.560s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.560s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.697s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[1.697s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[1.718s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/team6/ros2_ws/install
+[1.720s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/team6/ldlidar_ros_ws/install
+[1.728s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 39 installed packages in /home/team6/robot_ws/micorros_ws/install
+[1.741s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 365 installed packages in /opt/ros/humble
+[1.755s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'cmake_args' from command line to 'None'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'cmake_target' from command line to 'None'
+[1.984s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.984s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'cmake_clean_cache' from command line to 'False'
+[1.984s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'cmake_clean_first' from command line to 'False'
+[1.984s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'cmake_force_configure' from command line to 'False'
+[1.984s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'ament_cmake_args' from command line to 'None'
+[1.984s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'catkin_cmake_args' from command line to 'None'
+[1.984s] Level 5:colcon.colcon_core.verb:set package 'team6_car' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.984s] DEBUG:colcon.colcon_core.verb:Building package 'team6_car' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/team6/robot_ws/src/team6_car/build/team6_car', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/team6/robot_ws/src/team6_car/install/team6_car', 'merge_install': False, 'path': '/home/team6/robot_ws/src/team6_car', 'symlink_install': True, 'test_result_base': None}
+[1.985s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.988s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.989s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/team6/robot_ws/src/team6_car' with build type 'ament_cmake'
+[1.990s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/team6/robot_ws/src/team6_car'
+[2.002s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[2.003s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.003s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.081s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+[2.430s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+[2.759s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car
+[2.942s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(team6_car)
+[2.944s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car
+[2.958s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car' for CMake module files
+[2.961s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car' for CMake config files
+[2.964s] Level 1:colcon.colcon_core.shell:create_environment_hook('team6_car', 'cmake_prefix_path')
+[2.964s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/hook/cmake_prefix_path.ps1'
+[2.967s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/hook/cmake_prefix_path.dsv'
+[2.969s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/hook/cmake_prefix_path.sh'
+[2.973s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/bin'
+[2.973s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/lib/pkgconfig/team6_car.pc'
+[2.974s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/lib/python3.10/site-packages'
+[2.975s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/bin'
+[2.976s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.ps1'
+[2.979s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv'
+[2.981s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.sh'
+[2.984s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.bash'
+[2.988s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.zsh'
+[2.990s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/team6/robot_ws/src/team6_car/install/team6_car/share/colcon-core/packages/team6_car)
+[3.236s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(team6_car)
+[3.237s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car' for CMake module files
+[3.239s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car' for CMake config files
+[3.242s] Level 1:colcon.colcon_core.shell:create_environment_hook('team6_car', 'cmake_prefix_path')
+[3.244s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/hook/cmake_prefix_path.ps1'
+[3.246s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/hook/cmake_prefix_path.dsv'
+[3.248s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/hook/cmake_prefix_path.sh'
+[3.251s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/bin'
+[3.252s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/lib/pkgconfig/team6_car.pc'
+[3.253s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/lib/python3.10/site-packages'
+[3.254s] Level 1:colcon.colcon_core.environment:checking '/home/team6/robot_ws/src/team6_car/install/team6_car/bin'
+[3.255s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.ps1'
+[3.257s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv'
+[3.259s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.sh'
+[3.261s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.bash'
+[3.263s] INFO:colcon.colcon_core.shell:Creating package script '/home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.zsh'
+[3.265s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/team6/robot_ws/src/team6_car/install/team6_car/share/colcon-core/packages/team6_car)
+[3.266s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[3.267s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[3.268s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[3.268s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[3.298s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[3.299s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[3.299s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[3.336s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[3.337s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/team6/robot_ws/src/team6_car/install/local_setup.ps1'
+[3.341s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/team6/robot_ws/src/team6_car/install/_local_setup_util_ps1.py'
+[3.347s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/team6/robot_ws/src/team6_car/install/setup.ps1'
+[3.363s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/team6/robot_ws/src/team6_car/install/local_setup.sh'
+[3.366s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/team6/robot_ws/src/team6_car/install/_local_setup_util_sh.py'
+[3.368s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/team6/robot_ws/src/team6_car/install/setup.sh'
+[3.384s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/team6/robot_ws/src/team6_car/install/local_setup.bash'
+[3.387s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/team6/robot_ws/src/team6_car/install/setup.bash'
+[3.403s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/team6/robot_ws/src/team6_car/install/local_setup.zsh'
+[3.405s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/team6/robot_ws/src/team6_car/install/setup.zsh'
