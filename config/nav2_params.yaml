@@ -322,6 +322,7 @@ map_saver:
     map_subscribe_transient_local: True
 
 # Planner Server Docs https://docs.nav2.org/configuration/packages/configuring-planner-server.html#parameters
+# TODO: Try switching to Smac Hybrid-A* Planner instead, which is made for Ackermann-style robots
 planner_server:
   ros__parameters:
     # TODO: try changing expected_planner_frequency to 1
