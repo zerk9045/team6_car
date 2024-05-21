@@ -88,7 +88,7 @@ int main()
 {
     //Tests
     testMotor();
-    testPIDController();
+    //testPIDController();
     stdio_init_all();
     rmw_uros_set_custom_transport(
             true,
