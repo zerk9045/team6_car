@@ -158,8 +158,8 @@ int main()
   rclc_executor_add_subscription(&executor, &servo_subscriber, &msg, &subscription_callback_servo, ON_NEW_DATA);
     //Tests
     //testMotor();
-    testPIDController();
-    motor.setSpeed(1.0);
+//    testPIDController();
+//    motor.setSpeed(1.0);
   while(1){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }
