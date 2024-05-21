@@ -8,6 +8,8 @@
 
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
+#define MAX_SPEED 15.0
+#define MIN_SPEED -15.0
 
 Motor::Motor(){//, ) {
     irSensor = new IRSensor();
@@ -37,16 +39,38 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
 
-void Motor::setSpeed(double desiredSpeed) {
-    if (desiredSpeed > 0) {
-        updateDirection(true, false, "forward");
-    } else if (desiredSpeed < 0) {
-        updateDirection(false, true, "reverse");
-    } else {
-        updateDirection(false, false, "stop");
+void Motor::adjustSpeed(double adjustment) {
+    // Calculate the new desired speed
+    double newSpeed = currentSpeed + adjustment;
+
+    // Ensure the new speed is within the valid range
+    if (newSpeed > MAX_SPEED) {
+        newSpeed = MAX_SPEED;
+    } else if (newSpeed < MIN_SPEED) {
+        newSpeed = MIN_SPEED;
     }
+
+    // Set the new speed
+    setSpeed(newSpeed);
+}
+
+void Motor::setSpeed(double speed) {
+    std::string newDirection;
+    if (speed > 0) {
+        newDirection = "forward";
+    } else if (speed < 0) {
+        newDirection = "reverse";
+    } else {
+        newDirection = "stop";
+    }
+
+    // Only update direction if it has changed
+    if (newDirection != motor_direction) {
+        updateDirection(newDirection == "forward", newDirection == "reverse", newDirection);
+    }
+
     // Convert the speed to a PWM value
-    int speedPWM = mapSpeedToPwm(abs(desiredSpeed));
+    int speedPWM = mapSpeedToPwm(abs(speed));
 
     // Ensure PWM is within the valid range
     if (speedPWM > MAX_PWM) {
@@ -57,17 +81,13 @@ void Motor::setSpeed(double desiredSpeed) {
     if (currentPwm == speedPWM) {
         return;
     }
-    pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
+    pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM / 1000.0)); // Assuming PWM range is 0-65535
     currentPwm = speedPWM;
 }
 
 int Motor::mapSpeedToPwm(double speed) {
-    // Define the maximum and minimum possible speeds
-    double maxSpeed = 15.0; // Set this to the maximum possible speed
-    double minSpeed = 1.0; // Set this to the minimum possible speed
-
     // Map the speed to a PWM value
-    int pwm = (speed - minSpeed) * (MAX_PWM - MIN_PWM) / (maxSpeed - minSpeed) + MIN_PWM;
+    int pwm = (speed - MIN_SPEED) * (MAX_PWM - MIN_PWM) / (MAX_SPEED - MIN_SPEED) + MIN_PWM;
 
     return pwm;
 }
@@ -79,27 +99,26 @@ void Motor::pidController(double desiredSpeed) {
     double Kd = 0.01;
 
     // Variables
-    double currentSpeed = getSpeed();
+    static double integral = 0;
+    static double last_error = 0;
+
+    // The current speed is now stored in the private variable
     double error = desiredSpeed - currentSpeed;
-    double integral = 0;
-    double derivative = 0;
-    double last_error = 0;
-    double output = 0;
 
     // Calculate the integral
     integral += error;
 
     // Calculate the derivative
-    derivative = error - last_error;
+    double derivative = error - last_error;
 
     // Calculate the output
-    output = Kp * error + Ki * integral + Kd * derivative;
+    double output = Kp * error + Ki * integral + Kd * derivative;
 
     // Update the last error
     last_error = error;
 
-    // Set the motor speed
-    setSpeed(output);
+    // Adjust the motor speed based on the PID output
+    adjustSpeed(output);
 }
 
 std::string Motor::getDirection() {
@@ -109,19 +128,13 @@ std::string Motor::getDirection() {
 double Motor::getSpeed() {
     // Measure the speed
     double speed = 0; // Replace this with the actual code to measure the speed
-    // angular speed in rads/sec = (Revs per second / second) * (2pi)
-    // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
-
-    // linear speed = angular speed * radius
-    // v = w * 0.05;
-
     if (motor_direction == "forward"){
         speed = static_cast<double>(
                 ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
     else if (motor_direction == "reverse"){
         speed = static_cast<double>(
-            -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+                -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
 
     // Add the new measurement to the list
@@ -134,12 +147,10 @@ double Motor::getSpeed() {
 
     // Calculate the average speed
     double sum = std::accumulate(speedMeasurements.begin(), speedMeasurements.end(), 0.0);
-    double averageSpeed = sum / speedMeasurements.size();
+    currentSpeed = sum / speedMeasurements.size(); // Set currentSpeed
 
-    return averageSpeed;
+    return currentSpeed;
 }
-
-
 
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
     gpio_put(INA_PIN, inAValue ? 1 : 0);

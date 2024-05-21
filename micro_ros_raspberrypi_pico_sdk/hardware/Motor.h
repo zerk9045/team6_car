@@ -29,7 +29,7 @@ public:
     std::string getDirection();
     int mapSpeedToPwm(double speed);
     void pidController(double desiredSpeed);
-
+    void adjustSpeed(double adjustment);
 private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control
@@ -40,6 +40,7 @@ private:
     int currentPwm;
     double previous_speed_estimate; // Previous speed estimate for Kalman filter
     double estimated_error; // Estimated error for Kalman filter
+    double currentSpeed; // Add this line
 };
 
 #endif //TEAM6_CAR_MOTOR_H
