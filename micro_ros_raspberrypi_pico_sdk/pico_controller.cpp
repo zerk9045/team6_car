@@ -43,48 +43,11 @@ void subscription_callback_servo(const void * msgin) {
 
 }
 
-bool isValidDirection(const std::string& direction) {
-    return direction == "forward" || direction == "reverse" || direction == "stop";
-}
-
-bool isValidPwm(int pwm) {
-    return pwm >= 1375000 && pwm <= 3000000;
-}
-
 void subscription_callback_motor(const void *msgin) {
     const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
-    std::string msg_data = msg->data.data;
-
-    // Find the position of the space character
-    size_t space_pos = msg_data.find(' ');
-    if (space_pos == std::string::npos) {
-        // Invalid message format, handle error or return
-        return;
-    }
-
-    // Extract pwmValue and direction
-    int pwm = std::stoi(msg_data.substr(0, space_pos));
-    std::string direction = msg_data.substr(space_pos + 1);
-
-    // Validate direction and pwm
-    if (!isValidDirection(direction) || !isValidPwm(pwm)) {
-        // Invalid direction or pwm value, handle error or return
-        return;
-    }
-
-    // If the direction has not changed and the pwm is the same, no need to update
-    if (motor.getDirection() == direction) {
-        motor.setSpeed(pwm);
-        return;
-    }
-
-    // Update the motor direction
-    bool forward = (direction == "forward");
-    bool reverse = (direction == "reverse");
-    motor.updateDirection(forward, reverse, direction);
-
+    double speed = std::stoi(msg->data.data);
     // Set the motor speed
-    motor.setSpeed(pwm);
+    motor.pidController(speed);
 }
 
 int main()

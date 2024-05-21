@@ -19,11 +19,14 @@ public:
     ~Motor();
     static void set_pwm_pin(uint pin, uint freq, float duty_c);
     // Function to set motor speed
-    void setSpeed(int speedPWM);
+    void setSpeed(double desiredSpeed);
     // Function to read motor speed
     double getSpeed();
     void updateDirection(bool inAValue, bool inBValue, std::string direction);
     std::string getDirection();
+    int mapSpeedToPwm(double speed);
+    void pidController(double desiredSpeed);
+
 private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control

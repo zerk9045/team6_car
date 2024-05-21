@@ -36,7 +36,18 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
 
-void Motor::setSpeed(int speedPWM) {
+void Motor::setSpeed(double desiredSpeed) {
+
+    if (desiredSpeed > 0) {
+        updateDirection(true, false, "forward");
+    } else if (desiredSpeed < 0) {
+        updateDirection(false, true, "reverse");
+    } else {
+        updateDirection(false, false, "stop");
+    }
+    // Convert the speed to a PWM value
+    int speedPWM = mapSpeedToPwm(abs(desiredSpeed));
+
     // Ensure PWM is within the valid range
     if (speedPWM > MAX_PWM) {
         speedPWM = MAX_PWM;
@@ -48,18 +59,54 @@ void Motor::setSpeed(int speedPWM) {
     }
     pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
     currentPwm = speedPWM;
-
-    // Initialize the Kalman filter variables
-    previous_speed_estimate = 0.0; // Initial speed estimate, can be set to 0
-    estimated_error = 1.0; // Initial error estimate, can be set to a high value
 }
+
+int Motor::mapSpeedToPwm(double speed) {
+    // Define the maximum and minimum possible speeds
+    double maxSpeed = 15.0; // Set this to the maximum possible speed
+    double minSpeed = 1.0; // Set this to the minimum possible speed
+
+    // Map the speed to a PWM value
+    int pwm = (speed - minSpeed) * (MAX_PWM - MIN_PWM) / (maxSpeed - minSpeed) + MIN_PWM;
+
+    return pwm;
+}
+
+void Motor::pidController(double desiredSpeed) {
+    // Constants
+    double Kp = 0.1;
+    double Ki = 0.01;
+    double Kd = 0.01;
+
+    // Variables
+    double currentSpeed = getSpeed();
+    double error = desiredSpeed - currentSpeed;
+    double integral = 0;
+    double derivative = 0;
+    double last_error = 0;
+    double output = 0;
+
+    // Calculate the integral
+    integral += error;
+
+    // Calculate the derivative
+    derivative = error - last_error;
+
+    // Calculate the output
+    output = Kp * error + Ki * integral + Kd * derivative;
+
+    // Update the last error
+    last_error = error;
+
+    // Set the motor speed
+    setSpeed(output);
+}
+
 std::string Motor::getDirection() {
     return motor_direction;
 }
 
 double Motor::getSpeed() {
-
-// testing out different way of calculating speed
 
     // angular speed in rads/sec = (Revs per second / second) * (2pi)
     // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
@@ -79,37 +126,9 @@ double Motor::getSpeed() {
         return 0;
     }
 
-return static_cast<double>(irSensor->getCountsPerTimer());
-
-    // Constants
-    // pi = 3.14159265358979323846264338327950288
-    // wheel + tire diameter = REMEASURE
-    // counts per revolution = 1
-
-// Commenting out the Kalman Filter for now
-    // Get the raw speed reading
-//     double raw_speed = static_cast<double>((irSensor->getCountsPerTimer()/0.3)*0.1*3.14159265358979323846264338327950288);
-
-//     // Define the system model parameters
-//     double process_noise = 0.05; // This would depend on your specific system
-//     double sensor_noise = 0.05; // This would depend on your specific sensor
-
-//     // Perform the Kalman filter update
-//     double kalman_gain = estimated_error / (estimated_error + sensor_noise);
-//     double current_speed_estimate = previous_speed_estimate + kalman_gain * (raw_speed - previous_speed_estimate);
-//     estimated_error = (1.0 - kalman_gain) * estimated_error + fabs(previous_speed_estimate - current_speed_estimate) * process_noise;
-
-//     // Store the current speed estimate for the next iteration
-//     previous_speed_estimate = current_speed_estimate;
-
-//     // If the motor is moving in reverse, return the speed as a negative value
-//     if (motor_direction == "reverse") {
-//         current_speed_estimate = -current_speed_estimate;
-//     }
-
-//     // Return the speed estimate
-//     return current_speed_estimate;
 }
+
+
 
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
     gpio_put(INA_PIN, inAValue ? 1 : 0);
