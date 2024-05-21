@@ -159,8 +159,8 @@ int main()
     //Tests
     //testMotor();
     testPIDController();
+    motor.setSpeed(1.0);
   while(1){
-      motor.setSpeed(1.0);
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }
 
