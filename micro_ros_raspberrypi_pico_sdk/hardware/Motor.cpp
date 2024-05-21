@@ -4,6 +4,7 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 #include <string>
+#include <numeric>
 
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
@@ -37,7 +38,6 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
 }
 
 void Motor::setSpeed(double desiredSpeed) {
-
     if (desiredSpeed > 0) {
         updateDirection(true, false, "forward");
     } else if (desiredSpeed < 0) {
@@ -107,7 +107,8 @@ std::string Motor::getDirection() {
 }
 
 double Motor::getSpeed() {
-
+    // Measure the speed
+    double speed = 0; // Replace this with the actual code to measure the speed
     // angular speed in rads/sec = (Revs per second / second) * (2pi)
     // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
 
@@ -115,17 +116,27 @@ double Motor::getSpeed() {
     // v = w * 0.05;
 
     if (motor_direction == "forward"){
-        return static_cast<double>(
+        speed = static_cast<double>(
                 ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
     else if (motor_direction == "reverse"){
-        return static_cast<double>(
+        speed = static_cast<double>(
             -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
-    else {
-        return 0;
+
+    // Add the new measurement to the list
+    speedMeasurements.push_back(speed);
+
+    // If we have more than N measurements, remove the oldest one
+    if (speedMeasurements.size() > N) {
+        speedMeasurements.pop_front();
     }
 
+    // Calculate the average speed
+    double sum = std::accumulate(speedMeasurements.begin(), speedMeasurements.end(), 0.0);
+    double averageSpeed = sum / speedMeasurements.size();
+
+    return averageSpeed;
 }
 
 

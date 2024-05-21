@@ -4,6 +4,7 @@
 #include "pico/stdlib.h"
 #include "IRSensor.h"
 #include <string>
+#include <deque>
 
 #define BRAKE_PWM 1500000
 #define MAX_PWM 3000000
@@ -11,6 +12,8 @@
 
 class Motor {
     IRSensor* irSensor;
+    std::deque<double> speedMeasurements; // Store the last N speed measurements
+    static const int N = 10; // Number of measurements to average
 public:
     // Constructor
     Motor();
