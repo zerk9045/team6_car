@@ -16,7 +16,7 @@ slam_toolbox:
     base_frame: base_footprint # Specifies the base frame of the robot
     scan_topic: /scan # Specifies the topic where the laser scans are published
     use_map_saver: true # Specifies whether to use the map saver functionality
-    mode: localization # Specifies the mode of operation (mapping or localization)
+    mode: mapping # Specifies the mode of operation (mapping or localization)
 
     debug_logging: false # Specifies whether to enable debug logging
     throttle_scans: 1 # Specifies the number of scans to skip between each processed scan

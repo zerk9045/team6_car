@@ -1,0 +1,52 @@
+[0.221s] Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/src/install/rqt_joint_trajectory_controller:/home/team6/robot_ws/src/install/rqt_controller_manager:/home/team6/robot_ws/src/install/ros2controlcli:/home/team6/robot_ws/src/install/ros2_controllers_test_nodes:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+[1.200s] Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/src/install/rqt_joint_trajectory_controller:/home/team6/robot_ws/src/install/rqt_controller_manager:/home/team6/robot_ws/src/install/ros2controlcli:/home/team6/robot_ws/src/install/ros2_controllers_test_nodes:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --build /home/team6/robot_ws/src/team6_car/build/team6_car -- -j4 -l4
+[2.039s] Invoking command in '/home/team6/robot_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/src/install/rqt_joint_trajectory_controller:/home/team6/robot_ws/src/install/rqt_controller_manager:/home/team6/robot_ws/src/install/ros2controlcli:/home/team6/robot_ws/src/install/ros2_controllers_test_nodes:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car
+[2.220s] -- Install configuration: ""
+[2.221s] -- Execute custom install script
+[2.227s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/joystick.yaml
+[2.229s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_async.yaml
+[2.231s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_sync.yaml
+[2.233s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/my_controllers.yaml
+[2.235s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/nav2_params.yaml
+[2.236s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/teleop_twst_joy.yaml
+[2.238s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/inertial_macros.xacro
+[2.239s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/lidar.xacro
+[2.240s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/materials.xacro
+[2.243s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot.urdf.xacro
+[2.247s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot_core.xacro
+[2.249s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/ros2_bicycle.xacro
+[2.251s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/joystick.launch.py
+[2.252s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/launch_robot.launch.py
+[2.253s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/localization_launch.py
+[2.254s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/navigation_launch.py
+[2.255s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_async_launch.py
+[2.258s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_sync_launch.py
+[2.259s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/rsp.launch.py
+[2.259s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/spawn_car.launch.py
+[2.260s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/worlds/simple.world
+[2.261s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/.data
+[2.262s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/.posegraph
+[2.263s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.pgm
+[2.265s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.yaml
+[2.266s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.data
+[2.269s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.posegraph
+[2.272s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.pgm
+[2.274s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.yaml
+[2.283s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.pgm
+[2.287s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.yaml
+[2.288s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car
+[2.290s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car
+[2.292s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.sh
+[2.294s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.dsv
+[2.297s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.sh
+[2.298s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.dsv
+[2.300s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.bash
+[2.301s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.sh
+[2.301s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.zsh
+[2.302s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.dsv
+[2.303s] -- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv
+[2.491s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/packages/team6_car
+[2.496s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig.cmake
+[2.498s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig-version.cmake
+[2.500s] -- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.xml
+[2.513s] Invoked command in '/home/team6/robot_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/team6/robot_ws/src/install/rqt_joint_trajectory_controller:/home/team6/robot_ws/src/install/rqt_controller_manager:/home/team6/robot_ws/src/install/ros2controlcli:/home/team6/robot_ws/src/install/ros2_controllers_test_nodes:/home/team6/robot_ws/micorros_ws/install/sensor_msgs_py:/opt/ros/humble /usr/bin/cmake --install /home/team6/robot_ws/src/team6_car/build/team6_car
