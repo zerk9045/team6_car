@@ -37,10 +37,12 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 //Test the motor
 void testMotor(){
     motor.setSpeed(1);
-    sleep_ms(500);
+    sleep_ms(1000);
     motor.setSpeed(0.0);
-    sleep_ms(500);
+    sleep_ms(1000);
     motor.setSpeed(-1);
+    sleep_ms(1000);
+    motor.setSpeed(0.0);
 }
 
 //Function to test the PID controller
