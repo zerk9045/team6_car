@@ -34,13 +34,40 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         free(msg.data.data); // Free the allocated memory
     }
 }
+//Test the motor
 void testMotor(){
-    motor.setSpeed(0.5);
+    motor.setSpeed(1);
     sleep_ms(500);
     motor.setSpeed(0.0);
     sleep_ms(500);
-    motor.setSpeed(-0.5);
+    motor.setSpeed(-1);
 }
+
+//Function to test the PID controller
+void testPIDController() {
+    motor.getSpeed();
+    // Set a desired speed
+    double desiredSpeed = 1;
+    motor.pidController(desiredSpeed);
+
+    // Wait for the motor to reach the desired speed
+    sleep_ms(500);
+
+    // Get the actual speed of the motor
+    double actualSpeed = motor.getSpeed();
+
+    // Print the desired and actual speeds
+    printf("Desired Speed: %f, Actual Speed: %f\n", desiredSpeed, actualSpeed);
+
+    // Repeat the process for a different desired speed
+    motor.getSpeed();
+    desiredSpeed = -1;
+    motor.pidController(desiredSpeed);
+    sleep_ms(500);
+    actualSpeed = motor.getSpeed();
+    printf("Desired Speed: %f, Actual Speed: %f\n", desiredSpeed, actualSpeed);
+}
+
 // TODO: add error checks to ensure the message is in the correct format
 void subscription_callback_servo(const void * msgin) {
     const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
@@ -126,7 +153,9 @@ int main()
   rclc_executor_add_timer(&executor, &timer);
   rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
   rclc_executor_add_subscription(&executor, &servo_subscriber, &msg, &subscription_callback_servo, ON_NEW_DATA);
+//Tests
   testMotor();
+  testPIDController();
   while(1){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }
