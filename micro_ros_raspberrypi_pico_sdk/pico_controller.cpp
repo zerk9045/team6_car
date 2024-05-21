@@ -88,9 +88,7 @@ void subscription_callback_motor(const void *msgin) {
 
 int main()
 {
-    //Tests
-    testMotor();
-    //testPIDController();
+
     stdio_init_all();
     rmw_uros_set_custom_transport(
             true,
@@ -158,7 +156,9 @@ int main()
   rclc_executor_add_timer(&executor, &timer);
   rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
   rclc_executor_add_subscription(&executor, &servo_subscriber, &msg, &subscription_callback_servo, ON_NEW_DATA);
-
+    //Tests
+    //testMotor();
+    testPIDController();
   while(1){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
   }
