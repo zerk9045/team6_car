@@ -69,9 +69,6 @@ bool isValidPwm(int pwm) {
 // TODO: add a custom motor message so we dont have to parse the string
 //https://micro.ros.org/docs/tutorials/advanced/create_new_type/
 void subscription_callback_motor(const void *msgin) {
-    // Define the mapping constants
-    double maxSpeed = 15;     // Maximum speed
-
     const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
     std::string msg_data = msg->data.data;
 
