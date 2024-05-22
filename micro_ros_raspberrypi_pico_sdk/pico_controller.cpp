@@ -52,6 +52,11 @@ bool isValidPwm(int pwm) {
 }
 
 void subscription_callback_motor(const void *msgin) {
+    // Define the mapping constants
+    double maxSpeed = 15.0;     // Maximum speed
+    int maxPWM = 3000000;       // Maximum PWM value (for max forward)
+    int minPWM = 1375000;       // Minimum PWM value (for motor off)
+
     const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
     std::string msg_data = msg->data.data;
 
@@ -63,18 +68,32 @@ void subscription_callback_motor(const void *msgin) {
     }
 
     // Extract pwmValue and direction
-    int pwm = std::stoi(msg_data.substr(0, space_pos));
+    int desired_pwm = std::stoi(msg_data.substr(0, space_pos));
     std::string direction = msg_data.substr(space_pos + 1);
 
     // Validate direction and pwm
-    if (!isValidDirection(direction) || !isValidPwm(pwm)) {
+    if (!isValidDirection(direction) || !isValidPwm(desired_pwm)) {
         // Invalid direction or pwm value, handle error or return
         return;
     }
 
     // If the direction has not changed and the pwm is the same, no need to update
     if (motor.getDirection() == direction) {
-        motor.setSpeed(pwm);
+        int Kp = 0.05; // Proportional gain
+        // Measure the current speed
+        double current_speed = motor.getSpeed();
+        double current_pwm = 0;
+        // Convert speed to PWM signal
+        current_pwm  = minPWM + static_cast<int>((std::abs(current_speed)) * (maxPWM - minPWM) / maxSpeed);
+
+        // Calculate the error
+        double error = desired_pwm - current_pwm;
+
+        // Adjust the PWM based on the error
+        int new_pwm = motor.getCurrentPwm() + Kp * error; // Kp is the proportional gain
+
+        // Set the new PWM value to the motor
+        motor.setSpeed(new_pwm);
         return;
     }
 
@@ -84,7 +103,7 @@ void subscription_callback_motor(const void *msgin) {
     motor.updateDirection(forward, reverse, direction);
 
     // Set the motor speed
-    motor.setSpeed(pwm);
+    motor.setSpeed(desired_pwm);
 }
 
 int main()

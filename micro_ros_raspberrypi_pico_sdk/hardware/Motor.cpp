@@ -36,6 +36,10 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
 
+void Motor:getCurrentPwm(){
+    return currentPwm;
+}
+
 void Motor::setSpeed(int speedPWM) {
     // Ensure PWM is within the valid range
     if (speedPWM > MAX_PWM) {
@@ -48,10 +52,6 @@ void Motor::setSpeed(int speedPWM) {
     }
     pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
     currentPwm = speedPWM;
-
-    // Initialize the Kalman filter variables
-    previous_speed_estimate = 0.0; // Initial speed estimate, can be set to 0
-    estimated_error = 1.0; // Initial error estimate, can be set to a high value
 }
 std::string Motor::getDirection() {
     return motor_direction;
