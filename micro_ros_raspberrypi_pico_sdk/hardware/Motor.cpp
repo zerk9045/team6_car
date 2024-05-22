@@ -14,7 +14,7 @@ Motor::Motor(){//, ) {
     gpio_init(MOTOR_PWM);
     gpio_init(INA_PIN);
     gpio_init(INB_PIN);
-    set_pwm_pin(MOTOR_PWM, 100, 0);
+    set_pwm_pin(MOTOR_PWM, 1000, 0);
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
     previous_error = 0;
