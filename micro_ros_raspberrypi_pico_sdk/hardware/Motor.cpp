@@ -8,6 +8,7 @@
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
 
+
 Motor::Motor(){//, ) {
     irSensor = new IRSensor();
     // Initialize motor hardware or perform any necessary setup here
@@ -60,24 +61,50 @@ std::string Motor::getDirection() {
 
 
 double Motor::getSpeed() {
-
-    // angular speed in rads/sec = (Revs per second / second) * (2pi)
-    // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
-
-    // linear speed = angular speed * radius
-    // v = w * 0.05;
-
+    double speed;
     if (motor_direction == "forward"){
-        return static_cast<double>(
+        speed = static_cast<double>(
                 ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
     else if (motor_direction == "reverse"){
-        return static_cast<double>(
-            -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+        speed = static_cast<double>(
+                -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
     else {
-        return 0;
+        speed = 0;
     }
+
+    // Update the speed buffer with the new speed measurement
+    speedBuffer[bufferIndex] = speed;
+    bufferIndex = (bufferIndex + 1) % BUFFER_SIZE;
+
+    // Calculate the average speed
+    double averageSpeed = 0.0;
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        averageSpeed += speedBuffer[i];
+    }
+    averageSpeed /= BUFFER_SIZE;
+
+    return averageSpeed;
+//    //use an average filter to smooth out the speed measurements
+//
+//    // angular speed in rads/sec = (Revs per second / second) * (2pi)
+//    // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
+//
+//    // linear speed = angular speed * radius
+//    // v = w * 0.05;
+//
+//    if (motor_direction == "forward"){
+//        return static_cast<double>(
+//                ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+//    }
+//    else if (motor_direction == "reverse"){
+//        return static_cast<double>(
+//            -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+//    }
+//    else {
+//        return 0;
+//    }
 
 }
 
