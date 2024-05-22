@@ -5,7 +5,6 @@
 #include "IRSensor.h"
 #include <string>
 #include <deque>
-
 #define BRAKE_PWM 1500000
 #define MAX_PWM 3000000
 #define MIN_PWM 1375000
@@ -22,14 +21,11 @@ public:
     ~Motor();
     static void set_pwm_pin(uint pin, uint freq, float duty_c);
     // Function to set motor speed
-    void setSpeed(double desiredSpeed);
+    void setSpeed(int speedPWM);
     // Function to read motor speed
     double getSpeed();
     void updateDirection(bool inAValue, bool inBValue, std::string direction);
     std::string getDirection();
-    int mapSpeedToPwm(double speed);
-    void pidController(double desiredSpeed);
-    void adjustSpeed(double adjustment);
 private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control
@@ -40,7 +36,6 @@ private:
     int currentPwm;
     double previous_speed_estimate; // Previous speed estimate for Kalman filter
     double estimated_error; // Estimated error for Kalman filter
-    double currentSpeed; // Add this line
 };
 
 #endif //TEAM6_CAR_MOTOR_H
