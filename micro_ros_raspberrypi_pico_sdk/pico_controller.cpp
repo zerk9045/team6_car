@@ -92,25 +92,25 @@ void subscription_callback_motor(const void *msgin) {
         return;
     }
 
-    // If the direction has not changed and the pwm is the same, no need to update
-    if (motor.getDirection() == direction) {
-        double Kp = 0.05; // Proportional gain need to tweak this value
-        // Measure the current speed
-        double current_speed = motor.getSpeed();
-        double current_pwm = 0;
-        // Convert speed to PWM signal
-        current_pwm  = MIN_PWM + static_cast<int>((std::abs(current_speed)) * (MAX_PWM - MIN_PWM) / maxSpeed);
-
-        // Calculate the error
-        double error = desired_pwm - current_pwm;
-
-        // Adjust the PWM based on the error
-        int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error);
-
-        // Set the new PWM value to the motor
-        motor.setSpeed(new_pwm);
-        return;
-    }
+//    // If the direction has not changed and the pwm is the same, no need to update
+//    if (motor.getDirection() == direction) {
+//        double Kp = 0.05; // Proportional gain need to tweak this value
+//        // Measure the current speed
+//        double current_speed = motor.getSpeed();
+//        double current_pwm = 0;
+//        // Convert speed to PWM signal
+//        current_pwm  = MIN_PWM + static_cast<int>((std::abs(current_speed)) * (MAX_PWM - MIN_PWM) / maxSpeed);
+//
+//        // Calculate the error
+//        double error = desired_pwm - current_pwm;
+//
+//        // Adjust the PWM based on the error
+//        int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error);
+//
+//        // Set the new PWM value to the motor
+//        motor.setSpeed(new_pwm);
+//        return;
+//    }
 
     // Update the motor direction
     bool forward = (direction == "forward");
