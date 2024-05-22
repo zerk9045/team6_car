@@ -13,6 +13,11 @@
 #include <rcl/error_handling.h>
 #include <std_msgs/msg/int32.h>
 #include "../config/pin_config.h"
+#include <fstream>
+#include <chrono>
+
+// Create a `std::ofstream` object to write to a CSV file:
+std::ofstream logFile("pid_log.csv");
 
 rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
@@ -121,7 +126,15 @@ void subscription_callback_motor(const void *msgin) {
     // Update the previous error
     motor.previous_error = error;
 
-}
+    // Get the current time in milliseconds since epoch
+    auto now = std::chrono::system_clock::now();
+    auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+    auto epoch = now_ms.time_since_epoch();
+    auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
+    long timestamp = value.count();
+
+    // Log the data
+    logFile << timestamp << "," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << motor.getSpeed() << "," << desired_speed << std::endl;}
 
 bool pingAgent(){
     // Wait for agent successful ping for 2 minutes.
@@ -197,6 +210,7 @@ void destroyEntities(){
     ret = rcl_subscription_fini(&motor_subscriber, &node);
     ret = rcl_subscription_fini(&servo_subscriber, &node);
     ret = rcl_node_fini(&node);
+    logFile.close();
 }
 
 int main()
@@ -243,6 +257,7 @@ int main()
             case AGENT_DISCONNECTED:
                 destroyEntities();
                 state = WAITING_AGENT;
+
                 break;
             default:
                 break;
