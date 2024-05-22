@@ -147,15 +147,6 @@ void createEntities(){
 
     // create rcl_node
     rclc_node_init_default(&node, "pico_node", "", &support);
-
-    // create a publisher
-    rclc_publisher_init_default(
-            &publisher,
-            &node,
-            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-            "control_topic");
-
-
     // create a timer,
     const unsigned int timer_timeout = 100;
     rclc_timer_init_default(
@@ -164,12 +155,20 @@ void createEntities(){
             RCL_MS_TO_NS(timer_timeout),
             timer_callback);
 
+    // create a publisher
+    rclc_publisher_init_default(
+            &publisher,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+            "control_topic");
+
     // create a subscriber for the motor
     rclc_subscription_init_default(
             &motor_subscriber,
             &node,
             ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
             "pi_motor_publishing_topic");
+
     //Create a subscriber for the servo
     rclc_subscription_init_default(
             &servo_subscriber,
@@ -180,12 +179,16 @@ void createEntities(){
     // create executor
     rclc_executor_init(&executor, &support.context, 3, &allocator);
     rclc_executor_add_timer(&executor, &timer);
+
+    // add subscribers
     rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
     rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
 
 }
 
 void destroyEntities(){
+    rmw_context_t * rmw_context = rcl_context_get_rmw_context(&support.context);
+    (void) rmw_uros_set_context_entity_destroy_session_timeout(rmw_context, 0);
     // free resources
     rcl_publisher_fini(&publisher, &node);
     rcl_timer_fini(&timer);
