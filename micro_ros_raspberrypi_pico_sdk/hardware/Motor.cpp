@@ -4,7 +4,6 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 #include <string>
-#include <numeric>
 
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
@@ -50,6 +49,9 @@ void Motor::setSpeed(int speedPWM) {
     pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
     currentPwm = speedPWM;
 
+    // Initialize the Kalman filter variables
+    previous_speed_estimate = 0.0; // Initial speed estimate, can be set to 0
+    estimated_error = 1.0; // Initial error estimate, can be set to a high value
 }
 std::string Motor::getDirection() {
     return motor_direction;
@@ -57,8 +59,6 @@ std::string Motor::getDirection() {
 
 double Motor::getSpeed() {
 
-// Measure the speed
-    double speed = 0; // Replace this with the actual code to measure the speed
     // angular speed in rads/sec = (Revs per second / second) * (2pi)
     // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
 
@@ -66,27 +66,17 @@ double Motor::getSpeed() {
     // v = w * 0.05;
 
     if (motor_direction == "forward"){
-        speed = static_cast<double>(
+        return static_cast<double>(
                 ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
     }
     else if (motor_direction == "reverse"){
-        speed = static_cast<double>(
-                -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+        return static_cast<double>(
+            -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+    }
+    else {
+        return 0;
     }
 
-    // Add the new measurement to the list
-    speedMeasurements.push_back(speed);
-
-    // If we have more than N measurements, remove the oldest one
-    if (speedMeasurements.size() > N) {
-        speedMeasurements.pop_front();
-    }
-
-    // Calculate the average speed
-    double sum = std::accumulate(speedMeasurements.begin(), speedMeasurements.end(), 0.0);
-    double averageSpeed = sum / speedMeasurements.size();
-
-    return averageSpeed;
 }
 
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
