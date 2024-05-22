@@ -88,7 +88,7 @@ void subscription_callback_motor(const void *msgin) {
         double error = desired_pwm - current_pwm;
 
         // Adjust the PWM based on the error
-        int new_pwm = motor.getCurrentPwm() + Kp * error; // Kp is the proportional gain
+        int new_pwm = static_cast<int>(std::round(motor.getCurrentPwm() + Kp * error));
 
         // Set the new PWM value to the motor
         motor.setSpeed(new_pwm);
