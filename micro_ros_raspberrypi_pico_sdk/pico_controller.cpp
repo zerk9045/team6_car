@@ -3,7 +3,7 @@
 #include <rclc/executor.h>
 #include <std_msgs/msg/string.h>
 #include <Servo.h>
-#include <Motor.h>
+#include "hardware/Motor.h"
 #include <string>
 #include <rmw_microros/rmw_microros.h>
 #include <sstream>
@@ -48,14 +48,12 @@ bool isValidDirection(const std::string& direction) {
 }
 
 bool isValidPwm(int pwm) {
-    return pwm >= 1375000 && pwm <= 3000000;
+    return pwm >= MIN_PWM && pwm <= MAX_PWM;
 }
 
 void subscription_callback_motor(const void *msgin) {
     // Define the mapping constants
     double maxSpeed = 15.0;     // Maximum speed
-    int maxPWM = 3000000;       // Maximum PWM value (for max forward)
-    int minPWM = 1375000;       // Minimum PWM value (for motor off)
 
     const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
     std::string msg_data = msg->data.data;
@@ -84,7 +82,7 @@ void subscription_callback_motor(const void *msgin) {
         double current_speed = motor.getSpeed();
         double current_pwm = 0;
         // Convert speed to PWM signal
-        current_pwm  = minPWM + static_cast<int>((std::abs(current_speed)) * (maxPWM - minPWM) / maxSpeed);
+        current_pwm  = MIN_PWM + static_cast<int>((std::abs(current_speed)) * (MAX_PWM - MIN_PWM) / maxSpeed);
 
         // Calculate the error
         double error = desired_pwm - current_pwm;
