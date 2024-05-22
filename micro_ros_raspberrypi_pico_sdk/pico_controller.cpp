@@ -56,7 +56,6 @@ void subscription_callback_servo(const void * msgin) {
     const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
     int pwm = msg->data;
     servo.setAngle(pwm);
-
 }
 
 bool isValidDirection(const std::string& direction) {
