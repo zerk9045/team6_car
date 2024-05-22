@@ -58,8 +58,7 @@ std::string Motor::getDirection() {
 double Motor::getSpeed() {
 
 // Measure the speed
-    double speed = static_cast<double>(
-            ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05); // Replace this with the actual code to measure the speed
+    double speed = 0; // Replace this with the actual code to measure the speed
     // angular speed in rads/sec = (Revs per second / second) * (2pi)
     // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
 
