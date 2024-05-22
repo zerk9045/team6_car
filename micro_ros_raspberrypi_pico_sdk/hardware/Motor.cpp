@@ -19,6 +19,7 @@ Motor::Motor(){//, ) {
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
     previous_error = 0;
+    integral_error = 0;
 
 }
 

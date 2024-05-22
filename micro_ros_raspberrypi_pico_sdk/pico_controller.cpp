@@ -96,19 +96,24 @@ void subscription_callback_motor(const void *msgin) {
         motor.updateDirection(forward, reverse, direction);
     }
 
-    double Kp = 0.3; // Proportional gain need to tweak this value
-    double Kd = 1.9; // Derivative gain, tweak this value
+    // Use Ziegler–Nichols method to tune the PID controller
+    double Kp = 0.3; // Proportional gain
+    double Ki = 0.0; // Integral gain, tweak this value
+    double Kd = 0.0; // Derivative gain, tweak this value
     // Measure the current speed
     double current_speed = motor.getSpeed();
 
     // Calculate the error
     double error = desired_speed - current_speed;
+
+    // Calculate the integral term
+    motor.integral_error += error;
+
     // Calculate the derivative term
     double derivative = error - motor.previous_error;
 
     // Adjust the PWM based on the error
-    int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error + Kd * derivative);
-
+    int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative);
 
     // Set the new PWM value to the motor
     motor.setSpeed(new_pwm);

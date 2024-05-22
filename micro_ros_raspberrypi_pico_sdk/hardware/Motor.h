@@ -17,6 +17,7 @@ public:
     // Constructor
     Motor();
     double previous_error;
+    double integral_error;
     // Destructor
     ~Motor();
     static void set_pwm_pin(uint pin, uint freq, float duty_c);
