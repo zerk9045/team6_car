@@ -82,6 +82,7 @@ void subscription_callback_motor(const void *msgin) {
     const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
     double speed = std::stod(msg->data.data);
     // Set the motor speed
+    motor.setSpeed(speed);
 //    motor.getSpeed();
 //    motor.pidController(speed);
 }
