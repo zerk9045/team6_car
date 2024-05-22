@@ -83,7 +83,7 @@ void subscription_callback_motor(const void *msgin) {
     }
 
     // Extract pwmValue and direction
-    int desired_speed = std::stoi(msg_data.substr(0, space_pos));
+    double desired_speed = std::stod(msg_data.substr(0, space_pos));
     std::string direction = msg_data.substr(space_pos + 1);
 
     // Validate direction and pwm
@@ -91,31 +91,6 @@ void subscription_callback_motor(const void *msgin) {
         // Invalid direction or pwm value, handle error or return
         return;
     }
-
-    // If the direction has not changed and the pwm is the same, no need to update
-    if (motor.getDirection() == direction) {
-        double Kp = 0.3; // Proportional gain need to tweak this value
-        double Kd = 1.9; // Derivative gain, tweak this value
-        // Measure the current speed
-        double current_speed = motor.getSpeed();
-
-        // Calculate the error
-        double error = desired_speed - current_speed;
-        // Calculate the derivative term
-        double derivative = error - motor.previous_error;
-
-        // Adjust the PWM based on the error
-        int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error + Kd * derivative);
-
-
-        // Set the new PWM value to the motor
-        motor.setSpeed(new_pwm);
-
-        // Update the previous error
-        motor.previous_error = error;
-        return;
-    }
-
     // Update the motor direction
     // check to see if direction has changed before updating
     if (motor.getDirection() != direction) {
@@ -124,10 +99,26 @@ void subscription_callback_motor(const void *msgin) {
         motor.updateDirection(forward, reverse, direction);
     }
 
+    double Kp = 0.3; // Proportional gain need to tweak this value
+    double Kd = 1.9; // Derivative gain, tweak this value
+    // Measure the current speed
+    double current_speed = motor.getSpeed();
+
+    // Calculate the error
+    double error = desired_speed - current_speed;
+    // Calculate the derivative term
+    double derivative = error - motor.previous_error;
+
+    // Adjust the PWM based on the error
+    int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error + Kd * derivative);
 
 
-    // Set the motor speed
-    motor.setSpeed(desired_pwm);
+    // Set the new PWM value to the motor
+    motor.setSpeed(new_pwm);
+
+    // Update the previous error
+    motor.previous_error = error;
+
 }
 
 bool pingAgent(){
