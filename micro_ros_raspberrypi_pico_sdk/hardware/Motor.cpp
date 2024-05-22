@@ -36,7 +36,7 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
 
-void Motor:getCurrentPwm(){
+int Motor::getCurrentPwm(){
     return currentPwm;
 }
 
