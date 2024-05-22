@@ -113,6 +113,9 @@ void subscription_callback_motor(const void *msgin) {
 
         // Set the new PWM value to the motor
         motor.setSpeed(new_pwm);
+
+        // Update the previous error
+        motor.previous_error = error;
         return;
     }
 
