@@ -12,6 +12,7 @@
 #include "pico_uart_transports.h"
 #include <rcl/error_handling.h>
 #include <std_msgs/msg/int32.h>
+#include "../config/pin_config.h"
 
 rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
