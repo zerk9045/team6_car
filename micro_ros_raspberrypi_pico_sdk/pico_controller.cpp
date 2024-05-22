@@ -11,13 +11,14 @@
 #include <iterator>
 #include "pico_uart_transports.h"
 #include <rcl/error_handling.h>
+#include <std_msgs/msg/int32.h>
 
 rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
 rcl_subscription_t servo_subscriber;
 std_msgs__msg__String motor_msg;
 std_msgs__msg__String msg;
-std_msgs__msg__String servo_msg;
+std_msgs__msg__Int32 servo_msg;
 Motor motor;
 Servo servo;
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
@@ -30,15 +31,15 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
         rcl_publish(&publisher, &msg, NULL);
-        printf("Published: '%s'\n", msg.data.data);
+        //printf("Published: '%s'\n", msg.data.data);
         free(msg.data.data); // Free the allocated memory
     }
 }
 
 // TODO: add error checks to ensure the message is in the correct format
 void subscription_callback_servo(const void * msgin) {
-    const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
-    int pwm = std::stoi(msg->data.data);
+    const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
+    int pwm = msg->data;
     servo.setAngle(pwm);
 
 }
@@ -164,7 +165,7 @@ int main()
     rclc_subscription_init_default(
             &servo_subscriber,
             &node,
-            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
             "pi_servo_publishing_topic");
 
     // create executor
@@ -172,7 +173,7 @@ int main()
     rclc_executor_init(&executor, &support.context, 3, &allocator);
     rclc_executor_add_timer(&executor, &timer);
     rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
-    rclc_executor_add_subscription(&executor, &servo_subscriber, &msg, &subscription_callback_servo, ON_NEW_DATA);
+    rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
 
     while(1){
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
