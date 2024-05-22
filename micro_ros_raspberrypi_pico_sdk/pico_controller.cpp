@@ -160,7 +160,7 @@ int main()
     //testMotor();
 //    testPIDController();
 //    motor.setSpeed(1.0);
-    motor.setSpeed(1);
+
   while(1){
 //  motor.getSpeed();
 //  motor.pidController(0.5);
