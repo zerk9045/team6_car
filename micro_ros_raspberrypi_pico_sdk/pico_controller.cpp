@@ -95,6 +95,7 @@ void subscription_callback_motor(const void *msgin) {
     // If the direction has not changed and the pwm is the same, no need to update
     if (motor.getDirection() == direction) {
         double Kp = 0.5; // Proportional gain need to tweak this value
+        double Kd = 0.1; // Derivative gain, tweak this value
         // Measure the current speed
         double current_speed = motor.getSpeed();
         double current_pwm = 0;
@@ -103,9 +104,12 @@ void subscription_callback_motor(const void *msgin) {
 
         // Calculate the error
         double error = desired_pwm - current_pwm;
+        // Calculate the derivative term
+        double derivative = error - motor.previous_error;
 
         // Adjust the PWM based on the error
-        int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error);
+        int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error + Kd * derivative);
+
 
         // Set the new PWM value to the motor
         motor.setSpeed(new_pwm);
