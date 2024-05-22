@@ -51,7 +51,8 @@ bool isValidDirection(const std::string& direction) {
 bool isValidPwm(int pwm) {
     return pwm >= MIN_PWM && pwm <= MAX_PWM;
 }
-
+// TODO: add a custom motor message so we dont have to parse the string
+//https://micro.ros.org/docs/tutorials/advanced/create_new_type/
 void subscription_callback_motor(const void *msgin) {
     // Define the mapping constants
     double maxSpeed = 15.0;     // Maximum speed
