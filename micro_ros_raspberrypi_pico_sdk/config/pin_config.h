@@ -8,5 +8,6 @@ const int INA_PIN = 18; // Used to configure motor direction
 const int INB_PIN = 19; // Used to configure motor direction
 const int IR_SENSOR_PIN = 22; // Used for IR sensor D0 signal
 const int LED_PIN = 14; // Used for onboard LED
+const int PULSE_LED = 15; // Used for pulse LED
 
 #endif //TEAM6_CAR_PIN_CONFIG_H
