@@ -13,7 +13,7 @@
 int IRSensor::sensor_interrupts = 0;
 int IRSensor::counts_per_timer = 0;
 // Declare a hardware timer
-absolute_time_t timer;
+absolute_time_t irTimer;
 // Declare a timer pool
 alarm_pool_t *timer_pool;
 // Interrupt handler for the timer
@@ -29,7 +29,7 @@ IRSensor::IRSensor() {
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
     gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
-    timer = make_timeout_time_ms(100);
+    irTimer = make_timeout_time_ms(100);
     add_alarm_in_us(100000, timer_interrupt, NULL, true);
 }
 
