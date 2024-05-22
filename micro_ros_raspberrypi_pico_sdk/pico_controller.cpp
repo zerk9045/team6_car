@@ -113,9 +113,14 @@ void subscription_callback_motor(const void *msgin) {
 //    }
 
     // Update the motor direction
-    bool forward = (direction == "forward");
-    bool reverse = (direction == "reverse");
-    motor.updateDirection(forward, reverse, direction);
+    // check to see if direction has changed before updating
+    if (motor.getDirection() != direction) {
+        bool forward = (direction == "forward");
+        bool reverse = (direction == "reverse");
+        motor.updateDirection(forward, reverse, direction);
+    }
+
+
 
     // Set the motor speed
     motor.setSpeed(desired_pwm);
