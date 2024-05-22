@@ -83,11 +83,11 @@ void subscription_callback_motor(const void *msgin) {
     }
 
     // Extract pwmValue and direction
-    int desired_pwm = std::stoi(msg_data.substr(0, space_pos));
+    int desired_speed = std::stoi(msg_data.substr(0, space_pos));
     std::string direction = msg_data.substr(space_pos + 1);
 
     // Validate direction and pwm
-    if (!isValidDirection(direction) || !isValidPwm(desired_pwm)) {
+    if (!isValidDirection(direction)){ //|| !isValidPwm(desired_pwm)) {
         // Invalid direction or pwm value, handle error or return
         return;
     }
@@ -98,12 +98,9 @@ void subscription_callback_motor(const void *msgin) {
         double Kd = 1.9; // Derivative gain, tweak this value
         // Measure the current speed
         double current_speed = motor.getSpeed();
-        double current_pwm = 0;
-        // Convert speed to PWM signal
-        current_pwm  = MIN_PWM + static_cast<int>((std::abs(current_speed)) * (MAX_PWM - MIN_PWM) / maxSpeed);
 
         // Calculate the error
-        double error = desired_pwm - current_pwm;
+        double error = desired_speed - current_speed;
         // Calculate the derivative term
         double derivative = error - motor.previous_error;
 
