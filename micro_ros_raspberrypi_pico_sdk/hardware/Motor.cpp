@@ -57,6 +57,7 @@ std::string Motor::getDirection() {
     return motor_direction;
 }
 
+
 double Motor::getSpeed() {
 
     // angular speed in rads/sec = (Revs per second / second) * (2pi)
