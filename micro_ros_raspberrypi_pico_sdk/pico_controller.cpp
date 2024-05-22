@@ -94,7 +94,7 @@ void subscription_callback_motor(const void *msgin) {
 
     // If the direction has not changed and the pwm is the same, no need to update
     if (motor.getDirection() == direction) {
-        double Kp = 0.5; // Proportional gain need to tweak this value
+        double Kp = 0.2; // Proportional gain need to tweak this value
         double Kd = 0.5; // Derivative gain, tweak this value
         // Measure the current speed
         double current_speed = motor.getSpeed();
