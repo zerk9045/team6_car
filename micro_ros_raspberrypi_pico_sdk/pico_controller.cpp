@@ -35,76 +35,7 @@ rcl_allocator_t allocator;
 rclc_support_t support;
 rclc_executor_t executor;
 
-bool pingAgent(){
-    // Wait for agent successful ping for 2 minutes.
-    const int timeout_ms = 100;
-    const uint8_t attempts = 1;
 
-    rcl_ret_t ret = rmw_uros_ping_agent(timeout_ms, attempts);
-
-    if (ret != RCL_RET_OK){
-        gpio_put(LED_PIN, 0);
-        return false;
-    } else {
-        gpio_put(LED_PIN, 1);
-    }
-    return true;
-}
-
-void createEntities(){
-    allocator = rcl_get_default_allocator();
-
-    // create init_options
-    rclc_support_init(&support, 0, NULL, &allocator);
-
-    // create rcl_node
-    rclc_node_init_default(&node, "pico_node", "", &support);
-
-    // create a publisher
-    rclc_publisher_init_default(
-            &publisher,
-            &node,
-            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-            "control_topic");
-
-
-    // create a timer,
-    const unsigned int timer_timeout = 100;
-    rclc_timer_init_default(
-            &timer,
-            &support,
-            RCL_MS_TO_NS(timer_timeout),
-            timer_callback);
-
-    // create a subscriber for the motor
-    rclc_subscription_init_default(
-            &motor_subscriber,
-            &node,
-            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
-            "pi_motor_publishing_topic");
-    //Create a subscriber for the servo
-    rclc_subscription_init_default(
-            &servo_subscriber,
-            &node,
-            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-            "pi_servo_publishing_topic");
-
-    // create executor
-    rclc_executor_init(&executor, &support.context, 3, &allocator);
-    rclc_executor_add_timer(&executor, &timer);
-    rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
-    rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
-
-}
-
-void destroyEntities(){
-    // free resources
-    rcl_publisher_fini(&publisher, &node);
-    rcl_timer_fini(&timer);
-    rcl_subscription_fini(&motor_subscriber, &node);
-    rcl_subscription_fini(&servo_subscriber, &node);
-    rcl_node_fini(&node);
-}
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
@@ -190,6 +121,76 @@ void subscription_callback_motor(const void *msgin) {
 
     // Set the motor speed
     motor.setSpeed(desired_pwm);
+}
+bool pingAgent(){
+    // Wait for agent successful ping for 2 minutes.
+    const int timeout_ms = 100;
+    const uint8_t attempts = 1;
+
+    rcl_ret_t ret = rmw_uros_ping_agent(timeout_ms, attempts);
+
+    if (ret != RCL_RET_OK){
+        gpio_put(LED_PIN, 0);
+        return false;
+    } else {
+        gpio_put(LED_PIN, 1);
+    }
+    return true;
+}
+
+void createEntities(){
+    allocator = rcl_get_default_allocator();
+
+    // create init_options
+    rclc_support_init(&support, 0, NULL, &allocator);
+
+    // create rcl_node
+    rclc_node_init_default(&node, "pico_node", "", &support);
+
+    // create a publisher
+    rclc_publisher_init_default(
+            &publisher,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+            "control_topic");
+
+
+    // create a timer,
+    const unsigned int timer_timeout = 100;
+    rclc_timer_init_default(
+            &timer,
+            &support,
+            RCL_MS_TO_NS(timer_timeout),
+            timer_callback);
+
+    // create a subscriber for the motor
+    rclc_subscription_init_default(
+            &motor_subscriber,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+            "pi_motor_publishing_topic");
+    //Create a subscriber for the servo
+    rclc_subscription_init_default(
+            &servo_subscriber,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+            "pi_servo_publishing_topic");
+
+    // create executor
+    rclc_executor_init(&executor, &support.context, 3, &allocator);
+    rclc_executor_add_timer(&executor, &timer);
+    rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
+    rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
+
+}
+
+void destroyEntities(){
+    // free resources
+    rcl_publisher_fini(&publisher, &node);
+    rcl_timer_fini(&timer);
+    rcl_subscription_fini(&motor_subscriber, &node);
+    rcl_subscription_fini(&servo_subscriber, &node);
+    rcl_node_fini(&node);
 }
 
 int main()
