@@ -56,21 +56,20 @@ void Motor::adjustSpeed(double adjustment) {
 
 void Motor::setSpeed(double speed) {
     std::string newDirection;
-    if (speed > 0) {
-        newDirection = "forward";
-    } else if (speed < 0) {
-        newDirection = "reverse";
-    } else {
-        newDirection = "stop";
-    }
-
+//    if (speed > 0) {
+//        newDirection = "forward";
+//    } else if (speed < 0) {
+//        newDirection = "reverse";
+//    } else {
+//        newDirection = "stop";
+//    }
+    newDirection = "forward";
     // Only update direction if it has changed
     if (newDirection != motor_direction) {
         updateDirection(newDirection == "forward", newDirection == "reverse", newDirection);
     }
-
     // Convert the speed to a PWM value
-    int speedPWM = mapSpeedToPwm(abs(speed));
+    int speedPWM = speed;//mapSpeedToPwm(abs(speed));
 
     // Ensure PWM is within the valid range
     if (speedPWM > MAX_PWM) {
@@ -87,6 +86,7 @@ void Motor::setSpeed(double speed) {
 
 int Motor::mapSpeedToPwm(double speed) {
     // Map the speed to a PWM value
+    // 0.0 =
     int pwm = (speed - MIN_SPEED) * (MAX_PWM - MIN_PWM) / (MAX_SPEED - MIN_SPEED) + MIN_PWM;
 
     return pwm;
