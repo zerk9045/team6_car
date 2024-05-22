@@ -47,9 +47,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
-        rcl_publish(&publisher, &msg, NULL);
-        //printf("Published: '%s'\n", msg.data.data);
-        free(msg.data.data); // Free the allocated memory
+        rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
     }
 }
 
@@ -123,6 +121,7 @@ void subscription_callback_motor(const void *msgin) {
     // Set the motor speed
     motor.setSpeed(desired_pwm);
 }
+
 bool pingAgent(){
     // Wait for agent successful ping for 2 minutes.
     const int timeout_ms = 100;
@@ -189,12 +188,14 @@ void createEntities(){
 void destroyEntities(){
     rmw_context_t * rmw_context = rcl_context_get_rmw_context(&support.context);
     (void) rmw_uros_set_context_entity_destroy_session_timeout(rmw_context, 0);
+    rcl_ret_t ret;
+
     // free resources
-    rcl_publisher_fini(&publisher, &node);
-    rcl_timer_fini(&timer);
-    rcl_subscription_fini(&motor_subscriber, &node);
-    rcl_subscription_fini(&servo_subscriber, &node);
-    rcl_node_fini(&node);
+    ret = rcl_publisher_fini(&publisher, &node);
+    ret = rcl_timer_fini(&timer);
+    ret = rcl_subscription_fini(&motor_subscriber, &node);
+    ret = rcl_subscription_fini(&servo_subscriber, &node);
+    ret = rcl_node_fini(&node);
 }
 
 int main()
