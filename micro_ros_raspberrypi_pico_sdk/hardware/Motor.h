@@ -6,7 +6,7 @@
 #include <string>
 #include <deque>
 #define BRAKE_PWM 1500000
-#define MAX_PWM 2000000
+#define MAX_PWM 3000000
 #define MIN_PWM 1375000
 
 class Motor {
