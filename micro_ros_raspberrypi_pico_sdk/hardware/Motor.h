@@ -8,10 +8,11 @@
 #define MAX_PWM 2000000
 #define MIN_PWM 1375000
 #define BUFFER_SIZE 10
-double speedBuffer[BUFFER_SIZE] = {0.0};
-int bufferIndex = 0;
+
 class Motor {
     IRSensor* irSensor;
+    double speedBuffer[BUFFER_SIZE];
+    int bufferIndex;
 public:
     // Constructor
     Motor();
