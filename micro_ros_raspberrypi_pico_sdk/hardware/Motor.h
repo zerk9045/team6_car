@@ -7,7 +7,7 @@
 #define BRAKE_PWM 1500000
 #define MAX_PWM 2000000
 #define MIN_PWM 1375000
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 20
 
 class Motor {
     IRSensor* irSensor;
