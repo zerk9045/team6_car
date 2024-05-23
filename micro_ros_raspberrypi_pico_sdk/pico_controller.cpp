@@ -100,7 +100,7 @@ void subscription_callback_motor(const void *msgin) {
     if (motor.getDirection() != direction) {
         bool forward = (direction == "forward");
         bool reverse = (direction == "reverse");
-        motor.updateDirection(forward, reverse, direction);
+        motor.updateDirection(reverse, forward, direction);
     }
     double Kp = 0;
     // Use Ziegler–Nichols method to tune the PID controller
