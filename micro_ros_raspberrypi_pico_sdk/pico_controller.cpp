@@ -16,7 +16,7 @@
 #include <fstream>
 #include <chrono>
 #define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
-#define KP_TEST 1 // Use to test different Kp values
+#define KP_TEST 0 // Use to test different Kp values
 double KP_GLOBAL = 0.01; // Proportional gain
 std::chrono::time_point<std::chrono::system_clock> start_time;
 // Declare a new publisher
@@ -107,7 +107,7 @@ void subscription_callback_motor(const void *msgin) {
     if(KP_TEST){
         Kp = KP_GLOBAL;
     }else{
-        Kp = 0.05; // Proportional gain
+        Kp = 0.01; // Proportional gain
     }
     //double Kp = 0.05; // Proportional gain
     double Ki = 0.0; // Integral gain, tweak this value
