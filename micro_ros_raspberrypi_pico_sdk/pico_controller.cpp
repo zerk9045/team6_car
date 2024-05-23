@@ -16,7 +16,9 @@
 #include <fstream>
 #include <chrono>
 #define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
-
+#define KP_TEST 1 // Use to test different Kp values
+double KP_GLOBAL = 0.01; // Proportional gain
+std::chrono::time_point<std::chrono::system_clock> start_time;
 // Declare a new publisher
 rcl_publisher_t log_publisher;
 rcl_publisher_t publisher;
@@ -100,9 +102,14 @@ void subscription_callback_motor(const void *msgin) {
         bool reverse = (direction == "reverse");
         motor.updateDirection(forward, reverse, direction);
     }
-
+    double Kp = 0;
     // Use Ziegler–Nichols method to tune the PID controller
-    double Kp = 0.05; // Proportional gain
+    if(KP_TEST){
+        Kp = KP_GLOBAL;
+    }else{
+        Kp = 0.05; // Proportional gain
+    }
+    //double Kp = 0.05; // Proportional gain
     double Ki = 0.0; // Integral gain, tweak this value
     double Kd = 0.0; // Derivative gain, tweak this value
     // Measure the current speed
@@ -116,6 +123,15 @@ void subscription_callback_motor(const void *msgin) {
 
     // Calculate the derivative term
     double derivative = error - motor.previous_error;
+    if(KP_TEST){
+        // Check if 10 seconds have passed
+        auto now = std::chrono::system_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - start_time);
+        if (elapsed.count() >= 10) {
+            KP_GLOBAL += 0.01; // Increment Kp by 0.01 every 20 seconds
+            start_time = now;
+        }
+    }
 
     // Adjust the PWM based on the error
     int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative);
@@ -136,8 +152,7 @@ void subscription_callback_motor(const void *msgin) {
     if(PID_LOGGING_ENABLED){
         // Format the log data as a string
         std::stringstream log_data;
-        log_data << /*timestamp << "," <<*/ error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
-
+        log_data << /*timestamp << "," <<*/ Kp << "," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
         // Create a new message
         std_msgs__msg__String log_msg;
         std_msgs__msg__String__init(&log_msg);
@@ -243,6 +258,7 @@ void destroyEntities(){
 
 int main()
 {
+    start_time = std::chrono::system_clock::now();
     stdio_init_all();
     rmw_uros_set_custom_transport(
             true,
