@@ -27,7 +27,7 @@ int64_t timer_interrupt(alarm_id_t id, void *user_data) {
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_RISE, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
     irTimer = make_timeout_time_ms(100);
     add_alarm_in_us(100000, timer_interrupt, NULL, true);
@@ -60,6 +60,9 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // Otherwise, this is a valid interrupt, so we update the last interrupt time
     // and increment the interrupt counter
     last_interrupt_time = now;
-    sensor_interrupts++;
+    //If IR_SENSOR PIN is high then increment the counter
+    if (gpio_get(IR_SENSOR_PIN)) {
+        sensor_interrupts++;
+    }
 }
 
