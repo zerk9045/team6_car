@@ -102,7 +102,7 @@ void subscription_callback_motor(const void *msgin) {
     }
 
     // Use Ziegler–Nichols method to tune the PID controller
-    double Kp = 0.3; // Proportional gain
+    double Kp = 0.05; // Proportional gain
     double Ki = 0.0; // Integral gain, tweak this value
     double Kd = 0.0; // Derivative gain, tweak this value
     // Measure the current speed
@@ -186,7 +186,7 @@ void createEntities(){
             timer_callback);
 
 
-    // Initialize the new publisher
+    // create log publisher
     rclc_publisher_init_default(
             &log_publisher,
             &node,
