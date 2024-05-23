@@ -135,7 +135,7 @@ void subscription_callback_motor(const void *msgin) {
 
     // Format the log data as a string
     std::stringstream log_data;
-    log_data << /*timestamp << */"," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
+    log_data << /*timestamp << "," <<*/ error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
 
     // Create a new message
     std_msgs__msg__String log_msg;
