@@ -138,7 +138,7 @@ void subscription_callback_motor(const void *msgin) {
     }
 
     // Adjust the PWM based on the error
-    int new_pwm = static_cast<int>(motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative);
+    double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Set the new PWM value to the motor
     motor.setSpeed(new_pwm);

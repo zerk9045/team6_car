@@ -22,7 +22,7 @@ public:
     ~Motor();
     static void set_pwm_pin(uint pin, uint freq, float duty_c);
     // Function to set motor speed
-    void setSpeed(int speedPWM);
+    void setSpeed(double speedPWM);
     // Function to read motor speed
     double getSpeed();
     void updateDirection(bool inAValue, bool inBValue, std::string direction);
@@ -35,7 +35,7 @@ private:
     //IRSensor* irSensor; // IRSensor object for speed calculation
     // Private helper function to set motor direction
     std::string motor_direction;
-    int currentPwm;
+    double currentPwm;
     double previous_speed_estimate; // Previous speed estimate for Kalman filter
     double estimated_error; // Estimated error for Kalman filter
 };

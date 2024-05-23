@@ -43,7 +43,7 @@ int Motor::getCurrentPwm(){
     return currentPwm;
 }
 
-void Motor::setSpeed(int speedPWM) {
+void Motor::setSpeed(double speedPWM) {
     // Ensure PWM is within the valid range
     if (currentPwm == speedPWM) {
         return;
