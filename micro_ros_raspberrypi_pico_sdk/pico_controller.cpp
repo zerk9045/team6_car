@@ -16,9 +16,9 @@
 #include <fstream>
 #include <chrono>
 
-// Create a `std::ofstream` object to write to a CSV file:
-std::ofstream logFile("pid_log.csv");
 
+// Declare a new publisher
+rcl_publisher_t log_publisher;
 rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
 rcl_subscription_t servo_subscriber;
@@ -133,8 +133,25 @@ void subscription_callback_motor(const void *msgin) {
     auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
     long timestamp = value.count();
 
-    // Log the data
-    logFile << timestamp << "," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << motor.getSpeed() << "," << desired_speed << std::endl;}
+    // Format the log data as a string
+    std::stringstream log_data;
+    log_data << timestamp << "," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
+
+    // Create a new message
+    std_msgs__msg__String log_msg;
+    std_msgs__msg__String__init(&log_msg);
+
+    // Assign the log data to the message
+    log_msg.data.data = strdup(log_data.str().c_str());
+    log_msg.data.size = strlen(log_msg.data.data);
+    log_msg.data.capacity = log_msg.data.size + 1;
+
+    // Publish the message
+    rcl_ret_t ret = rcl_publish(&log_publisher, &log_msg, NULL);
+
+    // Free the memory allocated for the message data
+    std_msgs__msg__String__fini(&log_msg);
+}
 
 bool pingAgent(){
     // Wait for agent successful ping for 2 minutes.
@@ -167,6 +184,14 @@ void createEntities(){
             &support,
             RCL_MS_TO_NS(timer_timeout),
             timer_callback);
+
+
+    // Initialize the new publisher
+    rclc_publisher_init_default(
+            &log_publisher,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+            "log_topic");
 
     // create a publisher
     rclc_publisher_init_default(
@@ -210,7 +235,7 @@ void destroyEntities(){
     ret = rcl_subscription_fini(&motor_subscriber, &node);
     ret = rcl_subscription_fini(&servo_subscriber, &node);
     ret = rcl_node_fini(&node);
-    logFile.close();
+    ret = rcl_publisher_fini(&log_publisher, &node);
 }
 
 int main()
