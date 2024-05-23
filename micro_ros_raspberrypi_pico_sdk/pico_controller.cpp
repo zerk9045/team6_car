@@ -126,16 +126,16 @@ void subscription_callback_motor(const void *msgin) {
     // Update the previous error
     motor.previous_error = error;
 
-    // Get the current time in milliseconds since epoch
-    auto now = std::chrono::system_clock::now();
-    auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
-    auto epoch = now_ms.time_since_epoch();
-    auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
-    long timestamp = value.count();
+//    // Get the current time in milliseconds since epoch
+//    auto now = std::chrono::system_clock::now();
+//    auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+//    auto epoch = now_ms.time_since_epoch();
+//    auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
+//    long timestamp = value.count();
 
     // Format the log data as a string
     std::stringstream log_data;
-    log_data << timestamp << "," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
+    log_data << /*timestamp << */"," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
 
     // Create a new message
     std_msgs__msg__String log_msg;
