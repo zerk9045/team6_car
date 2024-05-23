@@ -15,7 +15,7 @@ Motor::Motor(){//, ) {
     gpio_init(MOTOR_PWM);
     gpio_init(INA_PIN);
     gpio_init(INB_PIN);
-    set_pwm_pin(MOTOR_PWM, 1000, 0);
+    set_pwm_pin(MOTOR_PWM, 1000, MIN_PWM);
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
     previous_error = 0;
@@ -53,7 +53,7 @@ void Motor::setSpeed(int speedPWM) {
     if (currentPwm == speedPWM) {
         return;
     }
-    pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM));
+    pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
     currentPwm = speedPWM;
 }
 std::string Motor::getDirection() {
