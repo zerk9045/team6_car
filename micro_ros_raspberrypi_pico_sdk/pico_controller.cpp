@@ -104,6 +104,10 @@ void subscription_callback_motor(const void *msgin) {
     }
     double Kp = 0;
     // Use Ziegler–Nichols method to tune the PID controller
+    /*1. Find Kmax the value of Kp where it begins to oscillate
+      2. Measure the Tu period of the Kmax oscillation
+      3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
+    */
     if(KP_TEST){
         Kp = KP_GLOBAL;
     }else{
