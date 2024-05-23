@@ -15,7 +15,7 @@
 #include "../config/pin_config.h"
 #include <fstream>
 #include <chrono>
-
+#define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
 
 // Declare a new publisher
 rcl_publisher_t log_publisher;
@@ -133,24 +133,27 @@ void subscription_callback_motor(const void *msgin) {
 //    auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
 //    long timestamp = value.count();
 
-    // Format the log data as a string
-    std::stringstream log_data;
-    log_data << /*timestamp << "," <<*/ error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
+    if(PID_LOGGING_ENABLED){
+        // Format the log data as a string
+        std::stringstream log_data;
+        log_data << /*timestamp << "," <<*/ error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
 
-    // Create a new message
-    std_msgs__msg__String log_msg;
-    std_msgs__msg__String__init(&log_msg);
+        // Create a new message
+        std_msgs__msg__String log_msg;
+        std_msgs__msg__String__init(&log_msg);
 
-    // Assign the log data to the message
-    log_msg.data.data = strdup(log_data.str().c_str());
-    log_msg.data.size = strlen(log_msg.data.data);
-    log_msg.data.capacity = log_msg.data.size + 1;
+        // Assign the log data to the message
+        log_msg.data.data = strdup(log_data.str().c_str());
+        log_msg.data.size = strlen(log_msg.data.data);
+        log_msg.data.capacity = log_msg.data.size + 1;
 
-    // Publish the message
-    rcl_ret_t ret = rcl_publish(&log_publisher, &log_msg, NULL);
+        // Publish the message
+        rcl_ret_t ret = rcl_publish(&log_publisher, &log_msg, NULL);
 
-    // Free the memory allocated for the message data
-    std_msgs__msg__String__fini(&log_msg);
+        // Free the memory allocated for the message data
+        std_msgs__msg__String__fini(&log_msg);
+    }
+
 }
 
 bool pingAgent(){
