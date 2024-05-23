@@ -53,7 +53,7 @@ void Motor::setSpeed(int speedPWM) {
     if (currentPwm == speedPWM) {
         return;
     }
-    pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM/1000));
+    pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM);
     currentPwm = speedPWM;
 }
 std::string Motor::getDirection() {
