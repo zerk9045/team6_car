@@ -22,7 +22,7 @@ class IRSensor {
 
 
         // Method to handle timer actions
-
+        static bool prev_state;
         // Variable to store the number of interrupts
         static int sensor_interrupts;
 

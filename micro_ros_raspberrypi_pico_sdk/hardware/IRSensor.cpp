@@ -8,7 +8,7 @@
 #include "pico/time.h"
 #include "stdio.h"
 // Declare a global instance of IRSensor
-
+bool IRSensor::prev_state = false;
 // Initialize static member
 int IRSensor::sensor_interrupts = 0;
 int IRSensor::counts_per_timer = 0;
@@ -27,7 +27,8 @@ int64_t timer_interrupt(alarm_id_t id, void *user_data) {
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_RISE, true, IRSensor::do_interrupt);
+
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
     irTimer = make_timeout_time_ms(100);
     add_alarm_in_us(100000, timer_interrupt, NULL, true);
@@ -43,6 +44,7 @@ int IRSensor::getCountsPerTimer() {
     return counts_per_timer;
 }
 
+
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // Get the current time
     absolute_time_t now = get_absolute_time();
@@ -53,16 +55,24 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // If the time difference is less than the debounce period (e.g., 1000 microseconds),
     // then this interrupt is likely due to noise, so we ignore it
     // Will have to adjust this time.
-    if (diff_us < 1500) {
+    if (diff_us < 1000) {
         return;
     }
 
     // Otherwise, this is a valid interrupt, so we update the last interrupt time
-    // and increment the interrupt counter
     last_interrupt_time = now;
-    //If IR_SENSOR PIN is high then increment the counter
-    if (gpio_get(IR_SENSOR_PIN)) {
+
+    // Check the current state of the IR sensor pin
+    bool curr_state = gpio_get(IR_SENSOR_PIN);
+
+    // If the current state is high (rising edge) and the previous state was low,
+    // or if the current state is low (falling edge) and the previous state was high,
+    // then increment the counter
+    if ((curr_state && !prev_state) || (!curr_state && prev_state)) {
         sensor_interrupts++;
     }
+
+    // Update the previous state
+    prev_state = curr_state;
 }
 
