@@ -28,6 +28,7 @@ public:
     void updateDirection(bool inAValue, bool inBValue, std::string direction);
     std::string getDirection();
     int getCurrentPwm();
+    int getCount();
 private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control

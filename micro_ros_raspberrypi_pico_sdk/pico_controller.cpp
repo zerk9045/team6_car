@@ -50,7 +50,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
-        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getCount());
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
@@ -111,11 +111,11 @@ void subscription_callback_motor(const void *msgin) {
     if(KP_TEST){
         Kp = KP_GLOBAL;
     }else{
-        Kp = 0.01; // Proportional gain
+        Kp = 4.8; // Proportional gain
     }
     //double Kp = 0.05; // Proportional gain
     double Ki = 0.0; // Integral gain, tweak this value
-    double Kd = 0.0; // Derivative gain, tweak this value
+    double Kd = 0.2016; // Derivative gain, tweak this value
     // Measure the current speed
     double current_speed = motor.getSpeed();
 

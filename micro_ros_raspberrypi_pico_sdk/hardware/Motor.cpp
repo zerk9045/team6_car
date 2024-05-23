@@ -15,12 +15,12 @@ Motor::Motor(){//, ) {
     gpio_init(MOTOR_PWM);
     gpio_init(INA_PIN);
     gpio_init(INB_PIN);
-    set_pwm_pin(MOTOR_PWM, 1000, MIN_PWM/1000);
+    set_pwm_pin(MOTOR_PWM, 1000, 0);
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
     previous_error = 0;
     integral_error = 0;
-    currentPwm = MIN_PWM/1000;
+    currentPwm = 0;
 }
 
 Motor::~Motor() {
@@ -55,7 +55,9 @@ std::string Motor::getDirection() {
     return motor_direction;
 }
 
-
+int Motor::getCount(){
+    return irSensor->getCountsPerTimer();
+}
 double Motor::getSpeed() {
     double speed;
     if (motor_direction == "forward"){
