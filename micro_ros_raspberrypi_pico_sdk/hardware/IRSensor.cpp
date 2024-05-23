@@ -53,16 +53,14 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // If the time difference is less than the debounce period (e.g., 1000 microseconds),
     // then this interrupt is likely due to noise, so we ignore it
     // Will have to adjust this time.
-    if (diff_us < 1000) {
-        return;
-    }
-
-    // Otherwise, this is a valid interrupt, so we update the last interrupt time
-    // and increment the interrupt counter
-    last_interrupt_time = now;
-    //If IR_SENSOR PIN is high then increment the counter
-    if (gpio_get(IR_SENSOR_PIN)) {
-        sensor_interrupts++;
+    if (diff_us > 1000) {
+        // Otherwise, this is a valid interrupt, so we update the last interrupt time
+        // and increment the interrupt counter
+        last_interrupt_time = now;
+        //If IR_SENSOR PIN is high then increment the counter
+        if (gpio_get(IR_SENSOR_PIN)) {
+            sensor_interrupts++;
+        }
     }
 }
 
