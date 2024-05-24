@@ -1,0 +1,76 @@
+-- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_microxrcedds_c;rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_microxrcedds_cpp;rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+-- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+-- Found geometry_msgs: 4.2.3 (/home/team6/robot_ws/micorros_ws/install/geometry_msgs/share/geometry_msgs/cmake)
+-- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: 
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/team6/robot_ws/src/team6_car/build/team6_car
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/joystick.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_async.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_sync.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/my_controllers.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/nav2_params.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/config/teleop_twst_joy.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/inertial_macros.xacro
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/lidar.xacro
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/materials.xacro
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot.urdf.xacro
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/robot_core.xacro
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/description/ros2_bicycle.xacro
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/joystick.launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/launch_robot.launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/localization_launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/navigation_launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_async_launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_sync_launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/rsp.launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/launch/spawn_car.launch.py
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/worlds/simple.world
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/.data
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/.posegraph
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.pgm
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.data
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.posegraph
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.pgm
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.pgm
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.yaml
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.sh
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.dsv
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.bash
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.sh
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.zsh
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.dsv
+-- Symlinking: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/packages/team6_car
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig.cmake
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig-version.cmake
+-- Up-to-date symlink: /home/team6/robot_ws/src/team6_car/install/team6_car/share/team6_car/package.xml
