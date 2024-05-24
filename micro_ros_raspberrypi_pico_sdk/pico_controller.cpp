@@ -47,31 +47,25 @@ static char data_buffer[256];
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
-    RCLC_UNUSED(last_call_time);
+    (void) last_call_time;
     if (timer != NULL) {
-        std_msgs__msg__String__init(&msg);
+        // Get the angle and speed
+        float angle = servo.getAngle();
+        float speed = motor.getSpeed();
 
-        // Get the angle and speed as strings
-        std::string angle_str = std::to_string(servo.getAngle());
-        std::string speed_str = std::to_string(motor.getSpeed());
+        // Ensure the buffer is large enough for the formatted string
+        snprintf(msg_data_buffer, sizeof(msg_data_buffer), "%.2f %.2f", angle, speed);
 
-        // Ensure the combined string fits into the buffer
-        if (angle_str.size() + 1 + speed_str.size() < sizeof(data_buffer)) {
-            // Create the combined data string
-            std::snprintf(data_buffer, sizeof(data_buffer), "%s %s", angle_str.c_str(), speed_str.c_str());
+        // Assign buffer to the msg.data
+        msg.data.data = msg_data_buffer;
+        msg.data.size = strlen(msg_data_buffer);
+        msg.data.capacity = sizeof(msg_data_buffer);
 
-            // Point msg.data.data to our static buffer
-            msg.data.data = data_buffer;
-            msg.data.size = std::strlen(data_buffer);
-            msg.data.capacity = sizeof(data_buffer);
-
-            // Publish the message
-            rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-            if (ret != RCL_RET_OK) {
-                // Handle the error (if any)
-            }
+        // Publish the message
+        rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
+        if (ret != RCL_RET_OK) {
+            // Handle the error (if any)
         }
-
     }
 }
 
