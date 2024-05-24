@@ -50,12 +50,28 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
-        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
-        msg.data.data = data.c_str();
-        msg.data.size = data.size();
-        msg.data.capacity = data.size() + 1;
-        rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-        
+
+        // Get the angle and speed as strings
+        std::string angle_str = std::to_string(servo.getAngle());
+        std::string speed_str = std::to_string(motor.getSpeed());
+
+        // Ensure the combined string fits into the buffer
+        if (angle_str.size() + 1 + speed_str.size() < sizeof(data_buffer)) {
+            // Create the combined data string
+            std::snprintf(data_buffer, sizeof(data_buffer), "%s %s", angle_str.c_str(), speed_str.c_str());
+
+            // Point msg.data.data to our static buffer
+            msg.data.data = data_buffer;
+            msg.data.size = std::strlen(data_buffer);
+            msg.data.capacity = sizeof(data_buffer);
+
+            // Publish the message
+            rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
+            if (ret != RCL_RET_OK) {
+                // Handle the error (if any)
+            }
+        }
+
     }
 }
 
