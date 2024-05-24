@@ -15,7 +15,7 @@
 #include "../config/pin_config.h"
 #include <fstream>
 #include <chrono>
-#define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
+#define PID_LOGGING_ENABLED 0 // Use to enable or disable PID logging
 #define KP_TEST 0 // Use to test different Kp values
 double KP_GLOBAL = 0.01; // Proportional gain
 std::chrono::time_point<std::chrono::system_clock> start_time;
@@ -50,7 +50,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
         std_msgs__msg__String__init(&msg);
-        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getCount());
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
         msg.data.data = strdup(data.c_str()); // Create a copy of the string
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
@@ -114,11 +114,11 @@ void subscription_callback_motor(const void *msgin) {
     if(KP_TEST){
         Kp = KP_GLOBAL;
     }else{
-        Kp = 4.8; // Proportional gain
+        Kp = 4.0; // Proportional gain
     }
     //double Kp = 0.05; // Proportional gain
     double Ki = 0.0; // Integral gain, tweak this value
-    double Kd = 0.2016; // Derivative gain, tweak this value
+    double Kd = 0.13; // Derivative gain, tweak this value
     // Measure the current speed
     double current_speed = motor.getSpeed();
 
@@ -211,13 +211,15 @@ void createEntities(){
             RCL_MS_TO_NS(timer_timeout),
             timer_callback);
 
-
-    // create log publisher
+    if(PID_LOGGING_ENABLED){
+     // create log publisher
     rclc_publisher_init_default(
             &log_publisher,
             &node,
             ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
             "log_topic");
+    }	
+   
 
     // create a publisher
     rclc_publisher_init_default(
