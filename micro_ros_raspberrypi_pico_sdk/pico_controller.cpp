@@ -15,7 +15,7 @@
 #include "../config/pin_config.h"
 #include <fstream>
 #include <chrono>
-#define PID_LOGGING_ENABLED 0 // Use to enable or disable PID logging
+#define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
 #define KP_TEST 0 // Use to test different Kp values
 double KP_GLOBAL = 0.01; // Proportional gain
 std::chrono::time_point<std::chrono::system_clock> start_time;
@@ -47,9 +47,16 @@ rclc_executor_t executor;
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
+
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
-
+        std_msgs__msg__String__init(&msg);
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
+        msg.data.data = strdup(data.c_str()); // Create a copy of the string
+        msg.data.size = strlen(msg.data.data);
+        msg.data.capacity = msg.data.size + 1;
+        rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
+        std_msgs__msg__String__fini(&msg);
     }
 }
 
@@ -147,13 +154,6 @@ void subscription_callback_motor(const void *msgin) {
 //    auto epoch = now_ms.time_since_epoch();
 //    auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
 //    long timestamp = value.count();
-    std_msgs__msg__String feedback_msg;
-    std_msgs__msg__String__init(&feedback_msg);
-    std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
-    feedback_msg.data.data = strdup(data.c_str()); // Create a copy of the string
-    feedback_msg.data.size = strlen(feedback_msg.data.data);
-    feedback_msg.data.capacity = feedback_msg.data.size + 1;
-    rcl_ret_t ret = rcl_publish(&publisher, &feedback_msg, NULL);
 
     if(PID_LOGGING_ENABLED){
         // Format the log data as a string
@@ -174,7 +174,6 @@ void subscription_callback_motor(const void *msgin) {
         // Free the memory allocated for the message data
         std_msgs__msg__String__fini(&log_msg);
     }
-    std_msgs__msg__String__fini(&feedback_msg);
 }
 
 bool pingAgent(){
