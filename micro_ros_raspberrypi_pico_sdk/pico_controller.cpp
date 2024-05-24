@@ -55,6 +55,8 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         msg.data.size = strlen(msg.data.data);
         msg.data.capacity = msg.data.size + 1;
         rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
+        std_msgs__msg__String__fini(&msg);
+
     }
 }
 
@@ -63,6 +65,7 @@ void subscription_callback_servo(const void * msgin) {
     const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
     int pwm = msg->data;
     servo.setAngle(pwm);
+    std_msgs__msg__Int32__fini(&servo_msg);
 }
 
 bool isValidDirection(const std::string& direction) {
@@ -172,7 +175,8 @@ void subscription_callback_motor(const void *msgin) {
         // Free the memory allocated for the message data
         std_msgs__msg__String__fini(&log_msg);
     }
-
+    // Free the memory allocated for the message data
+    std_msgs__msg__String__fini(&msg);
 }
 
 bool pingAgent(){
