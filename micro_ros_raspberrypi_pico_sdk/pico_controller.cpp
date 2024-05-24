@@ -42,7 +42,7 @@ rcl_node_t node;
 rcl_allocator_t allocator;
 rclc_support_t support;
 rclc_executor_t executor;
-
+static char data_buffer[256];
 
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
