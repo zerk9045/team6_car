@@ -50,8 +50,8 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
     (void) last_call_time;
     if (timer != NULL) {
         // Get the angle and speed
-        float angle = servo.getAngle();
-        float speed = motor.getSpeed();
+        double angle = servo.getAngle();
+        double speed = motor.getSpeed();
 
         // Ensure the buffer is large enough for the formatted string
         snprintf(msg_data_buffer, sizeof(msg_data_buffer), "%.2f %.2f", angle, speed);
