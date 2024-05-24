@@ -56,7 +56,6 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         msg.data.capacity = msg.data.size + 1;
         rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
         std_msgs__msg__String__fini(&msg);
-
     }
 }
 
@@ -65,7 +64,7 @@ void subscription_callback_servo(const void * msgin) {
     const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
     int pwm = msg->data;
     servo.setAngle(pwm);
-    std_msgs__msg__Int32__fini(&servo_msg);
+    std_msgs__msg__Int32__fini(&msg);
 }
 
 bool isValidDirection(const std::string& direction) {
