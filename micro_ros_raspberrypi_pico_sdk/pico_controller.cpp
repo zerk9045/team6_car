@@ -15,7 +15,7 @@
 #include "../config/pin_config.h"
 #include <fstream>
 #include <chrono>
-#define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
+#define PID_LOGGING_ENABLED 0 // Use to enable or disable PID logging
 #define KP_TEST 0 // Use to test different Kp values
 double KP_GLOBAL = 0.01; // Proportional gain
 std::chrono::time_point<std::chrono::system_clock> start_time;
@@ -42,30 +42,21 @@ rcl_node_t node;
 rcl_allocator_t allocator;
 rclc_support_t support;
 rclc_executor_t executor;
-static char data_buffer[256];
+
 
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
-    (void) last_call_time;
+
+    RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
-        // Get the angle and speed
-        double angle = servo.getAngle();
-        double speed = motor.getSpeed();
-
-        // Ensure the buffer is large enough for the formatted string
-        snprintf(msg_data_buffer, sizeof(msg_data_buffer), "%.2f %.2f", angle, speed);
-
-        // Assign buffer to the msg.data
-        msg.data.data = msg_data_buffer;
-        msg.data.size = strlen(msg_data_buffer);
-        msg.data.capacity = sizeof(msg_data_buffer);
-
-        // Publish the message
+        std_msgs__msg__String__init(&msg);
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
+        msg.data.data = strdup(data.c_str()); // Create a copy of the string
+        msg.data.size = strlen(msg.data.data);
+        msg.data.capacity = msg.data.size + 1;
         rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-        if (ret != RCL_RET_OK) {
-            // Handle the error (if any)
-        }
+        std_msgs__msg__String__fini(&msg);
     }
 }
 
@@ -217,12 +208,14 @@ void createEntities(){
             RCL_MS_TO_NS(timer_timeout),
             timer_callback);
 
+    if(PID_LOGGING_ENABLED){
      // create log publisher
     rclc_publisher_init_default(
             &log_publisher,
             &node,
             ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
             "log_topic");
+    }	
    
 
     // create a publisher
