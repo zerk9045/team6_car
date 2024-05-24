@@ -49,14 +49,13 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
     RCLC_UNUSED(last_call_time);
     if (timer != NULL) {
-    std_msgs__msg__String feedback_msg;
-        std_msgs__msg__String__init(&feedback_msg);
+        std_msgs__msg__String__init(&msg);
         std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
-        feedback_msg.data.data = strdup(data.c_str()); // Create a copy of the string
-        feedback_msg.data.size = strlen(feedback_msg.data.data);
-        feedback_msg.data.capacity = feedback_msg.data.size + 1;
-        rcl_ret_t ret = rcl_publish(&publisher, &feedback_msg, NULL);
-        std_msgs__msg__String__fini(&feedback_msg);
+        msg.data.data = data.c_str();
+        msg.data.size = data.size();
+        msg.data.capacity = data.size() + 1;
+        rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
+        
     }
 }
 
