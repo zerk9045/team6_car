@@ -64,7 +64,7 @@ void subscription_callback_servo(const void * msgin) {
     const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
     int pwm = msg->data;
     servo.setAngle(pwm);
-    std_msgs__msg__Int32__fini(&msg);
+    std_msgs__msg__Int32__fini(msg);
 }
 
 bool isValidDirection(const std::string& direction) {
@@ -175,7 +175,7 @@ void subscription_callback_motor(const void *msgin) {
         std_msgs__msg__String__fini(&log_msg);
     }
     // Free the memory allocated for the message data
-    std_msgs__msg__String__fini(&msg);
+    std_msgs__msg__String__fini(msg);
 }
 
 bool pingAgent(){
