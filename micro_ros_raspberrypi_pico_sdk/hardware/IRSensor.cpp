@@ -21,7 +21,7 @@ absolute_time_t last_interrupt_time;
 
 int64_t timer_interrupt(alarm_id_t id, void *user_data) {
     IRSensor::resetSensorInterrupts();
-    return 300000;
+    return 500000;
 }
 
 IRSensor::IRSensor() {
@@ -29,12 +29,12 @@ IRSensor::IRSensor() {
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
     gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_RISE, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
-    irTimer = make_timeout_time_ms(300);
-    add_alarm_in_us(300000, timer_interrupt, NULL, true);
+    irTimer = make_timeout_time_ms(500);
+    add_alarm_in_us(500000, timer_interrupt, NULL, true);
 }
 
 void IRSensor::resetSensorInterrupts() {
-    counts_per_timer = sensor_interrupts;
+   
     sensor_interrupts = 0;
     //printf("Interrupts: %d\n", counts_per_timer);
 }
@@ -53,13 +53,14 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // If the time difference is less than the debounce period (e.g., 1000 microseconds),
     // then this interrupt is likely due to noise, so we ignore it
     // Will have to adjust this time.
-    if (diff_us > 1000) {
+    if (diff_us > 800) {
         // Otherwise, this is a valid interrupt, so we update the last interrupt time
         // and increment the interrupt counter
         last_interrupt_time = now;
         //If IR_SENSOR PIN is high then increment the counter
         if (gpio_get(IR_SENSOR_PIN)) {
            sensor_interrupts++;
+            counts_per_timer = sensor_interrupts;
         }
     }
 }
