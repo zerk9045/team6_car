@@ -7,7 +7,7 @@
 
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
-#define MAX_DUTY    2000
+#define MAX_DUTY    3000
 #define MIN_DUTY    700
 
 Motor::Motor(){//, ) {
