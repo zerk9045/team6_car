@@ -142,7 +142,7 @@ void subscription_callback_motor(const void *msgin) {
       3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
     */
  
-    double Ki = 0.00; // Integral gain, tweak this value
+    double Ki = 0.0; // Integral gain, tweak this value
     double Kd = 0.13; // Derivative gain, tweak this value
     // Measure the current speed
     double current_speed = motor.getSpeed();
@@ -161,15 +161,13 @@ void subscription_callback_motor(const void *msgin) {
     double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Set the new PWM value to the motor
-    if (direction == "forward"){
-        motor.setSpeed(new_pwm);
-    }
-    else if (direction == "reverse"){
-        motor.setSpeed(new_pwm);
-    }
-    else{
+    if (direction == "stop"){
         motor.setSpeed(0.0);
     }
+    else{
+        motor.setSpeed(new_pwm);
+    }
+
     
 
     // Update the previous error
