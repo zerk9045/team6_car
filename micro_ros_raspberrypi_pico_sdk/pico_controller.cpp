@@ -161,7 +161,16 @@ void subscription_callback_motor(const void *msgin) {
     double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Set the new PWM value to the motor
-    motor.setSpeed(new_pwm);
+    if (direction == "forward"){
+        motor.setSpeed(new_pwm);
+    }
+    else if (direction == "reverse"){
+        motor.setSpeed(new_pwm);
+    }
+    else{
+        motor.setSpeed(0.0);
+    }
+    
 
     // Update the previous error
     motor.previous_error = error;
