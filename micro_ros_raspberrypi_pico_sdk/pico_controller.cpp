@@ -12,6 +12,7 @@
 #include "pico_uart_transports.h"
 #include <rcl/error_handling.h>
 #include <std_msgs/msg/int32.h>
+#include <std_msgs/msg/float32.h>
 #include "../config/pin_config.h"
 #include <fstream>
 #include <chrono>
