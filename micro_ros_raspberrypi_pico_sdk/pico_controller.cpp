@@ -98,7 +98,6 @@ void log_timer_callback(rcl_timer_t * log_timer, int64_t last_call_time)
 
 // TODO: add error checks to ensure the message is in the correct format
 void subscription_callback_servo(const void * msgin) {
-	log_kp = 2;
     const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
     int pwm = msg->data;
     servo.setAngle(pwm);
@@ -115,21 +114,21 @@ bool isValidPwm(int pwm) {
 // TODO: add a custom motor message so we dont have to parse the string
 //https://micro.ros.org/docs/tutorials/advanced/create_new_type/
 void subscription_callback_motor(const void *msgin) {
-	log_kp =1;
     const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
 
     std::string direction;
     // Extract pwmValue and direction
     double desired_speed =  static_cast<double>(msg->data);
-
+    bool forward = false;
+    bool reverse = false;
     // check to see if direction has changed before updating
     if (desired_speed > 0){
-        bool forward = true;
-        direction = 'forward';
+        forward = true;
+        direction = "forward";
     }
     else{
-        bool reverse = true;
-        direction = 'reverse';
+        reverse = false;
+        direction = "reverse";
     }
     motor.updateDirection(reverse, forward, direction);
     double Kp = 4.0;
