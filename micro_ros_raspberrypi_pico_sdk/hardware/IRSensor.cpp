@@ -41,6 +41,9 @@ void IRSensor::resetSensorInterrupts() {
 int IRSensor::getCountsPerTimer() {
     return counts_per_timer;
 }
+void IRSensor::resetCounts(){
+	counts_per_timer = 0;
+}
 
 void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // Get the current time

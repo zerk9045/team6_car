@@ -53,7 +53,7 @@ double log_derivative;
 double log_new_pwm;
 double log_current_speed;
 double log_desired_speed;
-
+std::string log_dir;
 void control_timer_callback(rcl_timer_t * control_timer, int64_t last_call_time)
 {
 
@@ -79,7 +79,7 @@ void log_timer_callback(rcl_timer_t * log_timer, int64_t last_call_time)
     std_msgs__msg__String__init(&log_msg);
         // Format the log data as a string
         std::stringstream log_data;
-        log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," << log_integral_error << "," << log_derivative << "," << log_new_pwm << "," << log_current_speed << "," << log_desired_speed;
+        log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," << log_integral_error << "," << log_derivative << "," << log_new_pwm << "," << log_current_speed << "," << log_desired_speed << "," << log_dir;
         
         // Assign the log data to the message
         log_msg.data.data = strdup(log_data.str().c_str());
@@ -131,6 +131,9 @@ void subscription_callback_motor(const void *msgin) {
         reverse = false;
         direction = "reverse";
     }
+    else{
+    	direction = "stop";
+    }
     motor.updateDirection(reverse, forward, direction);
     double Kp = 4.0;
     // Use Ziegler–Nichols method to tune the PID controller
@@ -139,7 +142,7 @@ void subscription_callback_motor(const void *msgin) {
       3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
     */
  
-    double Ki = 0.0; // Integral gain, tweak this value
+    double Ki = 0.00; // Integral gain, tweak this value
     double Kd = 0.13; // Derivative gain, tweak this value
     // Measure the current speed
     double current_speed = motor.getSpeed();
@@ -171,6 +174,7 @@ void subscription_callback_motor(const void *msgin) {
 		log_new_pwm = new_pwm;
 		log_desired_speed = desired_speed;
 		log_current_speed = current_speed;
+		log_dir = motor.getDirection();
 	}
 
     

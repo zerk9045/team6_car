@@ -76,6 +76,7 @@ double Motor::getSpeed() {
     }
     else {
         speed = 0;
+        irSensor->resetCounts();
     }
 
     // Update the speed buffer with the new speed measurement
@@ -89,7 +90,7 @@ double Motor::getSpeed() {
     }
     averageSpeed /= BUFFER_SIZE;
 
-    return averageSpeed;
+    return speed;
 //    //use an average filter to smooth out the speed measurements
 //
 //    // angular speed in rads/sec = (Revs per second / second) * (2pi)
