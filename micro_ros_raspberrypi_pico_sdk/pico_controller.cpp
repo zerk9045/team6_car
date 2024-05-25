@@ -127,7 +127,7 @@ void subscription_callback_motor(const void *msgin) {
         forward = true;
         direction = "forward";
     }
-    else{
+    else if(desired_speed < 0){
         reverse = false;
         direction = "reverse";
     }
