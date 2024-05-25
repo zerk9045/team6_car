@@ -7,7 +7,7 @@
 
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
-
+#define MAX_DUTY    3000
 
 Motor::Motor(){//, ) {
     irSensor = new IRSensor();
@@ -44,6 +44,9 @@ int Motor::getCurrentPwm(){
 }
 
 void Motor::setSpeed(double speedPWM) {
+    if (speedPWM > MAX_DUTY) {
+        speedPWM = MAX_DUTY;
+    }
     // Ensure PWM is within the valid range
     if (currentPwm == speedPWM) {
         return;
