@@ -18,11 +18,11 @@ Servo::~Servo() {
 void Servo::set_pwm_pin(uint pin, uint freq, float duty_c) {
     gpio_set_function(pin, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(pin);
-    pwm_config config = pwm_get_default_config();
-    float div = (float)clock_get_hz(clk_sys) / (freq * 10000);
-    pwm_config_set_clkdiv(&config, div);
-    pwm_config_set_wrap(&config, 10000);
-    pwm_init(slice_num, &config, true); // start the pwm running according to the config
+    pwm_config config1 = pwm_get_default_config();
+    float div1 = (float)clock_get_hz(clk_sys) / (freq * 10000);
+    pwm_config_set_clkdiv(&config1, div1);
+    pwm_config_set_wrap(&config1, 10000);
+    pwm_init(slice_num, &config1, true); // start the pwm running according to the config
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
 
