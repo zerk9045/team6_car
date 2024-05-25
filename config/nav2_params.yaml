@@ -135,7 +135,7 @@ controller_server:
       stateful: True
     FollowPath:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
-      desired_linear_vel: 0.1
+      desired_linear_vel: 0.025
       lookahead_dist: 0.6
       min_lookahead_dist: 0.3
       max_lookahead_dist: 0.9
@@ -326,8 +326,8 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "CLOSED_LOOP"
-    max_velocity: [0.26, 0.0, 1.0] # Maximum velocities (m/s) in [x, y, theta] axes.
-    min_velocity: [-0.26, 0.0, -1.0] # Minimum velocities (m/s) in [x, y, theta] axes.
+    max_velocity: [0.025, 0.0, 1.0] # Maximum velocities (m/s) in [x, y, theta] axes.
+    min_velocity: [0.0, 0.0, -1.0] # Minimum velocities (m/s) in [x, y, theta] axes.
     max_accel: [2.5, 0.0, 3.2]
     max_decel: [-2.5, 0.0, -3.2]
     odom_topic: "odom"
