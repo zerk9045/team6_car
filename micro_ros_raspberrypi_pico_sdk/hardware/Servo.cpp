@@ -9,7 +9,7 @@
 #define THRESHOLD 5000
 Servo::Servo(){
     gpio_init(SERVO_PWM);
-    //set_pwm_pin(SERVO_PWM, 100, STRAIGHT_SERVO_ANGLE_PWM/1000);
+    set_pwm_pin(SERVO_PWM, 100, STRAIGHT_SERVO_ANGLE_PWM/1000);
 }
 
 Servo::~Servo() {
