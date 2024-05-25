@@ -25,7 +25,8 @@ rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
 rcl_subscription_t servo_subscriber;
 std_msgs__msg__String motor_msg;
-std_msgs__msg__String msg;
+std_msgs__msg__String control_msg;
+std_msgs__msg__String log_msg;
 std_msgs__msg__Int32 servo_msg;
 Motor motor;
 Servo servo;
@@ -37,31 +38,67 @@ enum states {
     AGENT_DISCONNECTED
 } state;
 
-rcl_timer_t timer;
+rcl_timer_t control_timer;
+rcl_timer_t log_timer;
 rcl_node_t node;
 rcl_allocator_t allocator;
 rclc_support_t support;
 rclc_executor_t executor;
 
+double log_kp;
+double log_error;
+double log_integral_error;
+double log_derivative;
+double log_new_pwm;
+double log_current_speed;
+double log_desired_speed;
 
-
-void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
+void control_timer_callback(rcl_timer_t * control_timer, int64_t last_call_time)
 {
 
     RCLC_UNUSED(last_call_time);
-    if (timer != NULL) {
-        std_msgs__msg__String__init(&msg);
+    if (control_timer != NULL) {
+
+        std_msgs__msg__String__init(&control_msg);
         std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
-        msg.data.data = strdup(data.c_str()); // Create a copy of the string
-        msg.data.size = strlen(msg.data.data);
-        msg.data.capacity = msg.data.size + 1;
-        rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-        std_msgs__msg__String__fini(&msg);
+        control_msg.data.data = strdup(data.c_str()); // Create a copy of the string
+        control_msg.data.size = strlen(control_msg.data.data);
+        control_msg.data.capacity = control_msg.data.size + 1;
+        rcl_ret_t ret = rcl_publish(&publisher, &control_msg, NULL);
+        
+        std_msgs__msg__String__fini(&control_msg);
+        
+}	
+}
+void log_timer_callback(rcl_timer_t * log_timer, int64_t last_call_time)
+{
+	RCLC_UNUSED(last_call_time);
+    if (log_timer != NULL) {
+    if(PID_LOGGING_ENABLED){
+    std_msgs__msg__String__init(&log_msg);
+        // Format the log data as a string
+        std::stringstream log_data;
+        log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," << log_integral_error << "," << log_derivative << "," << log_new_pwm << "," << log_current_speed << "," << log_desired_speed;
+        
+        // Assign the log data to the message
+        log_msg.data.data = strdup(log_data.str().c_str());
+        log_msg.data.size = strlen(log_msg.data.data);
+        log_msg.data.capacity = log_msg.data.size + 1;
+
+        // Publish the message
+        rcl_ret_t ret = rcl_publish(&log_publisher, &log_msg, NULL);
+
+        
     }
+  	// Free the memory allocated for the message data
+  	//free(msg1.data.data);
+        std_msgs__msg__String__fini(&log_msg);
+        }
 }
 
 // TODO: add error checks to ensure the message is in the correct format
 void subscription_callback_servo(const void * msgin) {
+	log_kp = 2;
     const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
     int pwm = msg->data;
     servo.setAngle(pwm);
@@ -78,9 +115,10 @@ bool isValidPwm(int pwm) {
 // TODO: add a custom motor message so we dont have to parse the string
 //https://micro.ros.org/docs/tutorials/advanced/create_new_type/
 void subscription_callback_motor(const void *msgin) {
+	log_kp =1;
     const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
     std::string msg_data = msg->data.data;
-
+    
     // Find the position of the space character
     size_t space_pos = msg_data.find(' ');
     if (space_pos == std::string::npos) {
@@ -104,18 +142,13 @@ void subscription_callback_motor(const void *msgin) {
         bool reverse = (direction == "reverse");
         motor.updateDirection(reverse, forward, direction);
     }
-    double Kp = 0;
+    double Kp = 4.0;
     // Use Ziegler–Nichols method to tune the PID controller
     /*1. Find Kmax the value of Kp where it begins to oscillate
       2. Measure the Tu period of the Kmax oscillation
       3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
     */
-    if(KP_TEST){
-        Kp = KP_GLOBAL;
-    }else{
-        Kp = 4.0; // Proportional gain
-    }
-    //double Kp = 0.05; // Proportional gain
+ 
     double Ki = 0.0; // Integral gain, tweak this value
     double Kd = 0.13; // Derivative gain, tweak this value
     // Measure the current speed
@@ -129,15 +162,7 @@ void subscription_callback_motor(const void *msgin) {
 
     // Calculate the derivative term
     double derivative = error - motor.previous_error;
-    if(KP_TEST){
-        // Check if 10 seconds have passed
-        auto now = std::chrono::system_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - start_time);
-        if (elapsed.count() >= 10) {
-            KP_GLOBAL += 0.01; // Increment Kp by 0.01 every 20 seconds
-            start_time = now;
-        }
-    }
+   
 
     // Adjust the PWM based on the error
     double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
@@ -148,32 +173,17 @@ void subscription_callback_motor(const void *msgin) {
     // Update the previous error
     motor.previous_error = error;
 
-//    // Get the current time in milliseconds since epoch
-//    auto now = std::chrono::system_clock::now();
-//    auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
-//    auto epoch = now_ms.time_since_epoch();
-//    auto value = std::chrono::duration_cast<std::chrono::milliseconds>(epoch);
-//    long timestamp = value.count();
+	if(PID_LOGGING_ENABLED){
+		log_kp = 1;
+		log_error = error;
+		log_integral_error = motor.integral_error;
+		log_derivative = derivative;
+		log_new_pwm = new_pwm;
+		log_desired_speed = desired_speed;
+		log_current_speed = current_speed;
+	}
 
-    if(PID_LOGGING_ENABLED){
-        // Format the log data as a string
-        std::stringstream log_data;
-        log_data << /*timestamp << "," <<*/ Kp << "," << error << "," << motor.integral_error << "," << derivative << "," << new_pwm << "," << current_speed << "," << desired_speed;
-        // Create a new message
-        std_msgs__msg__String log_msg;
-        std_msgs__msg__String__init(&log_msg);
-
-        // Assign the log data to the message
-        log_msg.data.data = strdup(log_data.str().c_str());
-        log_msg.data.size = strlen(log_msg.data.data);
-        log_msg.data.capacity = log_msg.data.size + 1;
-
-        // Publish the message
-        rcl_ret_t ret = rcl_publish(&log_publisher, &log_msg, NULL);
-
-        // Free the memory allocated for the message data
-        std_msgs__msg__String__fini(&log_msg);
-    }
+    
 }
 
 bool pingAgent(){
@@ -202,12 +212,17 @@ void createEntities(){
     rclc_node_init_default(&node, "pico_node", "", &support);
     // create a timer,
     const unsigned int timer_timeout = 100;
+    
     rclc_timer_init_default(
-            &timer,
+            &control_timer,
             &support,
             RCL_MS_TO_NS(timer_timeout),
-            timer_callback);
-
+            control_timer_callback);
+  rclc_timer_init_default(
+    &log_timer,
+    &support,
+    RCL_MS_TO_NS(timer_timeout),
+    log_timer_callback);  
     if(PID_LOGGING_ENABLED){
      // create log publisher
     rclc_publisher_init_default(
@@ -217,14 +232,12 @@ void createEntities(){
             "log_topic");
     }	
    
-
     // create a publisher
     rclc_publisher_init_default(
             &publisher,
             &node,
             ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
             "control_topic");
-
     // create a subscriber for the motor
     rclc_subscription_init_default(
             &motor_subscriber,
@@ -240,11 +253,11 @@ void createEntities(){
             "pi_servo_publishing_topic");
 
     // create executor
-    rclc_executor_init(&executor, &support.context, 3, &allocator);
-    rclc_executor_add_timer(&executor, &timer);
-
+    rclc_executor_init(&executor, &support.context, 4, &allocator);
+    rclc_executor_add_timer(&executor, &control_timer);
+	rclc_executor_add_timer(&executor, &log_timer);
     // add subscribers
-    rclc_executor_add_subscription(&executor, &motor_subscriber, &msg, &subscription_callback_motor, ON_NEW_DATA);
+    rclc_executor_add_subscription(&executor, &motor_subscriber, &motor_msg, &subscription_callback_motor, ON_NEW_DATA);
     rclc_executor_add_subscription(&executor, &servo_subscriber, &servo_msg, &subscription_callback_servo, ON_NEW_DATA);
 
 }
@@ -256,7 +269,8 @@ void destroyEntities(){
 
     // free resources
     ret = rcl_publisher_fini(&publisher, &node);
-    ret = rcl_timer_fini(&timer);
+    ret = rcl_timer_fini(&log_timer);
+    ret = rcl_timer_fini(&control_timer);
     ret = rcl_subscription_fini(&motor_subscriber, &node);
     ret = rcl_subscription_fini(&servo_subscriber, &node);
     ret = rcl_node_fini(&node);
@@ -302,7 +316,7 @@ int main()
             case AGENT_CONNECTED:
                 state = pingAgent() ? AGENT_CONNECTED : AGENT_DISCONNECTED;
                 if (state == AGENT_CONNECTED) {
-                    rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
+                    rclc_executor_spin(&executor);
                 }
                 break;
             case AGENT_DISCONNECTED:
