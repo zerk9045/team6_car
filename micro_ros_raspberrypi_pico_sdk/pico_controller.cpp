@@ -24,7 +24,7 @@ rcl_publisher_t log_publisher;
 rcl_publisher_t publisher;
 rcl_subscription_t motor_subscriber;
 rcl_subscription_t servo_subscriber;
-std_msgs__msg__String motor_msg;
+std_msgs__msg__Float32 motor_msg;
 std_msgs__msg__String control_msg;
 std_msgs__msg__String log_msg;
 std_msgs__msg__Int32 servo_msg;
@@ -116,32 +116,22 @@ bool isValidPwm(int pwm) {
 //https://micro.ros.org/docs/tutorials/advanced/create_new_type/
 void subscription_callback_motor(const void *msgin) {
 	log_kp =1;
-    const std_msgs__msg__String *msg = (const std_msgs__msg__String *)msgin;
-    std::string msg_data = msg->data.data;
-    
-    // Find the position of the space character
-    size_t space_pos = msg_data.find(' ');
-    if (space_pos == std::string::npos) {
-        // Invalid message format, handle error or return
-        return;
-    }
+    const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
 
+    std::string direction;
     // Extract pwmValue and direction
-    double desired_speed = std::stod(msg_data.substr(0, space_pos));
-    std::string direction = msg_data.substr(space_pos + 1);
+    double desired_speed =  static_cast<double>(msg->data);
 
-    // Validate direction and pwm
-    if (!isValidDirection(direction)){ //|| !isValidPwm(desired_pwm)) {
-        // Invalid direction or pwm value, handle error or return
-        return;
-    }
-    // Update the motor direction
     // check to see if direction has changed before updating
-    if (motor.getDirection() != direction) {
-        bool forward = (direction == "forward");
-        bool reverse = (direction == "reverse");
-        motor.updateDirection(reverse, forward, direction);
+    if (desired_speed > 0){
+        bool forward = true;
+        direction = 'forward';
     }
+    else{
+        bool reverse = true;
+        direction = 'reverse';
+    }
+    motor.updateDirection(reverse, forward, direction);
     double Kp = 4.0;
     // Use Ziegler–Nichols method to tune the PID controller
     /*1. Find Kmax the value of Kp where it begins to oscillate
@@ -174,7 +164,7 @@ void subscription_callback_motor(const void *msgin) {
     motor.previous_error = error;
 
 	if(PID_LOGGING_ENABLED){
-		log_kp = 1;
+		log_kp = Kp;
 		log_error = error;
 		log_integral_error = motor.integral_error;
 		log_derivative = derivative;
@@ -242,7 +232,7 @@ void createEntities(){
     rclc_subscription_init_default(
             &motor_subscriber,
             &node,
-            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String),
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32),
             "pi_motor_publishing_topic");
 
     //Create a subscriber for the servo
