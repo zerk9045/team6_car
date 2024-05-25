@@ -8,6 +8,7 @@
 #define WHEEL_DIAMETER 0.05
 #define M_PI        3.14159265358979323846264338327950288
 #define MAX_DUTY    2000
+#define MIN_DUTY    700
 
 Motor::Motor(){//, ) {
     irSensor = new IRSensor();
@@ -15,12 +16,12 @@ Motor::Motor(){//, ) {
     gpio_init(MOTOR_PWM);
     gpio_init(INA_PIN);
     gpio_init(INB_PIN);
-    set_pwm_pin(MOTOR_PWM, 1000, 0);
+    set_pwm_pin(MOTOR_PWM, 1000, MIN_DUTY);
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
     previous_error = 0;
     integral_error = 0;
-    currentPwm = 0;
+    currentPwm = MIN_DUTY;
 }
 
 Motor::~Motor() {
@@ -46,6 +47,8 @@ int Motor::getCurrentPwm(){
 void Motor::setSpeed(double speedPWM) {
     if (speedPWM > MAX_DUTY) {
         speedPWM = MAX_DUTY;
+    } else if (speedPWM < MIN_DUTY) {
+        speedPWM = MIN_DUTY;
     }
     // Ensure PWM is within the valid range
     if (currentPwm == speedPWM) {
