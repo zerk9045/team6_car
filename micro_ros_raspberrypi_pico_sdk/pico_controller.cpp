@@ -62,6 +62,8 @@ void control_timer_callback(rcl_timer_t * control_timer, int64_t last_call_time)
 
         std_msgs__msg__String__init(&control_msg);
         std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
+        //std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getCount());
+        
         control_msg.data.data = strdup(data.c_str()); // Create a copy of the string
         control_msg.data.size = strlen(control_msg.data.data);
         control_msg.data.capacity = control_msg.data.size + 1;
