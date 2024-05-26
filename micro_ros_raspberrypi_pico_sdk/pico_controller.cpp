@@ -117,13 +117,13 @@ bool isValidPwm(int pwm) {
 void subscription_callback_motor(const void *msgin) {
     const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
 
+    // Initialize variables
     std::string direction;
-
-    // Extract pwmValue and direction
-    double desired_speed =  static_cast<double>(msg->data);
-
     bool forward = false;
     bool reverse = false;
+
+    // Extract the desired speed of the car in m/s
+    double desired_speed =  static_cast<double>(msg->data);
 
     // check to see if direction has changed before updating
     if (desired_speed > 0){
@@ -138,19 +138,15 @@ void subscription_callback_motor(const void *msgin) {
     	direction = "stop";
     }
 
+    // Update the direction of the motor
     motor.updateDirection(reverse, forward, direction);
-
-    // Use Ziegler–Nichols method to tune the PID controller
-    // 1. Find Kmax the value of Kp where it begins to oscillate
-    // 2. Measure the Tu period of the Kmax oscillation
-    // 3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
     
     // PID gains
     double Kp = 4.0;
     double Ki = 0.0;
     double Kd = 0.13;
     
-    // Measure the current speed
+    // Measure the current speed of the car m/s
     double current_speed = motor.getSpeed();
 
     // Calculate the error
@@ -162,9 +158,8 @@ void subscription_callback_motor(const void *msgin) {
     // Calculate the derivative term
     double derivative = error - motor.previous_error;
    
-    // Adjust the PWM based on the error
-    double new_pwm = Kp * error + Ki * motor.integral_error + Kd * derivative;    
-    // double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
+    // Adjust the PWM based on the error   
+    double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Set the new PWM value to the motor
     if (direction == "stop"){
@@ -173,8 +168,6 @@ void subscription_callback_motor(const void *msgin) {
     else{
         motor.setSpeed(new_pwm);
     }
-
-    
 
     // Update the previous error
     motor.previous_error = error;
@@ -189,8 +182,6 @@ void subscription_callback_motor(const void *msgin) {
 		log_current_speed = current_speed;
 		log_dir = motor.getDirection();
 	}
-
-    
 }
 
 bool pingAgent(){
