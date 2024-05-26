@@ -7,7 +7,7 @@
 #include "hardware/pwm.h"
 #include "pico/time.h"
 #include "stdio.h"
-// int64_t minimize(something){
+// IGNORE int64_t minimize(something){
 
 
 // // Declare a global instance of IRSensor

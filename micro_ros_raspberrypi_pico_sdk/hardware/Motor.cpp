@@ -5,10 +5,17 @@
 #include "hardware/clocks.h"
 #include <string>
 
-#define WHEEL_DIAMETER 0.05
+#define WHEEL_RADIUS 0.05
 #define M_PI        3.14159265358979323846264338327950288
 #define MAX_DUTY    3000
 #define MIN_DUTY    700
+
+// Define timestamp for previousTime
+absolute_time_t previousTime;
+
+// Intialize variables
+double circumference = 2*M_PI*WHEEL_RADIUS;
+int previous_counts_per_timer = 0;
 
 Motor::Motor(){//, ) {
     irSensor = new IRSensor();
@@ -74,18 +81,35 @@ int Motor::getCount(){
 // Function for getting the current speed of the motor
 // It converts the PWM output of the motor into a velocity in m/s
 double Motor::getSpeed() {
+
+    // Get the current time
+    absolute_time_t currentTime = get_absolute_time();
+
+    // Calculate the time difference
+    int64_t deltaTimeMicro = absolute_time_diff_us(previousTime, currentTime);    
+
+    // Convert from microseconds to seconds
+    double deltaTime = static_cast<double>(deltaTimeMicro) / 1000000;
+
+    // Calculate revs per second
+    double rps = (irSensor->getCountsPerTimer() - previous_counts_per_timer) / deltaTime;
+
+    double rpm = rps*60;
+
+    // Set current counts per timer to previous counts per timer for next iteration
+    previous_counts_per_timer = irSensor->getCountsPerTimer();
+
+    // Set current time to previous time for next iteration
+    previousTime = currentTime;
+
+    // Calculate circumference
     double speed;
-    if (motor_direction == "forward"){
-        speed = static_cast<double>(
-                ((irSensor->getCountsPerTimer()/0.2) * (2*M_PI)) * 0.05);
-    }
-    else if (motor_direction == "reverse"){
-        speed = static_cast<double>(
-                -1* ((irSensor->getCountsPerTimer()/0.2) * (2*M_PI)) * 0.05);
+
+    if (motor_direction == "reverse"){
+        speed = static_cast<double>(-1*rps*circumference);
     }
     else {
-        speed = 0;
-        irSensor->resetCounts();
+        speed = static_cast<double>(rps*circumference);
     }
 
     // Update the speed buffer with the new speed measurement
@@ -99,7 +123,7 @@ double Motor::getSpeed() {
     }
     averageSpeed /= BUFFER_SIZE;
 
-    return speed;
+    return rpm;
 //    //use an average filter to smooth out the speed measurements
 //
 //    // angular speed in rads/sec = (Revs per second / second) * (2pi)
