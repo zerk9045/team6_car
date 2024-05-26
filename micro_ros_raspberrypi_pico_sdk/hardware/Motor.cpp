@@ -29,6 +29,7 @@ Motor::~Motor() {
     delete irSensor;
 }
 
+// Function for setting the PWM settings of the selected GPIO pin
 void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     gpio_set_function(pin, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(pin);
@@ -40,10 +41,12 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
 
+// Function for getting the current PWM of the motor
 int Motor::getCurrentPwm(){
     return currentPwm;
 }
 
+// Function for setting the current speed of the motor in PWM
 void Motor::setSpeed(double speedPWM) {
     if (speedPWM > MAX_DUTY) {
         speedPWM = MAX_DUTY;
@@ -57,13 +60,19 @@ void Motor::setSpeed(double speedPWM) {
     pwm_set_gpio_level(MOTOR_PWM, (uint)(speedPWM));
     currentPwm = speedPWM;
 }
+
+// Function for getting the direction for the motor
 std::string Motor::getDirection() {
     return motor_direction;
 }
 
+// Function for getting the number of counts within a certain interval
 int Motor::getCount(){
     return irSensor->getCountsPerTimer();
 }
+
+// Function for getting the current speed of the motor
+// It converts the PWM output of the motor into a velocity in m/s
 double Motor::getSpeed() {
     double speed;
     if (motor_direction == "forward"){
@@ -113,6 +122,7 @@ double Motor::getSpeed() {
 
 }
 
+// Function for updating the direction of the motor
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
     gpio_put(INA_PIN, inAValue ? 1 : 0);
     gpio_put(INB_PIN, inBValue ? 1 : 0);

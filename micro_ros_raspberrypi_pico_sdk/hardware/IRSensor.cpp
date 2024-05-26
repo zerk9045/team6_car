@@ -33,14 +33,18 @@ IRSensor::IRSensor() {
     add_alarm_in_us(200000, timer_interrupt, NULL, true);
 }
 
+// Function for reseting the number of sensor interrupts
 void IRSensor::resetSensorInterrupts() {
     sensor_interrupts = 0;
     //printf("Interrupts: %d\n", counts_per_timer);
 }
 
+// Function for getting the current number of counts in a certain interval
 int IRSensor::getCountsPerTimer() {
     return counts_per_timer;
 }
+
+// Function for reseting the number of counts
 void IRSensor::resetCounts(){
 	counts_per_timer = 0;
 }

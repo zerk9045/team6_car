@@ -79,7 +79,9 @@ void log_timer_callback(rcl_timer_t * log_timer, int64_t last_call_time)
     std_msgs__msg__String__init(&log_msg);
         // Format the log data as a string
         std::stringstream log_data;
-        log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," << log_integral_error << "," << log_derivative << "," << log_new_pwm << "," << log_current_speed << "," << log_desired_speed << "," << log_dir;
+        log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," << 
+        log_integral_error << "," << log_derivative << "," << log_new_pwm << "," 
+        << log_current_speed << "," << log_desired_speed << "," << log_dir;
         
         // Assign the log data to the message
         log_msg.data.data = strdup(log_data.str().c_str());
@@ -88,13 +90,11 @@ void log_timer_callback(rcl_timer_t * log_timer, int64_t last_call_time)
 
         // Publish the message
         rcl_ret_t ret = rcl_publish(&log_publisher, &log_msg, NULL);
-
-        
     }
-  	// Free the memory allocated for the message data
-  	//free(msg1.data.data);
+        // Free the memory allocated for the message data
+        //free(msg1.data.data);
         std_msgs__msg__String__fini(&log_msg);
-        }
+    }
 }
 
 // TODO: add error checks to ensure the message is in the correct format
@@ -118,10 +118,13 @@ void subscription_callback_motor(const void *msgin) {
     const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
 
     std::string direction;
+
     // Extract pwmValue and direction
     double desired_speed =  static_cast<double>(msg->data);
+
     bool forward = false;
     bool reverse = false;
+
     // check to see if direction has changed before updating
     if (desired_speed > 0){
         forward = true;
@@ -134,16 +137,19 @@ void subscription_callback_motor(const void *msgin) {
     else{
     	direction = "stop";
     }
+
     motor.updateDirection(reverse, forward, direction);
-    double Kp = 4.0;
+
     // Use Ziegler–Nichols method to tune the PID controller
-    /*1. Find Kmax the value of Kp where it begins to oscillate
-      2. Measure the Tu period of the Kmax oscillation
-      3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
-    */
- 
-    double Ki = 0.0; // Integral gain, tweak this value
-    double Kd = 0.13; // Derivative gain, tweak this value
+    // 1. Find Kmax the value of Kp where it begins to oscillate
+    // 2. Measure the Tu period of the Kmax oscillation
+    // 3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
+    
+    // PID gains
+    double Kp = 4.0;
+    double Ki = 0.0;
+    double Kd = 0.13;
+    
     // Measure the current speed
     double current_speed = motor.getSpeed();
 
@@ -156,9 +162,9 @@ void subscription_callback_motor(const void *msgin) {
     // Calculate the derivative term
     double derivative = error - motor.previous_error;
    
-
     // Adjust the PWM based on the error
-    double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
+    double new_pwm = Kp * error + Ki * motor.integral_error + Kd * derivative;    
+    // double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Set the new PWM value to the motor
     if (direction == "stop"){
