@@ -77,7 +77,7 @@
 
 // Initialize static member
 int IRSensor::sensor_interrupts = 0;
-int IRSensor::counts_per_timer = 0;     // number of revolutions read by the IR sensor
+int IRSensor::counts_per_timer = 0;     // number of counts read by the IR sensor
 
 // Declare a hardware timer
 absolute_time_t irTimer;
@@ -134,7 +134,7 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
         // Set the timestamp of this interrupt as the previous interrupt time for the next iteration
         last_interrupt_time = now;
 
-        // Increment the number of revolutions
+        // Increment the number of counnts
         counts_per_timer = counts_per_timer + 1;
     }
 }

@@ -61,8 +61,8 @@ void control_timer_callback(rcl_timer_t * control_timer, int64_t last_call_time)
     if (control_timer != NULL) {
 
         std_msgs__msg__String__init(&control_msg);
-        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
-        //std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getCount());
+        //std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
+        std::string data = std::to_string(motor.getCount()) + " " + std::to_string(motor.getSpeed());
         
         control_msg.data.data = strdup(data.c_str()); // Create a copy of the string
         control_msg.data.size = strlen(control_msg.data.data);
@@ -81,10 +81,13 @@ void log_timer_callback(rcl_timer_t * log_timer, int64_t last_call_time)
     std_msgs__msg__String__init(&log_msg);
         // Format the log data as a string
         std::stringstream log_data;
-        log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," << 
-        log_integral_error << "," << log_derivative << "," << log_new_pwm << "," 
-        << log_current_speed << "," << log_desired_speed << "," << log_dir;
+        // log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," << 
+        // log_integral_error << "," << log_derivative << "," << log_new_pwm << "," 
+        // << log_current_speed << "," << log_desired_speed << "," << log_dir;
         
+        log_data << /*timestamp << "," <<*/ log_new_pwm << "," 
+        << log_current_speed << "," << log_desired_speed << "," << log_dir;
+
         // Assign the log data to the message
         log_msg.data.data = strdup(log_data.str().c_str());
         log_msg.data.size = strlen(log_msg.data.data);
@@ -142,44 +145,44 @@ void subscription_callback_motor(const void *msgin) {
 
     // Update the direction of the motor
     motor.updateDirection(reverse, forward, direction);
+    motor.setSpeed(motor.getCurrentPwm());
+    // // PID gains
+    // double Kp = 0.0;
+    // double Ki = 0.0;
+    // double Kd = 0.0;
     
-    // PID gains
-    double Kp = 4.0;
-    double Ki = 0.0;
-    double Kd = 0.13;
-    
-    // Measure the current speed of the car m/s
+    // // Measure the current speed of the car m/s
     double current_speed = motor.getSpeed();
 
-    // Calculate the error
-    double error = desired_speed - current_speed;
+    // // Calculate the error
+    // double error = desired_speed - current_speed;
 
-    // Calculate the integral term
-    motor.integral_error += error;
+    // // Calculate the integral term
+    // motor.integral_error += error;
 
-    // Calculate the derivative term
-    double derivative = error - motor.previous_error;
+    // // Calculate the derivative term
+    // double derivative = error - motor.previous_error;
    
-    // Adjust the PWM based on the error   
-    double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
+    // // Adjust the PWM based on the error   
+    // double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
 
-    // Set the new PWM value to the motor
-    if (direction == "stop"){
-        motor.setSpeed(0.0);
-    }
-    else{
-        motor.setSpeed(new_pwm);
-    }
+    // // Set the new PWM value to the motor
+    // if (direction == "stop"){
+    //     motor.setSpeed(0.0);
+    // }
+    // else{
+    //     motor.setSpeed(new_pwm);
+    // }
 
-    // Update the previous error
-    motor.previous_error = error;
+    // // Update the previous error
+    // motor.previous_error = error;
 
 	if(PID_LOGGING_ENABLED){
-		log_kp = Kp;
-		log_error = error;
-		log_integral_error = motor.integral_error;
-		log_derivative = derivative;
-		log_new_pwm = new_pwm;
+		//log_kp = Kp;
+		//log_error = error;
+		//log_integral_error = motor.integral_error;
+		//log_derivative = derivative;
+		log_new_pwm = motor.getCurrentPwm();
 		log_desired_speed = desired_speed;
 		log_current_speed = current_speed;
 		log_dir = motor.getDirection();

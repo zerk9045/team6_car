@@ -8,7 +8,7 @@
 #define WHEEL_RADIUS 0.05
 #define M_PI        3.14159265358979323846264338327950288
 #define MAX_DUTY    3000
-#define MIN_DUTY    700
+#define MIN_DUTY    1000
 
 // Define timestamp for previousTime
 absolute_time_t previousTime;
@@ -26,8 +26,6 @@ Motor::Motor(){//, ) {
     set_pwm_pin(MOTOR_PWM, 1000, MIN_DUTY);
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
-    previous_error = 0;
-    integral_error = 0;
     currentPwm = MIN_DUTY;
 }
 
@@ -91,10 +89,16 @@ double Motor::getSpeed() {
     // Convert from microseconds to seconds
     double deltaTime = static_cast<double>(deltaTimeMicro) / 1000000;
 
-    // Calculate revs per second
-    double rps = (irSensor->getCountsPerTimer() - previous_counts_per_timer) / deltaTime;
+    // Calculate counts per second
+    double cps = (irSensor->getCountsPerTimer() - previous_counts_per_timer) / deltaTime;
 
-    double rpm = rps*60;
+    // There are 3 white dots on the motor gear box. Theoretically, one wheel rotation
+    // should equal 3 count. However, empircally measuring a single wheel rotation, 
+    // there are 4 counts per wheel rotation.
+
+    // Convert counts per second to revolutions per minute
+    double rps = cps / 4;
+    double rpm = rps * 60;
 
     // Set current counts per timer to previous counts per timer for next iteration
     previous_counts_per_timer = irSensor->getCountsPerTimer();
@@ -112,18 +116,18 @@ double Motor::getSpeed() {
         speed = static_cast<double>(rps*circumference);
     }
 
-    // Update the speed buffer with the new speed measurement
-    speedBuffer[bufferIndex] = speed;
-    bufferIndex = (bufferIndex + 1) % BUFFER_SIZE;
+    // // Update the speed buffer with the new speed measurement
+    // speedBuffer[bufferIndex] = speed;
+    // bufferIndex = (bufferIndex + 1) % BUFFER_SIZE;
 
-    // Calculate the average speed
-    double averageSpeed = 0.0;
-    for (int i = 0; i < BUFFER_SIZE; i++) {
-        averageSpeed += speedBuffer[i];
-    }
-    averageSpeed /= BUFFER_SIZE;
+    // // Calculate the average speed
+    // double averageSpeed = 0.0;
+    // for (int i = 0; i < BUFFER_SIZE; i++) {
+    //     averageSpeed += speedBuffer[i];
+    // }
+    // averageSpeed /= BUFFER_SIZE;
 
-    return rpm;
+    return speed;
 //    //use an average filter to smooth out the speed measurements
 //
 //    // angular speed in rads/sec = (Revs per second / second) * (2pi)
