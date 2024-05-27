@@ -92,6 +92,12 @@ double Motor::getSpeed() {
     // Calculate counts per second
     double cps = (irSensor->getCountsPerTimer() - previous_counts_per_timer) / deltaTime;
 
+    if (motor_direction == "stop"){
+        cps = 0.0;
+    } else if (irSensor->getCountsPerTimer() == previous_counts_per_timer){
+        cps = irSensor->getCountsPerTimer() / deltaTime;
+    }
+
     // There are 3 white dots on the motor gear box. Theoretically, one wheel rotation
     // should equal 3 count. However, empircally measuring a single wheel rotation, 
     // there are 4 counts per wheel rotation.

@@ -133,29 +133,41 @@ void subscription_callback_motor(const void *msgin) {
     // check to see if direction has changed before updating
     if (desired_speed > 0){
         forward = true;
+        reverse = false;
         direction = "forward";
     }
     else if(desired_speed < 0){
-        reverse = false;
+        forward = false;
+        reverse = true;
         direction = "reverse";
     }
     else{
+        forward = false;
+        reverse = false;        
     	direction = "stop";
     }
 
     // Update the direction of the motor
     motor.updateDirection(reverse, forward, direction);
     motor.setSpeed(motor.getCurrentPwm());
-    // // PID gains
-    // double Kp = 0.0;
-    // double Ki = 0.0;
-    // double Kd = 0.0;
-    
-    // // Measure the current speed of the car m/s
+
+    // Measure the current speed of the car m/s
     double current_speed = motor.getSpeed();
+
+    // // PID gains
+    // double Kp = 1.0;
+    // double Ki = 0.0;
+    // double Kd = 0.0;    
 
     // // Calculate the error
     // double error = desired_speed - current_speed;
+
+    // // Compute the output signal
+    // double u = Kp*error;
+
+    //
+
+    
 
     // // Calculate the integral term
     // motor.integral_error += error;
@@ -164,7 +176,7 @@ void subscription_callback_motor(const void *msgin) {
     // double derivative = error - motor.previous_error;
    
     // // Adjust the PWM based on the error   
-    // double new_pwm = motor.getCurrentPwm() + Kp * error + Ki * motor.integral_error + Kd * derivative;
+    // double new_pwm = Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // // Set the new PWM value to the motor
     // if (direction == "stop"){
