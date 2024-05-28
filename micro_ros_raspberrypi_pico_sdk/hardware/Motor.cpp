@@ -77,7 +77,9 @@ int Motor::getCount(){
 }
 
 // Function for getting the current speed of the motor
-// It converts the PWM output of the motor into a velocity in m/s
+// It converts the IR sensor counts to speed in m/s
+// The speed is calculated by counting the number of counts in a certain interval
+
 double Motor::getSpeed() {
 
     // Get the current time
@@ -90,13 +92,10 @@ double Motor::getSpeed() {
     double deltaTime = static_cast<double>(deltaTimeMicro) / 1000000;
 
     // Calculate counts per second
-    double cps = (irSensor->getCountsPerTimer() - previous_counts_per_timer) / deltaTime;
+    double cps = irSensor->getCountsPerTimer() / deltaTime;
 
-    if (motor_direction == "stop"){
-        cps = 0.0;
-    } else if (irSensor->getCountsPerTimer() == previous_counts_per_timer){
-        cps = irSensor->getCountsPerTimer() / deltaTime;
-    }
+    // Reset the counts per timer
+    irSensor->resetCounts();
 
     // There are 3 white dots on the motor gear box. Theoretically, one wheel rotation
     // should equal 3 count. However, empircally measuring a single wheel rotation, 
@@ -105,9 +104,6 @@ double Motor::getSpeed() {
     // Convert counts per second to revolutions per minute
     double rps = cps / 4;
     double rpm = rps * 60;
-
-    // Set current counts per timer to previous counts per timer for next iteration
-    previous_counts_per_timer = irSensor->getCountsPerTimer();
 
     // Set current time to previous time for next iteration
     previousTime = currentTime;
