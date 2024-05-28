@@ -4,6 +4,8 @@
 #include "pico/stdlib.h"
 #include "IRSensor.h"
 #include <string>
+
+
 #define BRAKE_PWM 1500000
 #define MAX_PWM 2000000
 #define MIN_PWM 1375000
@@ -18,6 +20,7 @@ public:
     Motor();
     double previous_error;
     double integral_error;
+    absolute_time_t previous_time; // Previous time for speed calculation
     // Destructor
     ~Motor();
     static void set_pwm_pin(uint pin, uint freq, float duty_c);
@@ -39,6 +42,7 @@ private:
     double currentPwm;
     double previous_speed_estimate; // Previous speed estimate for Kalman filter
     double estimated_error; // Estimated error for Kalman filter
+
 };
 
 #endif //TEAM6_CAR_MOTOR_H

@@ -27,6 +27,7 @@ Motor::Motor(){//, ) {
     gpio_set_dir(INA_PIN, GPIO_OUT);
     gpio_set_dir(INB_PIN, GPIO_OUT);
     currentPwm = MIN_DUTY;
+    previous_time = get_absolute_time();
 }
 
 Motor::~Motor() {
