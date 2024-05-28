@@ -7,8 +7,8 @@
 
 #define WHEEL_RADIUS 0.05
 #define M_PI        3.14159265358979323846264338327950288
-#define MAX_DUTY    3000
-#define MIN_DUTY    1000
+#define MAX_DUTY    77
+#define MIN_DUTY    0
 
 // Define timestamp for previousTime
 absolute_time_t previousTime;
@@ -40,9 +40,9 @@ void Motor::set_pwm_pin(uint pin, uint freq, float duty_c) {
     gpio_set_function(pin, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(pin);
     pwm_config config = pwm_get_default_config();
-    float div = (float)clock_get_hz(clk_sys) / (freq * 10000);
+    float div = (float)clock_get_hz(clk_sys) / (freq * 255);
     pwm_config_set_clkdiv(&config, div);
-    pwm_config_set_wrap(&config, 10000);
+    pwm_config_set_wrap(&config, 255);
     pwm_init(slice_num, &config, true); // start the pwm running according to the config
     pwm_set_gpio_level(pin, (uint)(duty_c)); //connect the pin to the pwm engine and set the on/off level.
 }
@@ -56,9 +56,9 @@ int Motor::getCurrentPwm(){
 void Motor::setSpeed(double speedPWM) {
     if (speedPWM > MAX_DUTY) {
         speedPWM = MAX_DUTY;
-    } //else if (speedPWM < MIN_DUTY) {
-//        speedPWM = MIN_DUTY;
-//    }
+    } else if (speedPWM < MIN_DUTY) {
+        speedPWM = MIN_DUTY;
+    }
     // Ensure PWM is within the valid range
     if (currentPwm == speedPWM) {
         return;
