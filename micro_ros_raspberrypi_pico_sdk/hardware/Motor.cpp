@@ -115,8 +115,10 @@ double Motor::getSpeed() {
     if (motor_direction == "reverse"){
         speed = static_cast<double>(-1*rps*circumference);
     }
-    else {
+    else if (motor_direction == "forward"){
         speed = static_cast<double>(rps*circumference);
+    }else if (motor_direction == "stop"){
+        speed = 0.0;
     }
 
     // // Update the speed buffer with the new speed measurement
