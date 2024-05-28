@@ -123,6 +123,7 @@ bool isValidPwm(int pwm) {
 void subscription_callback_motor(const void *msgin) {
     const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
 
+    double bias = 800;
     std::string direction;
     bool forward = false;
     bool reverse = false;
@@ -177,7 +178,7 @@ void subscription_callback_motor(const void *msgin) {
     double u = Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Adjust the PWM based on the error
-    double new_pwm = std::abs(u);
+    double new_pwm = bias + std::abs(u);
 
     // Set the new PWM value to the motor
     if (direction == "stop"){
