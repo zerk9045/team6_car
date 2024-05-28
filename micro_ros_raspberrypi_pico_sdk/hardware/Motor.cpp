@@ -56,9 +56,9 @@ int Motor::getCurrentPwm(){
 void Motor::setSpeed(double speedPWM) {
     if (speedPWM > MAX_DUTY) {
         speedPWM = MAX_DUTY;
-    } else if (speedPWM < MIN_DUTY) {
-        speedPWM = MIN_DUTY;
-    }
+    } //else if (speedPWM < MIN_DUTY) {
+//        speedPWM = MIN_DUTY;
+//    }
     // Ensure PWM is within the valid range
     if (currentPwm == speedPWM) {
         return;
