@@ -16,6 +16,7 @@
 #include "../config/pin_config.h"
 #include <fstream>
 #include <chrono>
+#include <cmath>
 #define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
 #define KP_TEST 0 // Use to test different Kp values
 double KP_GLOBAL = 0.01; // Proportional gain
@@ -176,7 +177,7 @@ void subscription_callback_motor(const void *msgin) {
     double u = Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Adjust the PWM based on the error
-    double new_pwm = fabs(u);
+    double new_pwm = std::abs(u);
 
     // Set the new PWM value to the motor
     if (direction == "stop"){
