@@ -32,6 +32,7 @@ public:
     std::string getDirection();
     int getCurrentPwm();
     int getCount();
+    static void do_interrupt(uint gpio, uint32_t events);
 private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control
@@ -40,6 +41,7 @@ private:
     // Private helper function to set motor direction
     std::string motor_direction;
     double currentPwm;
+    double currCount;
     double previous_speed_estimate; // Previous speed estimate for Kalman filter
     double estimated_error; // Estimated error for Kalman filter
 

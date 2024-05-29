@@ -62,8 +62,8 @@ void control_timer_callback(rcl_timer_t * control_timer, int64_t last_call_time)
     if (control_timer != NULL) {
 
         std_msgs__msg__String__init(&control_msg);
-        //std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getSpeed());
-        std::string data = std::to_string(motor.getCount()) + " " + std::to_string(motor.getSpeed());
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getCount());
+        //std::string data = std::to_string(motor.getCount()) + " " + std::to_string(motor.getSpeed());
         
         control_msg.data.data = strdup(data.c_str()); // Create a copy of the string
         control_msg.data.size = strlen(control_msg.data.data);
@@ -151,7 +151,7 @@ void subscription_callback_motor(const void *msgin) {
     double current_speed = motor.getSpeed();
 
     // PID gains
-    double Kp = 1.0;
+    double Kp = 4.0;
     double Ki = 0.0;
     double Kd = 0.0;
 
@@ -177,15 +177,12 @@ void subscription_callback_motor(const void *msgin) {
     double u = Kp * error + Ki * motor.integral_error + Kd * derivative;
 
     // Adjust the PWM based on the error
-    double new_pwm = std::abs(u);
+    double new_pwm = motor.getCurrentPwm()+ u;
 
     // Set the new PWM value to the motor
-    if (direction == "stop"){
-        motor.setSpeed(0.0);
-    }
-    else{
-        motor.setSpeed(new_pwm);
-    }
+ 
+    motor.setSpeed(new_pwm);
+
 
     // Update the previous error and time
     motor.previous_error = error;
