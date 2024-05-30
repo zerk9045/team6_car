@@ -8,16 +8,15 @@
 #define WHEEL_RADIUS 0.05
 #define M_PI        3.14159265358979323846264338327950288
 #define MAX_DUTY    77
-#define MIN_DUTY    0
+#define MIN_DUTY    15
 
 // Define timestamp for previousTime
 absolute_time_t previousTime;
 
 // Intialize variables
-double circumference = 2*M_PI*WHEEL_RADIUS;
 int previous_counts_per_timer = 0;
 int counts_per_timer = 0;
-static int count = 0;
+int currentCount = 0;
 double previous_cps = 0;
 // Interrupt handler for the timer
 absolute_time_t last_interrupt_time2;  
@@ -82,91 +81,13 @@ std::string Motor::getDirection() {
 
 // Function for getting the number of counts within a certain interval
 int Motor::getCount(){
-    return currCount;
+    return currentCount;
 }
 
 // Function for getting the current speed of the motor
 // It converts the IR sensor counts to speed in m/s
 // The speed is calculated by counting the number of counts in a certain interval
 
-double Motor::getSpeed() {
-    count = 0;
-    // Get the current time
-    absolute_time_t currentTime = get_absolute_time();
-    count = counts_per_timer;
-    // Calculate the time difference
-    int64_t deltaTimeMicro = absolute_time_diff_us(previousTime, currentTime);    
-
-    // Convert from microseconds to seconds
-    double deltaTime = static_cast<double>(deltaTimeMicro) / 1000000;
-   
-    // Calculate counts per second
-    double cps = (count-previous_counts_per_timer)/ deltaTime;
-    //irSensor->resetCounts();
-    if (currCount == previous_counts_per_timer && motor_direction != "stop"){
-    	cps = previous_cps;
-    }
-    previous_cps = cps;
-    previous_counts_per_timer = count;
-
-    // There are 3 white dots on the motor gear box. Theoretically, one wheel rotation
-    // should equal 3 count. However, empircally measuring a single wheel rotation, 
-    // there are 4 counts per wheel rotation.
-
-    // Convert counts per second to revolutions per minute
-    double rps = cps / 4;
-    double rpm = rps * 60;
-
-    // Set current time to previous time for next iteration
-    previousTime = currentTime;
-
-    // Calculate circumference
-    double speed;
-
-    if (motor_direction == "reverse"){
-        speed = static_cast<double>(-1*rps*circumference);
-    }
-    else if (motor_direction == "forward"){
-        speed = static_cast<double>(rps*circumference);
-    }else if (motor_direction == "stop"){
-        speed = 0.0;
-         // Reset the counts per timer
-         //irSensor->resetCounts();
-    }
-
-    // // Update the speed buffer with the new speed measurement
-    // speedBuffer[bufferIndex] = speed;
-    // bufferIndex = (bufferIndex + 1) % BUFFER_SIZE;
-
-    // // Calculate the average speed
-    // double averageSpeed = 0.0;
-    // for (int i = 0; i < BUFFER_SIZE; i++) {
-    //     averageSpeed += speedBuffer[i];
-    // }
-    // averageSpeed /= BUFFER_SIZE;
-
-    return speed;
-//    //use an average filter to smooth out the speed measurements
-//
-//    // angular speed in rads/sec = (Revs per second / second) * (2pi)
-//    // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
-//
-//    // linear speed = angular speed * radius
-//    // v = w * 0.05;
-//
-//    if (motor_direction == "forward"){
-//        return static_cast<double>(
-//                ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
-//    }
-//    else if (motor_direction == "reverse"){
-//        return static_cast<double>(
-//            -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
-//    }
-//    else {
-//        return 0;
-//    }
-
-}
 
 // Function for updating the direction of the motor
 void Motor::updateDirection(bool inAValue, bool inBValue, std::string direction) {
@@ -181,7 +102,7 @@ void Motor::do_interrupt(uint gpio, uint32_t events) {
     // Debouncing logic
     // Get the current time
     absolute_time_t now = get_absolute_time();
-    count = counts_per_timer;
+    
     // Calculate the time difference since the last interrupt
    int64_t diff_us = absolute_time_diff_us(last_interrupt_time2, now);
 
@@ -196,4 +117,8 @@ void Motor::do_interrupt(uint gpio, uint32_t events) {
         counts_per_timer = counts_per_timer + 1;
         
     }
+}
+
+int Motor::getCountsPerTimer(){
+    return counts_per_timer;
 }

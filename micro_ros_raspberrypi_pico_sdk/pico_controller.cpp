@@ -17,6 +17,7 @@
 #include <fstream>
 #include <chrono>
 #include <cmath>
+#include "hardware/sync.h"
 #define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
 #define KP_TEST 0 // Use to test different Kp values
 double KP_GLOBAL = 0.01; // Proportional gain
@@ -46,6 +47,12 @@ rcl_node_t node;
 rcl_allocator_t allocator;
 rclc_support_t support;
 rclc_executor_t executor;
+
+absolute_time_t prevTime;
+int currentCounts = 0;
+int previousCounts = 0;
+double circumference = 2*3.14159265358979323846264338327950288*0.05;
+double previousCps = 0;
 
 double log_kp;
 double log_error;
@@ -127,6 +134,58 @@ void subscription_callback_motor(const void *msgin) {
     bool forward = false;
     bool reverse = false;
 
+    // Temporarily disable interrupts
+    uint32_t old_irq = save_and_disable_interrupts();
+
+    // Grab the current counts
+    currentCounts = motor.getCountsPerTimer();
+
+
+
+    // Calculate velocity
+    // Get the current time
+    absolute_time_t currentTime = get_absolute_time();
+
+    // Calculate the time difference in microseconds
+    int64_t deltaTimeMicro = absolute_time_diff_us(motor.previous_time, currentTime);
+
+    // Convert from microseconds to seconds
+    double deltaT = static_cast<double>(deltaTimeMicro) / 1000000;
+
+    // Calculate counts per second
+    double cps = (currentCounts - previousCounts) / deltaT;
+
+    // Prevent 0s
+    if (cps == 0 && motor.motor_direction != "stop"){
+        cps = previousCps;
+    }
+
+    // Set current counts and time to previous counts and time for next iteration
+    previousCounts = currentCounts;
+    prevTime = currentTime;
+    if (cps !=0 && motor.motor_direction != "stop"){
+        previousCps = cps;
+    }
+   
+    
+
+    // Calculate revs per second
+    double rps = cps/4;
+    double rpm = rps*60;
+
+    // Calculate meters per second
+    double current_speed;
+
+    if (motor.motor_direction == "reverse"){
+        current_speed = static_cast<double>(-1*rps*circumference);
+    }
+    else if (motor.motor_direction == "forward"){
+        current_speed = static_cast<double>(rps*circumference);
+    }else if (motor.motor_direction == "stop"){
+        current_speed = 0.0;
+    }
+
+    // Grab the target speed
     double desired_speed =  static_cast<double>(msg->data);
 
     if (desired_speed > 0){
@@ -145,27 +204,16 @@ void subscription_callback_motor(const void *msgin) {
         direction = "stop";
     }
 
+    // Update the motor direction to the desired direction
     motor.updateDirection(reverse, forward, direction);
-    //motor.setSpeed(motor.getCurrentPwm());
-
-    double current_speed = motor.getSpeed();
 
     // PID gains
-    double Kp = 4.0;
+    double Kp = 5.0;
     double Ki = 0.0;
     double Kd = 0.0;
 
     // Calculate the error
     double error = desired_speed - current_speed;
-
-    // Get the current time
-    absolute_time_t currentTime = get_absolute_time();
-
-    // Calculate the time difference in microseconds
-    int64_t deltaTimeMicro = absolute_time_diff_us(motor.previous_time, currentTime);
-
-    // Convert from microseconds to seconds
-    double deltaT = static_cast<double>(deltaTimeMicro) / 1000000;
 
     // Compute the integral term
     motor.integral_error += error * deltaT;
@@ -176,24 +224,34 @@ void subscription_callback_motor(const void *msgin) {
     // Compute the output signal
     double u = Kp * error + Ki * motor.integral_error + Kd * derivative;
 
-    // Adjust the PWM based on the error
-    double new_pwm = motor.getCurrentPwm()+ u;
+    // Set new direction if depnding on the error sign
+    if (u > 0){
+        forward = true;
+        reverse = false;
+        direction = "forward";
+    }
+    else if(u < 0){
+        forward = false;
+        reverse = true;
+        direction = "reverse";
+    }
 
+    // Adjust the PWM based on the error
+    int new_pwm = std::abs(u);
+
+    // Checks for PWM limits are in conducted in the following function
     // Set the new PWM value to the motor
- 
     motor.setSpeed(new_pwm);
 
-
-    // Update the previous error and time
-    motor.previous_error = error;
-    motor.previous_time = currentTime;
+    // Restore interrupts
+    restore_interrupts(old_irq);
 
     if(PID_LOGGING_ENABLED){
         log_error = error;
         log_kp = Kp;
-        log_integral_error = motor.integral_error;
-        log_derivative = derivative;
-        log_new_pwm = motor.getCurrentPwm();
+        log_integral_error = u;
+        log_derivative = rpm;
+        log_new_pwm = new_pwm;
         log_desired_speed = desired_speed;
         log_current_speed = current_speed;
         log_dir = motor.getDirection();

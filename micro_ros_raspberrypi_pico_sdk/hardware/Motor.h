@@ -26,22 +26,24 @@ public:
     static void set_pwm_pin(uint pin, uint freq, float duty_c);
     // Function to set motor speed
     void setSpeed(double speedPWM);
-    // Function to read motor speed
-    double getSpeed();
+
     void updateDirection(bool inAValue, bool inBValue, std::string direction);
     std::string getDirection();
     int getCurrentPwm();
     int getCount();
+std::string motor_direction;
+    // Stuff from IRSensor
     static void do_interrupt(uint gpio, uint32_t events);
+    int getCountsPerTimer();
+
 private:
     int pwmPin; // PWM pin for motor speed control
     int inAPin; // INA pin for motor direction control
     int inBPin; // INB pin for motor direction control
     //IRSensor* irSensor; // IRSensor object for speed calculation
     // Private helper function to set motor direction
-    std::string motor_direction;
+    
     double currentPwm;
-    double currCount;
     double previous_speed_estimate; // Previous speed estimate for Kalman filter
     double estimated_error; // Estimated error for Kalman filter
 
