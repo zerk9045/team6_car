@@ -98,8 +98,8 @@ IRSensor::IRSensor() {
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
     gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
-    irTimer = make_timeout_time_ms(200);
-    add_alarm_in_us(200000, timer_interrupt, NULL, true);
+    irTimer = make_timeout_time_ms(500);
+    add_alarm_in_us(500000, timer_interrupt, NULL, true);
 }
 
 // Function for reseting the number of sensor interrupts

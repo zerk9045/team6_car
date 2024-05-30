@@ -140,6 +140,8 @@ void subscription_callback_motor(const void *msgin) {
     // Grab the current counts
     currentCounts = motor.getCountsPerTimer();
 
+    // Restore interrupts
+    restore_interrupts(old_irq);
 
 
     // Calculate velocity
@@ -165,6 +167,8 @@ void subscription_callback_motor(const void *msgin) {
     prevTime = currentTime;
     if (cps !=0 && motor.motor_direction != "stop"){
         previousCps = cps;
+    } else if (motor.motor_direction == "stop"){
+        previousCps = 0;
     }
    
     
@@ -208,7 +212,7 @@ void subscription_callback_motor(const void *msgin) {
     motor.updateDirection(reverse, forward, direction);
 
     // PID gains
-    double Kp = 5.0;
+    double Kp = 2.0;
     double Ki = 0.0;
     double Kd = 0.0;
 
@@ -235,22 +239,26 @@ void subscription_callback_motor(const void *msgin) {
         reverse = true;
         direction = "reverse";
     }
+    motor.updateDirection(reverse, forward, direction);
 
     // Adjust the PWM based on the error
-    int new_pwm = std::abs(u);
+    double new_pwm = u;
 
     // Checks for PWM limits are in conducted in the following function
     // Set the new PWM value to the motor
-    motor.setSpeed(new_pwm);
+    if (motor.motor_direction == "stop"){
+        motor.setSpeed(0);
+    } else {
+        motor.setSpeed(new_pwm);       
+    }
 
-    // Restore interrupts
-    restore_interrupts(old_irq);
+
 
     if(PID_LOGGING_ENABLED){
         log_error = error;
         log_kp = Kp;
         log_integral_error = u;
-        log_derivative = rpm;
+        log_derivative = Kd;
         log_new_pwm = new_pwm;
         log_desired_speed = desired_speed;
         log_current_speed = current_speed;

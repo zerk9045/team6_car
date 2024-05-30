@@ -8,7 +8,7 @@
 #define WHEEL_RADIUS 0.05
 #define M_PI        3.14159265358979323846264338327950288
 #define MAX_DUTY    77
-#define MIN_DUTY    15
+#define MIN_DUTY    0
 
 // Define timestamp for previousTime
 absolute_time_t previousTime;
