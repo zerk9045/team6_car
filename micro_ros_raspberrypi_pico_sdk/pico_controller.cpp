@@ -89,8 +89,8 @@ void log_timer_callback(rcl_timer_t * log_timer, int64_t last_call_time)
     std_msgs__msg__String__init(&log_msg);
         // Format the log data as a string
         std::stringstream log_data;
-         log_data << /*timestamp << "," <<*/ log_kp << "," << log_error << "," <<
-         log_integral_error << "," << log_derivative << "," << log_new_pwm << ","
+         log_data << /*timestamp << "," <<*/ log_kp << "," << log_integral_error << "," <<
+         log_derivative << "," << log_new_pwm << "," << log_error << ","
          << log_current_speed << "," << log_desired_speed;
         
 //        log_data << /*timestamp << "," <<*/ log_new_pwm << ","
@@ -149,7 +149,7 @@ void subscription_callback_motor(const void *msgin) {
     absolute_time_t currentTime = get_absolute_time();
 
     // Calculate the time difference in microseconds
-    int64_t deltaTimeMicro = absolute_time_diff_us(motor.previous_time, currentTime);
+    int64_t deltaTimeMicro = absolute_time_diff_us(prevTime, currentTime);
 
     // Convert from microseconds to seconds
     double deltaT = static_cast<double>(deltaTimeMicro) / 1000000;
@@ -228,21 +228,21 @@ void subscription_callback_motor(const void *msgin) {
     // Compute the output signal
     double u = Kp * error + Ki * motor.integral_error + Kd * derivative;
 
-    // Set new direction if depnding on the error sign
-    if (u > 0){
-        forward = true;
-        reverse = false;
-        direction = "forward";
-    }
-    else if(u < 0){
-        forward = false;
-        reverse = true;
-        direction = "reverse";
-    }
-    motor.updateDirection(reverse, forward, direction);
+    // // Set new direction if depnding on the error sign
+    // if (u > 0){
+    //     forward = true;
+    //     reverse = false;
+    //     direction = "forward";
+    // }
+    // else if(u < 0){
+    //     forward = false;
+    //     reverse = true;
+    //     direction = "reverse";
+    // }
+    // motor.updateDirection(reverse, forward, direction);
 
     // Adjust the PWM based on the error
-    double new_pwm = u;
+    double new_pwm = motor.getCurrentPwm() + u;
 
     // Checks for PWM limits are in conducted in the following function
     // Set the new PWM value to the motor
@@ -255,11 +255,11 @@ void subscription_callback_motor(const void *msgin) {
 
 
     if(PID_LOGGING_ENABLED){
-        log_error = error;
         log_kp = Kp;
-        log_integral_error = u;
-        log_derivative = Kd;
-        log_new_pwm = new_pwm;
+        log_integral_error = motor.integral_error;
+        log_derivative = cps;
+        log_new_pwm = rpm;
+        log_error = error;
         log_desired_speed = desired_speed;
         log_current_speed = current_speed;
         log_dir = motor.getDirection();

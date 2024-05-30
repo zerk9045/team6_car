@@ -78,7 +78,7 @@ absolute_time_t last_interrupt_time;
 // Initialize static member
 int IRSensor::sensor_interrupts = 0;
 int IRSensor::counts_per_timer = 0;     // number of counts read by the IR sensor
-int count = 0;
+
 // Declare a hardware timer
 absolute_time_t irTimer;
 
@@ -96,10 +96,10 @@ int64_t timer_interrupt(alarm_id_t id, void *user_data) {
 IRSensor::IRSensor() {
     gpio_init(IR_SENSOR_PIN);
     gpio_set_dir(IR_SENSOR_PIN, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_FALL, true, IRSensor::do_interrupt);
+    gpio_set_irq_enabled_with_callback(IR_SENSOR_PIN, GPIO_IRQ_EDGE_RISE, true, IRSensor::do_interrupt);
     // Initialize the hardware timer
-    irTimer = make_timeout_time_ms(500);
-    add_alarm_in_us(500000, timer_interrupt, NULL, true);
+    irTimer = make_timeout_time_ms(200);
+    add_alarm_in_us(200000, timer_interrupt, NULL, true);
 }
 
 // Function for reseting the number of sensor interrupts
@@ -109,7 +109,7 @@ void IRSensor::resetSensorInterrupts() {
 
 // Function for getting the current number of counts in a certain interval
 int IRSensor::getCountsPerTimer() {
-    return count;
+    return counts_per_timer;
 }
 
 // Function for reseting the number of counts
@@ -123,13 +123,13 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
     // Debouncing logic
     // Get the current time
     absolute_time_t now = get_absolute_time();
-    count = counts_per_timer;
+    
     // Calculate the time difference since the last interrupt
    int64_t diff_us = absolute_time_diff_us(last_interrupt_time, now);
 
     // Check if the current rising edge is the actual rising edge or if it is part of the bouncing
     // If the time difference is greater than 8 ms, it is a valid rising edge
-    if (diff_us > 800 && gpio_get(IR_SENSOR_PIN)){
+    if (diff_us > 800 && !gpio_get(IR_SENSOR_PIN)){
 
         // Set the timestamp of this interrupt as the previous interrupt time for the next iteration
         last_interrupt_time = now;
