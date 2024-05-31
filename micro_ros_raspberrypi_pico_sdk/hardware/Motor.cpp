@@ -18,6 +18,7 @@ int previous_counts_per_timer = 0;
 int counts_per_timer = 0;
 int currentCount = 0;
 double previous_cps = 0;
+bool isCounting =false;
 // Interrupt handler for the timer
 absolute_time_t last_interrupt_time2;  
 
@@ -102,7 +103,7 @@ void Motor::do_interrupt(uint gpio, uint32_t events) {
     // Debouncing logic
     // Get the current time
     absolute_time_t now = get_absolute_time();
-    
+    isCounting = true;
     // Calculate the time difference since the last interrupt
    int64_t diff_us = absolute_time_diff_us(last_interrupt_time2, now);
 
@@ -115,10 +116,15 @@ void Motor::do_interrupt(uint gpio, uint32_t events) {
 
         // Increment the number of counnts
         counts_per_timer = counts_per_timer + 1;
-        
+
+        isCounting = false;
     }
+   
 }
 
 int Motor::getCountsPerTimer(){
     return counts_per_timer;
+}
+bool Motor::getisCounting(){
+    return isCounting;
 }

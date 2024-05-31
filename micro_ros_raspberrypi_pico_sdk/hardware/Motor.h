@@ -31,6 +31,7 @@ public:
     std::string getDirection();
     int getCurrentPwm();
     int getCount();
+    bool getisCounting();
 std::string motor_direction;
     // Stuff from IRSensor
     static void do_interrupt(uint gpio, uint32_t events);

@@ -69,7 +69,7 @@ void control_timer_callback(rcl_timer_t * control_timer, int64_t last_call_time)
     if (control_timer != NULL) {
 
         std_msgs__msg__String__init(&control_msg);
-        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(motor.getCount());
+        std::string data = "1";//std::to_string(servo.getAngle()) + " " + std::to_string(log_current_speed);
         //std::string data = std::to_string(motor.getCount()) + " " + std::to_string(motor.getSpeed());
         
         control_msg.data.data = strdup(data.c_str()); // Create a copy of the string
@@ -127,6 +127,7 @@ bool isValidPwm(int pwm) {
 
 // TODO: add a custom motor message so we dont have to parse the string
 //https://micro.ros.org/docs/tutorials/advanced/create_new_type/
+
 void subscription_callback_motor(const void *msgin) {
     const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
 
@@ -155,21 +156,21 @@ void subscription_callback_motor(const void *msgin) {
     double deltaT = static_cast<double>(deltaTimeMicro) / 1000000;
 
     // Calculate counts per second
-    double cps = (currentCounts - previousCounts) / deltaT;
+     double cps = (currentCounts - previousCounts) / deltaT;
 
-    // Prevent 0s
-    if (cps == 0 && motor.motor_direction != "stop"){
-        cps = previousCps;
-    }
+    // // Prevent 0s
+    // if (cps == 0 && motor.motor_direction != "stop"){
+    //     cps = previousCps;
+    // }
 
     // Set current counts and time to previous counts and time for next iteration
     previousCounts = currentCounts;
     prevTime = currentTime;
-    if (cps !=0 && motor.motor_direction != "stop"){
-        previousCps = cps;
-    } else if (motor.motor_direction == "stop"){
-        previousCps = 0;
-    }
+    // if (cps !=0 && motor.motor_direction != "stop"){
+    //     previousCps = cps;
+    // } else if (motor.motor_direction == "stop"){
+    //     previousCps = 0;
+    // }
    
     
 
@@ -213,7 +214,7 @@ void subscription_callback_motor(const void *msgin) {
 
     // PID gains
     double Kp = 2.0;
-    double Ki = 0.0;
+    double Ki = 0.01;
     double Kd = 0.0;
 
     // Calculate the error
@@ -242,12 +243,13 @@ void subscription_callback_motor(const void *msgin) {
     // motor.updateDirection(reverse, forward, direction);
 
     // Adjust the PWM based on the error
-    double new_pwm = motor.getCurrentPwm() + u;
+    double new_pwm = std::abs(motor.getCurrentPwm() + u);
 
     // Checks for PWM limits are in conducted in the following function
     // Set the new PWM value to the motor
     if (motor.motor_direction == "stop"){
         motor.setSpeed(0);
+        currentCounts = 0;
     } else {
         motor.setSpeed(new_pwm);       
     }
