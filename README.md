@@ -1,8 +1,8 @@
 Spring Quarter 2024 EEC 195AB Team 6 - Raphael, Gabriel, and Adrien
 
-This repo serves as the location for all the code needed to run our EEC 195AB Senior Design Project, which was was the Autonomous Vehicle Design Project. Our specific project deviates from the default line following/lane following project offered in EEC 195AB. We chose to design a SLAM-capable autonomous navigation vehicle.
+This repo serves as the location for all the code needed to run our EEC 195AB Senior Design Project, which was the Autonomous Vehicle Design Project. Our specific project deviates from the default line following/lane following project offered in EEC 195AB. We chose to design a SLAM-capable autonomous navigation vehicle.
 
-The goal of this project was to create map a floor in Kemper Hall in UC Davis using SLAM and then using the created map to navigate autonomously using waypoints. A video of our project in action can be found here. There is also a report of this project which can be found here.
+The goal of this project was to create a map of a floor in Kemper Hall at UC Davis using SLAM and then use the created map to navigate autonomously using waypoints. A video of our project in action can be found [here](https://video.ucdavis.edu/media/EEC+195AB+-+Team6+SLAM+and+Autonomous+Navigation+Vehicle+Design/1_n3ral022). There is also a report of this project which can be found [here](https://drive.google.com/file/d/1YjDNlJzggsWzGPSiC08AWJQSZsNJ5PF0/view?usp=sharing).
 
 As we as a team feel this project has not reached its full potential, Adrien will be periodically updating the vehicle on his own time as a side project. Future plans are to address the oscillatory nature of the car when navigating autonomously, as well as address the networking issue between the remote machine and the Pi 4B.
 
