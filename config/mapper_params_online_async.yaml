@@ -18,6 +18,7 @@ slam_toolbox:
     use_map_saver: true # Specifies whether to use the map saver functionality
     mode: mapping # Specifies the mode of operation (mapping or localization)
 
+    map_start_at_dock: true
     debug_logging: false # Specifies whether to enable debug logging
     throttle_scans: 1 # Specifies the number of scans to skip between each processed scan
     transform_publish_period: 0.01 # Specifies the period at which to publish transforms

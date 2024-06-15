@@ -9,7 +9,11 @@ teleop_node:
     axis_linear:
       x: 1
     scale_linear:
+<<<<<<< HEAD
       x: 0.1
+=======
+      x: 0.05
+>>>>>>> my-temp-work
     scale_linear_turbo:
       x: 0.1
 

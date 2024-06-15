@@ -3,10 +3,12 @@
 #include "../config/pin_config.h"
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
+#include "hardware/sync.h"
 #include <string>
 
 #define WHEEL_RADIUS 0.05
 #define M_PI        3.14159265358979323846264338327950288
+<<<<<<< HEAD
 #define MAX_DUTY    77
 #define MIN_DUTY    0
 
@@ -21,6 +23,10 @@ double previous_cps = 0;
 bool isCounting =false;
 // Interrupt handler for the timer
 absolute_time_t last_interrupt_time2;  
+=======
+#define MAX_DUTY    1100
+#define MIN_DUTY    1000
+>>>>>>> my-temp-work
 
 Motor::Motor(){//, ) {
     //irSensor = new IRSensor();
@@ -82,7 +88,72 @@ std::string Motor::getDirection() {
 
 // Function for getting the number of counts within a certain interval
 int Motor::getCount(){
+<<<<<<< HEAD
     return currentCount;
+=======
+    return irSensor->getCountsPerTimer();
+}
+double Motor::getSpeed() {
+
+    u_int32_t old_irq = save_and_disable_interrupts();
+
+    int cps = getCount() / 0.6;
+
+    double speed;
+    if (motor_direction == "forward"){
+        speed = static_cast<double>(
+                ((cps/4) * (2*M_PI)) * 0.05);
+    }
+    else if (motor_direction == "reverse"){
+        speed = static_cast<double>(
+                -1* ((cps/4) * (2*M_PI)) * 0.05);
+    }
+    else {
+        speed = 0;
+        irSensor->resetCounts();
+    }
+
+    
+
+    absolute_time_t currentTime = get_absolute_time();
+    int64_t deltaTimeMicro = absolute_time_diff_us(prevTime, currentTime);
+    deltaTime = static_cast<double>(deltaTimeMicro) / 1000000;
+
+    prevTime = currentTime;
+
+    // Update the speed buffer with the new speed measurement
+    speedBuffer[bufferIndex] = speed;
+    bufferIndex = (bufferIndex + 1) % BUFFER_SIZE;
+
+    // Calculate the average speed
+    double averageSpeed = 0.0;
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        averageSpeed += speedBuffer[i];
+    }
+    averageSpeed /= BUFFER_SIZE;
+    restore_interrupts(old_irq);
+    return averageSpeed;
+//    //use an average filter to smooth out the speed measurements
+//
+//    // angular speed in rads/sec = (Revs per second / second) * (2pi)
+//    // w = (irSensor->getCountsPerTimer()/0.3) * (2*M_PI);
+//
+//    // linear speed = angular speed * radius
+//    // v = w * 0.05;
+//
+//    if (motor_direction == "forward"){
+//        return static_cast<double>(
+//                ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+//    }
+//    else if (motor_direction == "reverse"){
+//        return static_cast<double>(
+//            -1* ((irSensor->getCountsPerTimer()/0.1) * (2*M_PI)) * 0.05);
+//    }
+//    else {
+//        return 0;
+//    }
+
+>>>>>>> my-temp-work
 }
 
 // Function for getting the current speed of the motor

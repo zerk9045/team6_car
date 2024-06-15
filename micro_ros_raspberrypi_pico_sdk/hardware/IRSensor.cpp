@@ -4,6 +4,7 @@
 #include "hardware/timer.h"
 #include "../config/pin_config.h"
 #include "hardware/clocks.h"
+#include "hardware/sync.h"
 #include "hardware/pwm.h"
 #include "pico/time.h"
 #include "stdio.h"
@@ -133,9 +134,17 @@ void IRSensor::do_interrupt(uint gpio, uint32_t events) {
 
         // Set the timestamp of this interrupt as the previous interrupt time for the next iteration
         last_interrupt_time = now;
+<<<<<<< HEAD
 
         // Increment the number of counnts
         counts_per_timer = counts_per_timer + 1;
         
+=======
+        //If IR_SENSOR PIN is high then increment the counter
+        if (!gpio_get(IR_SENSOR_PIN)) {
+           sensor_interrupts++;
+            counts_per_timer = sensor_interrupts;
+        }
+>>>>>>> my-temp-work
     }
 }

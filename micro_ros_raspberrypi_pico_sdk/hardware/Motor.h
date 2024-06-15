@@ -9,7 +9,7 @@
 #define BRAKE_PWM 1500000
 #define MAX_PWM 2000000
 #define MIN_PWM 1375000
-#define BUFFER_SIZE 1
+#define BUFFER_SIZE 20
 
 class Motor {
     IRSensor* irSensor;
@@ -31,11 +31,16 @@ public:
     std::string getDirection();
     int getCurrentPwm();
     int getCount();
+<<<<<<< HEAD
     bool getisCounting();
 std::string motor_direction;
     // Stuff from IRSensor
     static void do_interrupt(uint gpio, uint32_t events);
     int getCountsPerTimer();
+=======
+    absolute_time_t prevTime;
+    double deltaTime;
+>>>>>>> my-temp-work
 
 private:
     int pwmPin; // PWM pin for motor speed control

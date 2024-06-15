@@ -16,7 +16,10 @@
 #include "../config/pin_config.h"
 #include <fstream>
 #include <chrono>
+<<<<<<< HEAD
 #include <cmath>
+=======
+>>>>>>> my-temp-work
 #include "hardware/sync.h"
 #define PID_LOGGING_ENABLED 1 // Use to enable or disable PID logging
 #define KP_TEST 0 // Use to test different Kp values
@@ -49,10 +52,13 @@ rclc_support_t support;
 rclc_executor_t executor;
 
 absolute_time_t prevTime;
+<<<<<<< HEAD
 int currentCounts = 0;
 int previousCounts = 0;
 double circumference = 2*3.14159265358979323846264338327950288*0.05;
 double previousCps = 0;
+=======
+>>>>>>> my-temp-work
 
 double log_kp;
 double log_error;
@@ -69,9 +75,13 @@ void control_timer_callback(rcl_timer_t * control_timer, int64_t last_call_time)
     if (control_timer != NULL) {
 
         std_msgs__msg__String__init(&control_msg);
+<<<<<<< HEAD
         std::string data = "1";//std::to_string(servo.getAngle()) + " " + std::to_string(log_current_speed);
         //std::string data = std::to_string(motor.getCount()) + " " + std::to_string(motor.getSpeed());
         
+=======
+        std::string data = std::to_string(servo.getAngle()) + " " + std::to_string(log_current_speed);
+>>>>>>> my-temp-work
         control_msg.data.data = strdup(data.c_str()); // Create a copy of the string
         control_msg.data.size = strlen(control_msg.data.data);
         control_msg.data.capacity = control_msg.data.size + 1;
@@ -204,22 +214,42 @@ void subscription_callback_motor(const void *msgin) {
         direction = "reverse";
     }
     else{
+<<<<<<< HEAD
         forward = false;
         reverse = false;
         direction = "stop";
+=======
+    	direction = "stop";
+        motor.setSpeed(1000);
+>>>>>>> my-temp-work
     }
 
     // Update the motor direction to the desired direction
     motor.updateDirection(reverse, forward, direction);
+<<<<<<< HEAD
 
     // PID gains
     double Kp = 2.0;
     double Ki = 0.01;
     double Kd = 0.0;
+=======
+    double Kp = 1.5;
+    // Use Ziegler–Nichols method to tune the PID controller
+    /*1. Find Kmax the value of Kp where it begins to oscillate
+      2. Measure the Tu period of the Kmax oscillation
+      3. Set Kp = 0.6*Kmax, Ki = 2*Kp/Tu, Kd = Kp*(Tu/8)
+    */
+ 
+    double Ki = 0.00; // Integral gain, tweak this value
+    double Kd = 0.1; // Derivative gain, tweak this value
+    // Measure the current speed
+    double current_speed = motor.getSpeed();
+>>>>>>> my-temp-work
 
     // Calculate the error
     double error = desired_speed - current_speed;
 
+<<<<<<< HEAD
     // Compute the integral term
     motor.integral_error += error * deltaT;
 
@@ -241,6 +271,14 @@ void subscription_callback_motor(const void *msgin) {
     //     direction = "reverse";
     // }
     // motor.updateDirection(reverse, forward, direction);
+=======
+    // Calculate the integral term
+    motor.integral_error += error * motor.deltaTime;
+
+    // Calculate the derivative term
+    double derivative = (error - motor.previous_error) / motor.deltaTime;
+   
+>>>>>>> my-temp-work
 
     // Adjust the PWM based on the error
     double new_pwm = std::abs(motor.getCurrentPwm() + u);
