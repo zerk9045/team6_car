@@ -6,6 +6,7 @@ The goal of this project was to create a map of a floor in Kemper Hall at UC Dav
 
 As we as a team feel this project has not reached its full potential, Adrien will be periodically updating the vehicle on his own time as a side project. Future plans are to address the oscillatory nature of the car when navigating autonomously, as well as address the networking issue between the remote machine and the Pi 4B.
 
+For the ros2-control custom hardware interface from the Pi 4B to Pico we created, the link to the repo can be found [here](https://github.com/zerk9045/real_car).
 
 ```
 # you must run this every time you open a new terminal
