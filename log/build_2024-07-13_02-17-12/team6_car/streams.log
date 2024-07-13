@@ -1,0 +1,102 @@
+[0.011s] Invoking command in '/home/adrien/dev_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/adrien/dev_ws/src/team6_car -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/adrien/dev_ws/src/team6_car/install/team6_car
+[0.172s] -- The C compiler identification is GNU 11.4.0
+[0.296s] -- The CXX compiler identification is GNU 11.4.0
+[0.308s] -- Detecting C compiler ABI info
+[0.373s] -- Detecting C compiler ABI info - done
+[0.382s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.382s] -- Detecting C compile features
+[0.383s] -- Detecting C compile features - done
+[0.386s] -- Detecting CXX compiler ABI info
+[0.454s] -- Detecting CXX compiler ABI info - done
+[0.463s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.463s] -- Detecting CXX compile features
+[0.464s] -- Detecting CXX compile features - done
+[0.478s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.621s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.687s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.732s] -- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)
+[0.803s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.810s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.824s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.848s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.873s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.964s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.968s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.081s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.108s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.152s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.166s] -- Looking for pthread.h
+[1.227s] -- Looking for pthread.h - found
+[1.227s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.288s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.289s] -- Found Threads: TRUE  
+[1.474s] -- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)
+[1.525s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.605s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.715s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.715s] -- Configured cppcheck include dirs: 
+[1.715s] -- Configured cppcheck exclude dirs and/or files: 
+[1.821s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.821s] -- Configured cpplint exclude dirs and/or files: 
+[1.835s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.869s] -- Added test 'lint_cmake' to check CMake code style
+[1.883s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[1.988s] -- Added test 'uncrustify' to check C / C++ code style
+[1.988s] -- Configured uncrustify additional arguments: 
+[2.003s] -- Added test 'xmllint' to check XML markup files
+[2.005s] -- Configuring done
+[2.009s] -- Generating done
+[2.011s] -- Build files have been written to: /home/adrien/dev_ws/src/team6_car/build/team6_car
+[2.019s] Invoked command in '/home/adrien/dev_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/adrien/dev_ws/src/team6_car -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/adrien/dev_ws/src/team6_car/install/team6_car
+[2.021s] Invoking command in '/home/adrien/dev_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/adrien/dev_ws/src/team6_car/build/team6_car -- -j4 -l4
+[2.051s] Invoked command in '/home/adrien/dev_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/adrien/dev_ws/src/team6_car/build/team6_car -- -j4 -l4
+[2.075s] Invoking command in '/home/adrien/dev_ws/src/team6_car/build/team6_car': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/adrien/dev_ws/src/team6_car/build/team6_car
+[2.080s] -- Install configuration: ""
+[2.080s] -- Execute custom install script
+[2.081s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/joystick.yaml
+[2.087s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_async.yaml
+[2.093s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_sync.yaml
+[2.099s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/my_controllers.yaml
+[2.106s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/nav2_params.yaml
+[2.112s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/old_nav2_params.yaml
+[2.118s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/teleop_twst_joy.yaml
+[2.125s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/inertial_macros.xacro
+[2.132s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/lidar.xacro
+[2.138s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/materials.xacro
+[2.145s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/robot.urdf.xacro
+[2.151s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/robot_core.xacro
+[2.157s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/ros2_bicycle.xacro
+[2.163s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/joystick.launch.py
+[2.172s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/launch_robot.launch.py
+[2.178s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/localization_launch.py
+[2.186s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/navigation_launch.py
+[2.192s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_async_launch.py
+[2.198s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_sync_launch.py
+[2.204s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/rsp.launch.py
+[2.210s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/spawn_car.launch.py
+[2.217s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/.data
+[2.223s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/.posegraph
+[2.229s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.pgm
+[2.236s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.yaml
+[2.243s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.data
+[2.249s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.posegraph
+[2.257s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.pgm
+[2.263s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.yaml
+[2.270s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.pgm
+[2.276s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.yaml
+[2.284s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car
+[2.291s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car
+[2.297s] -- Up-to-date symlink: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.sh
+[2.297s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.dsv
+[2.304s] -- Up-to-date symlink: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.sh
+[2.304s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.dsv
+[2.310s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.bash
+[2.317s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.sh
+[2.323s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.zsh
+[2.329s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.dsv
+[2.336s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv
+[2.342s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/packages/team6_car
+[2.349s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig.cmake
+[2.355s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig-version.cmake
+[2.362s] -- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/package.xml
+[2.369s] Invoked command in '/home/adrien/dev_ws/src/team6_car/build/team6_car' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/adrien/dev_ws/src/team6_car/build/team6_car

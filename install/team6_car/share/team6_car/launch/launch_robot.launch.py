@@ -1,1 +1,1 @@
-/home/team6/robot_ws/src/team6_car/launch/launch_robot.launch.py
+/home/adrien/dev_ws/src/team6_car/launch/launch_robot.launch.py

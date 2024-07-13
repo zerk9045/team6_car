@@ -1,0 +1,134 @@
+[0.000000] (-) TimerEvent: {}
+[0.000092] (team6_car) JobQueued: {'identifier': 'team6_car', 'dependencies': OrderedDict()}
+[0.000113] (team6_car) JobStarted: {'identifier': 'team6_car'}
+[0.009885] (team6_car) JobProgress: {'identifier': 'team6_car', 'progress': 'cmake'}
+[0.010054] (team6_car) Command: {'cmd': ['/usr/bin/cmake', '/home/adrien/dev_ws/src/team6_car', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/adrien/dev_ws/src/team6_car/install/team6_car'], 'cwd': '/home/adrien/dev_ws/src/team6_car/build/team6_car', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'adrien'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/adrien'), ('OLDPWD', '/home/adrien/dev_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1127'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'adrien'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'adrien'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/adrien-VirtualBox:@/tmp/.ICE-unix/1079,unix/adrien-VirtualBox:/tmp/.ICE-unix/1079'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/e06df662_b1f0_4aad_bf78_cd64688676be'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.GUO9Q2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.119'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/adrien/dev_ws/src/team6_car/build/team6_car'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099317] (-) TimerEvent: {}
+[0.171855] (team6_car) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.199563] (-) TimerEvent: {}
+[0.295749] (team6_car) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.299897] (-) TimerEvent: {}
+[0.307686] (team6_car) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.373390] (team6_car) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.381842] (team6_car) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.382290] (team6_car) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.383050] (team6_car) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.386448] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.400410] (-) TimerEvent: {}
+[0.454158] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.463010] (team6_car) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.463270] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.463771] (team6_car) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.478442] (team6_car) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.500686] (-) TimerEvent: {}
+[0.601099] (-) TimerEvent: {}
+[0.620744] (team6_car) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.686963] (team6_car) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.701424] (-) TimerEvent: {}
+[0.731912] (team6_car) StdoutLine: {'line': b'-- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.801829] (-) TimerEvent: {}
+[0.802782] (team6_car) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.810306] (team6_car) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.823770] (team6_car) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.848292] (team6_car) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.873233] (team6_car) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.902170] (-) TimerEvent: {}
+[0.963591] (team6_car) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.967736] (team6_car) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[1.002488] (-) TimerEvent: {}
+[1.080743] (team6_car) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[1.102920] (-) TimerEvent: {}
+[1.108243] (team6_car) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[1.152431] (team6_car) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.166423] (team6_car) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.203076] (-) TimerEvent: {}
+[1.226763] (team6_car) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.227243] (team6_car) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.287940] (team6_car) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[1.288858] (team6_car) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.303641] (-) TimerEvent: {}
+[1.404030] (-) TimerEvent: {}
+[1.473704] (team6_car) StdoutLine: {'line': b'-- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[1.504432] (-) TimerEvent: {}
+[1.525318] (team6_car) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[1.604578] (-) TimerEvent: {}
+[1.604768] (team6_car) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[1.705151] (-) TimerEvent: {}
+[1.714900] (team6_car) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[1.715116] (team6_car) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[1.715183] (team6_car) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[1.807018] (-) TimerEvent: {}
+[1.821136] (team6_car) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[1.821231] (team6_car) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[1.835301] (team6_car) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[1.868989] (team6_car) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.882924] (team6_car) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[1.907327] (-) TimerEvent: {}
+[1.988376] (team6_car) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[1.988476] (team6_car) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[2.002701] (team6_car) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.005099] (team6_car) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.007668] (-) TimerEvent: {}
+[2.009329] (team6_car) StdoutLine: {'line': b'-- Generating done\n'}
+[2.010943] (team6_car) StdoutLine: {'line': b'-- Build files have been written to: /home/adrien/dev_ws/src/team6_car/build/team6_car\n'}
+[2.019135] (team6_car) CommandEnded: {'returncode': 0}
+[2.019639] (team6_car) JobProgress: {'identifier': 'team6_car', 'progress': 'build'}
+[2.020836] (team6_car) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/adrien/dev_ws/src/team6_car/build/team6_car', '--', '-j4', '-l4'], 'cwd': '/home/adrien/dev_ws/src/team6_car/build/team6_car', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'adrien'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/adrien'), ('OLDPWD', '/home/adrien/dev_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1127'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'adrien'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'adrien'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/adrien-VirtualBox:@/tmp/.ICE-unix/1079,unix/adrien-VirtualBox:/tmp/.ICE-unix/1079'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/e06df662_b1f0_4aad_bf78_cd64688676be'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.GUO9Q2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.119'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/adrien/dev_ws/src/team6_car/build/team6_car'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.051174] (team6_car) CommandEnded: {'returncode': 0}
+[2.068432] (team6_car) JobProgress: {'identifier': 'team6_car', 'progress': 'install'}
+[2.074974] (team6_car) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/adrien/dev_ws/src/team6_car/build/team6_car'], 'cwd': '/home/adrien/dev_ws/src/team6_car/build/team6_car', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'adrien'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/adrien'), ('OLDPWD', '/home/adrien/dev_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1127'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'adrien'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'adrien'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/adrien-VirtualBox:@/tmp/.ICE-unix/1079,unix/adrien-VirtualBox:/tmp/.ICE-unix/1079'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/e06df662_b1f0_4aad_bf78_cd64688676be'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.GUO9Q2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.119'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/adrien/dev_ws/src/team6_car/build/team6_car'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.080135] (team6_car) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.080507] (team6_car) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[2.080781] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/joystick.yaml\n'}
+[2.086800] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_async.yaml\n'}
+[2.093198] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/mapper_params_online_sync.yaml\n'}
+[2.099364] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/my_controllers.yaml\n'}
+[2.105621] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/nav2_params.yaml\n'}
+[2.108115] (-) TimerEvent: {}
+[2.111927] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/old_nav2_params.yaml\n'}
+[2.118482] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/config/teleop_twst_joy.yaml\n'}
+[2.124869] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/inertial_macros.xacro\n'}
+[2.131883] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/lidar.xacro\n'}
+[2.137971] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/materials.xacro\n'}
+[2.144605] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/robot.urdf.xacro\n'}
+[2.150653] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/robot_core.xacro\n'}
+[2.157100] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/description/ros2_bicycle.xacro\n'}
+[2.163500] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/joystick.launch.py\n'}
+[2.171861] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/launch_robot.launch.py\n'}
+[2.178516] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/localization_launch.py\n'}
+[2.185571] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/navigation_launch.py\n'}
+[2.191750] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_async_launch.py\n'}
+[2.197954] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/online_sync_launch.py\n'}
+[2.204275] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/rsp.launch.py\n'}
+[2.208459] (-) TimerEvent: {}
+[2.210529] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/launch/spawn_car.launch.py\n'}
+[2.216986] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/.data\n'}
+[2.223135] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/.posegraph\n'}
+[2.229382] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.pgm\n'}
+[2.236347] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/hallway.yaml\n'}
+[2.242632] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.data\n'}
+[2.248766] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living room.posegraph\n'}
+[2.256669] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.pgm\n'}
+[2.263428] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/living_room.yaml\n'}
+[2.269769] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.pgm\n'}
+[2.276437] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/maps/newmap.yaml\n'}
+[2.284535] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/package_run_dependencies/team6_car\n'}
+[2.290850] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/parent_prefix_path/team6_car\n'}
+[2.297182] (team6_car) StdoutLine: {'line': b'-- Up-to-date symlink: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.sh\n'}
+[2.297314] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/ament_prefix_path.dsv\n'}
+[2.303646] (team6_car) StdoutLine: {'line': b'-- Up-to-date symlink: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.sh\n'}
+[2.303790] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/environment/path.dsv\n'}
+[2.308781] (-) TimerEvent: {}
+[2.310328] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.bash\n'}
+[2.316855] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.sh\n'}
+[2.323068] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.zsh\n'}
+[2.329403] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/local_setup.dsv\n'}
+[2.335836] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/package.dsv\n'}
+[2.342073] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/ament_index/resource_index/packages/team6_car\n'}
+[2.348575] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig.cmake\n'}
+[2.355200] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/cmake/team6_carConfig-version.cmake\n'}
+[2.361709] (team6_car) StdoutLine: {'line': b'-- Symlinking: /home/adrien/dev_ws/src/team6_car/install/team6_car/share/team6_car/package.xml\n'}
+[2.369307] (team6_car) CommandEnded: {'returncode': 0}
+[2.408749] (team6_car) JobEnded: {'identifier': 'team6_car', 'rc': 0}
+[2.409222] (-) TimerEvent: {}
+[2.409274] (-) EventReactorShutdown: {}
